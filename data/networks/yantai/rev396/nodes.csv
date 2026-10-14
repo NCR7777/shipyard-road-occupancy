@@ -1,0 +1,128 @@
+node_id,name,kind
+node_0037cb3f-2f8b-4408-9334-9ff66cfc5f80,entrance001 node,access
+node_08619bd0-0a64-4711-a9da-d459c0ae3939,entrance003 node,access
+node_146d5fb2-6dc2-49f6-bc35-803599c72762,entrance001 node,access
+node_25dd7ef6-7f93-40f3-b3cf-3077c6fe9696,entrance001 node,access
+node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13,entrance001 node,access
+node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28,entrance001 node,access
+node_4d78073d-8adf-4f3e-9932-bddb57b319cd,entrance001 node,access
+node_55789a22-2036-41fa-b4b5-6bd9cfe954b3,entrance001 node,access
+node_651dd514-caf8-4fb2-9baa-476960a87250,entrance002 node,access
+node_6e0c8e3b-e4b2-4b6b-8aef-9a95a989032b,entrance002 node,access
+node_717b9687-6de0-45ef-8295-409884b9cc79,entrance002 node,access
+node_7a5ddb69-91bb-4e37-99cd-5aaaa0263cc2,entrance004 node,access
+node_7e03aef8-b87f-4b51-b597-0bf21372fc65,entrance004 node,access
+node_810c51f2-b7f3-424a-a68a-b6d009d61923,entrance001 node,access
+node_8610e1ef-9db4-4e3a-86cf-7423390be218,entrance002 node,access
+node_8c8bd622-46b7-4421-866e-f0319f58124b,entrance002 node,access
+node_8fed6000-40b2-4147-a289-69110235e4ad,road016 / split point,ordinary
+node_9510d468-8dbe-4d56-9d36-c4829dc41cf7,entrance003 node,access
+node_992dbe10-e870-4297-8f1b-17ffed767b4c,entrance002 node,access
+node_9a1dfdde-1f17-4a0e-aaaa-79e01877d727,road013 / split point,ordinary
+node_9b84978e-78a0-41f0-83a3-72caf7d56ee3,entrance001 node,access
+node_a77d841a-1886-44a3-8a64-b89f1cf25213,entrance005 node,access
+node_adbbe0a5-6b8b-4e5f-839f-de174f408bb5,entrance005 node,access
+node_b0c79af2-9283-4dd5-b9de-73866d054f9e,entrance004 node,access
+node_b610620a-6bef-43a5-acc3-edd52108ec16,entrance003 node,access
+node_b87c5b63-692c-476a-b5b6-ac46d9eadb1f,entrance003 node,access
+node_ba52319f-a3f6-405c-82dd-859fb7c12b89,entrance002 node,access
+node_c65e4045-0e4e-42b2-b742-f89b632d41f0,road085 / split point,ordinary
+node_d188bc7b-508a-40b0-b0a7-12050f1e4684,entrance003 node,access
+node_d1f23c12-af83-4010-8f02-030b7f7dfdd0,entrance002 node,access
+node_e7e97595-e0a7-4b4d-8d61-4ed8b95a0a5a,entrance002 node,access
+node_f3b8aacf-6948-4bcb-b164-ae61c1119f5f,entrance004 node,access
+node_fab7c1f7-e9db-4860-bd74-24e5530d65f3,entrance001 node,access
+node_fc701b45-7d74-4f69-b60c-85ed27b9bbcc,entrance001 node,access
+node_fe3b9193-7977-4c04-b2e5-7ffa7c1f72ff,entrance001 node,access
+node_trace_001,road end,ordinary
+node_trace_002,road end,ordinary
+node_trace_003,road end,ordinary
+node_trace_004,road end,ordinary
+node_trace_005,road end,ordinary
+node_trace_006,road003 / split point,ordinary
+node_trace_007,road end,ordinary
+node_trace_008,road end,ordinary
+node_trace_009,road end,ordinary
+node_trace_010,road end,ordinary
+node_trace_011,road end,ordinary
+node_trace_012,road end,ordinary
+node_trace_013,road end,ordinary
+node_trace_014,road end,ordinary
+node_trace_015,road end,ordinary
+node_trace_016,road end,ordinary
+node_trace_017,road005 / split point,ordinary
+node_trace_018,road end,ordinary
+node_trace_019,road end,ordinary
+node_trace_020,road end,ordinary
+node_trace_021,road end,ordinary
+node_trace_022,road016 / split point,ordinary
+node_trace_023,road end,ordinary
+node_trace_024,road024 / split point,ordinary
+node_trace_025,road end,ordinary
+node_trace_026,road end,ordinary
+node_trace_027,road end,ordinary
+node_trace_028,road end,ordinary
+node_trace_029,road end,ordinary
+node_trace_030,road end,ordinary
+node_trace_031,road001 / split point,ordinary
+node_trace_032,road end,ordinary
+node_trace_033,road end,ordinary
+node_trace_034,road001 / split point,ordinary
+node_trace_035,road end,ordinary
+node_trace_036,road end,ordinary
+node_trace_037,road end,ordinary
+node_trace_038,road end,ordinary
+node_trace_039,road031 / split point,ordinary
+node_trace_040,road end,ordinary
+node_trace_041,road032 / split point,ordinary
+node_trace_042,road030 / split point,ordinary
+node_trace_043,road002 / split point,ordinary
+node_trace_044,road end,ordinary
+node_trace_045,road042 / split point,ordinary
+node_trace_046,road end,ordinary
+node_trace_047,road end,ordinary
+node_trace_048,road025 / split point,ordinary
+node_trace_049,road end,ordinary
+node_trace_050,road end,ordinary
+node_trace_051,road047 / split point,ordinary
+node_trace_052,road end,ordinary
+node_trace_053,road end,ordinary
+node_trace_054,road046 / split point,ordinary
+node_trace_055,road end,ordinary
+node_trace_056,road050 / split point,ordinary
+node_trace_057,road end,ordinary
+node_trace_058,road049 / split point,ordinary
+node_trace_059,road052 / split point,ordinary
+node_trace_060,road053 / split point,ordinary
+node_trace_061,road050 / split point,ordinary
+node_trace_062,road042 / split point,ordinary
+node_trace_063,road042 / split point,ordinary
+node_trace_064,road042 / split point,ordinary
+node_trace_065,road025 / split point,ordinary
+node_trace_066,road025 / split point,ordinary
+node_trace_067,road042 / split point,ordinary
+node_trace_068,road025 / split point,ordinary
+node_trace_069,road022 / split point,ordinary
+node_trace_070,road022 / split point,ordinary
+node_trace_071,road022 / split point,ordinary
+node_trace_072,road022 / split point,ordinary
+node_trace_073,road006 / split point,ordinary
+node_trace_074,road006 / split point,ordinary
+node_trace_075,road006 / split point,ordinary
+node_trace_076,road006 / split point,ordinary
+node_trace_077,road006 / split point,ordinary
+node_trace_078,road001 / split point,ordinary
+node_trace_079,road001 / split point,ordinary
+node_trace_080,road017 / split point,ordinary
+node_trace_081,road080 / split point,ordinary
+node_trace_082,road end,ordinary
+node_trace_083,road end,ordinary
+node_trace_084,road end,ordinary
+node_trace_085,road032 / split point,ordinary
+node_trace_086,road end,ordinary
+node_trace_087,road end,ordinary
+node_trace_088,road end,ordinary
+node_trace_089,road end,ordinary
+node_trace_090,road032 / split point,ordinary
+node_trace_091,road081 / split point,ordinary
+node_trace_093,road end,ordinary

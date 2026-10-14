@@ -1,0 +1,17 @@
+{
+ "t1_check": {
+  "points": 3220,
+  "max_ratio": 0.9886178861788616,
+  "over": 0
+ },
+ "t1_check_dock": {
+  "points": 2500,
+  "max_ratio": 0.9750733137829921,
+  "over": 0
+ },
+ "t1_check_refusal": {
+  "points": 820,
+  "max_ratio": 0.9623733719247464,
+  "over": 0
+ }
+}

@@ -1,0 +1,6 @@
+dock_zone_id,type,count,counts_for_erection
+zone_trace_013,gantry,1,true
+zone_trace_013,tower,3,false
+zone_trace_019,gantry,1,true
+zone_trace_019,jib,1,true
+zone_trace_019,jib/tower,7,false

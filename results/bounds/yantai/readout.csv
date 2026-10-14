@@ -1,0 +1,4 @@
+scen,name,type,price_per_h,flow_on,pass_share,n_pass_pairs,alt_slack,alt_extra_m,unreachable_share,margin_lo_rel,margin_hi_rel
+main,junction entrance001 node [building014·paint shop (inferred)],entrance,81.1180240477365,94.04988295389735,0.0,0,,,,0.0,-2.220446049250313e-16
+erection,"road007 (W=12.0, 212 m)",road,69.37665612035242,108.30687115474457,0.1987023063157762,48,0.508950703443212,388.5534915811163,0.0,0.07942934808069668,0.0808002198625366
+crane,junction entrance001 node [building014·paint shop (inferred)],entrance,76.41552990004156,94.0498829538973,0.0,0,,,,0.0,-2.220446049250313e-16

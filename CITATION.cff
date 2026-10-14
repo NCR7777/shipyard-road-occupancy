@@ -1,0 +1,48 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper."
+title: "shipyard-road-occupancy: code and data of 'When transporters own the road: capacity bounds and operating regimes in shipyard block logistics'"
+authors:
+  - family-names: Na
+    given-names: Chunrui
+    orcid: "https://orcid.org/0000-0002-5887-0813"
+    affiliation: "College of Shipbuilding Engineering, Harbin Engineering University; School of Civil and Environmental Engineering, Nanyang Technological University"
+  - family-names: Wang
+    given-names: Qing
+    orcid: "https://orcid.org/0000-0002-3265-4127"
+    affiliation: "College of Shipbuilding Engineering, Harbin Engineering University"
+  - family-names: Yao
+    given-names: Jingzheng
+    orcid: "https://orcid.org/0009-0003-8656-0091"
+    affiliation: "Yantai Research Institute, Harbin Engineering University"
+  - family-names: Luo
+    given-names: Xiao
+    affiliation: "School of Civil and Environmental Engineering, Nanyang Technological University; School of Marine Science and Technology, Northwestern Polytechnical University"
+license:
+  - MIT          # code (LICENSE)
+  - CC-BY-4.0    # derived road networks and result data (LICENSE-data)
+# To be filled in when the repository is public:
+# repository-code: "https://github.com/<owner>/shipyard-road-occupancy"
+# doi: "<DOI of the archived release>"
+keywords:
+  - shipyard logistics
+  - block transport
+  - road occupancy
+  - capacity bounds
+  - discrete-event simulation
+preferred-citation:
+  type: article
+  title: "When transporters own the road: capacity bounds and operating regimes in shipyard block logistics"
+  authors:
+    - family-names: Na
+      given-names: Chunrui
+      orcid: "https://orcid.org/0000-0002-5887-0813"
+    - family-names: Wang
+      given-names: Qing
+      orcid: "https://orcid.org/0000-0002-3265-4127"
+    - family-names: Yao
+      given-names: Jingzheng
+      orcid: "https://orcid.org/0009-0003-8656-0091"
+    - family-names: Luo
+      given-names: Xiao
+  journal: "submitted to Applied Mathematical Modelling"
+  year: 2026

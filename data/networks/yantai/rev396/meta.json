@@ -1,0 +1,9 @@
+{
+ "yard": "yantai",
+ "revision": 396,
+ "frontage_rule": {
+  "gap": 8.0,
+  "min_len": 10.0,
+  "merge": 3.0
+ }
+}

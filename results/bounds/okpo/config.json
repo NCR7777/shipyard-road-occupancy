@@ -1,0 +1,89 @@
+{
+ "network": "okpo/rev1825",
+ "yard": "yupu",
+ "roles": {},
+ "params": {
+  "v_empty": 3.333333333333333,
+  "v_loaded": 1.6666666666666665,
+  "plat_len": 16.25,
+  "plat_w": 5.5,
+  "lat_clear": 1.0,
+  "long_clear": 5.0,
+  "turn_sweep_s": 30.0,
+  "turn_deg": 60.0,
+  "load_s": 600.0,
+  "unload_s": 600.0,
+  "block_w": [
+   5,
+   15
+  ],
+  "block_l": [
+   10,
+   30
+  ],
+  "width_delta": 0.0,
+  "unrestricted_w": 31.0,
+  "empty_rule": "width",
+  "day_s": 57600.0,
+  "days": 4,
+  "warmup_days": 1,
+  "batches": 8,
+  "deadlock_recovery_s": 900.0,
+  "near_deadlock_s": 1800.0,
+  "frontage_gap": 8.0,
+  "frontage_min_len": 10.0,
+  "frontage_merge": 3.0,
+  "dock_stops": null,
+  "reserve_jit": true,
+  "flow_share": null,
+  "erect_batches": null,
+  "od_sampling": "entity"
+ },
+ "scenarios": {
+  "main": {},
+  "erection": {
+   "flow_share": {
+    "P6": 0.15
+   },
+   "erect_batches": [
+    0,
+    1,
+    2,
+    3
+   ]
+  },
+  "crane": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 13.333333333333334,
+   "erect_peak": 194
+  }
+ },
+ "seeds": [
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110
+ ],
+ "n_mix": 2000,
+ "conv_ns": [
+  2000,
+  20000,
+  200000
+ ],
+ "ref": {
+  "lp": "results/runs/okpo_rev1824_bound_samples",
+  "rho": "results/runs/okpo_rev1825_crane_curves"
+ }
+}

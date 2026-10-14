@@ -1,0 +1,11 @@
+name,scenario,cranes,crane_counts,tau_min,n6,rho,tau_max,T1_sys,infeasible,top1,top1_price,top2,top2_price
+crane_p6lo_map,crane-paced main scenario,map,"{""zone_trace_013"": 1, ""zone_trace_019"": 2}",190.0,11.87,0.783,242.7,1793.2910985224153,False,"road010-6 (W=12.0, 168 m)",111.55192187285242,"road099-4 (W=12.0, 463 m)",0.0
+crane_p6lo_dock1_1,crane-paced main scenario,dock1_1,"{""zone_trace_013"": 1, ""zone_trace_019"": 1}",190.0,11.87,1.174,161.8,,True,,,,
+crane_peak_map,crane-paced main scenario,map,"{""zone_trace_013"": 1, ""zone_trace_019"": 2}",190.0,13.33,0.88,216.0,1794.3367595799944,False,"road010-6 (W=12.0, 168 m)",111.55192187285242,"road099-4 (W=12.0, 463 m)",0.0
+crane_peak_dock1_1,crane-paced main scenario,dock1_1,"{""zone_trace_013"": 1, ""zone_trace_019"": 1}",190.0,13.33,1.319,144.0,,True,,,,
+crane_p6hi_map,crane-paced main scenario,map,"{""zone_trace_013"": 1, ""zone_trace_019"": 2}",190.0,14.67,0.968,196.4,1795.2873605414302,False,"road010-6 (W=12.0, 168 m)",111.55192187285242,crane zone013·dry dock 2,0.0
+crane_p6hi_dock1_1,crane-paced main scenario,dock1_1,"{""zone_trace_013"": 1, ""zone_trace_019"": 1}",190.0,14.67,1.451,130.9,,True,,,,
+crane_peak_dock1_1_tau100,crane-paced main scenario,dock1_1,"{""zone_trace_013"": 1, ""zone_trace_019"": 1}",100.0,13.33,0.694,144.0,1795.2935905097388,False,"road010-6 (W=12.0, 168 m)",111.55192187285242,"road099-4 (W=12.0, 463 m)",0.0
+crane_peak_dock1_1_tau50,crane-paced main scenario,dock1_1,"{""zone_trace_013"": 1, ""zone_trace_019"": 1}",50.0,13.33,0.347,144.0,1795.2935905097388,False,"road010-6 (W=12.0, 168 m)",111.55192187285242,"road099-4 (W=12.0, 463 m)",0.0
+erection_crane_map,erection-heavy mix with crane rows (P6 15%),map,"{""zone_trace_013"": 1, ""zone_trace_019"": 2}",190.0,,,,67.36842105263156,False,crane zone013·dry dock 2,4.210526315789473,crane zone019·dry dock 1,0.0
+erection_crane_dock1_1,erection-heavy mix with crane rows (P6 15%),dock1_1,"{""zone_trace_013"": 1, ""zone_trace_019"": 1}",190.0,,,,67.36842105263156,False,crane zone013·dry dock 2,4.210526315789473,crane zone019·dry dock 1,0.0

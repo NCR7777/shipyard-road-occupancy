@@ -1,0 +1,4 @@
+dock_zone_id,type,count,counts_for_erection
+zone_trace_001,gantry,1,true
+zone_trace_002,bridge,1,true
+zone_trace_002,gantry,1,true

@@ -1,0 +1,17 @@
+facility_id,name,class,access_points
+facility_trace_001,building001·maintenance shop (inferred),maintenance_workshop,access_74ce04f1-f8fd-434e-ad1e-20c91a0b05cd access_0a7b2865-5990-44e5-891b-53e62faecc05
+facility_trace_002,building002·outfitting and pipe shop (inferred),outfitting_workshop,access_1b5627cb-0f32-4fb3-af6e-97dfbd2f5a7d access_369e3929-c25d-4794-9121-24ee4f6000a3 access_66eafc2a-117e-43d1-9b63-c637e215c1d6 access_4e04db41-ed5e-499d-ac98-9871513e47e7
+facility_trace_003,building003·outfitting and pipe shop (inferred),outfitting_workshop,access_19892cb4-02e9-4b03-be4e-ca0bffde55a9 access_eb10f1aa-8848-4a47-91b1-b629b6d55c65 access_24640b0c-135f-4635-a6f6-7f861c667cde
+facility_trace_004,building004·office,office,
+facility_trace_005,building005·paint shop (inferred),paint_workshop,access_b6c83520-1866-4b44-a501-14644cdf936e access_6c2b99d4-0c23-4327-8c1c-8b4a80ea3e4a access_6aee425b-b801-4aa1-9dc0-16da566025af access_93d27d97-2288-483c-8ef0-64ee7586310d
+facility_trace_006,building006·paint shop (inferred),paint_workshop,access_816c6550-69d7-488e-9de7-3c43f3a24969 access_7128c78d-d11d-4863-b49e-67b3920d9ffb access_a095a316-ca11-4020-a79b-a5b0318e1c1f access_677ba516-004b-45fa-938a-fdd8686efb44 access_8a752ca7-a540-4cd6-8064-5ba5283841c0
+facility_trace_007,building007·steel processing and flat-panel line shop,assembly_workshop,access_e53bb9cf-8768-4953-a255-b2544cb01499 access_113d0e12-a7c1-475e-adfb-602f726c1ece access_b06641df-1169-450e-8ec2-84e40437d636 access_fb6f78ed-caf8-4999-8575-7761cdda70f2 access_497435f5-a8ae-4d92-90db-484d95cbe45a
+facility_trace_008,building008·office,office,
+facility_trace_009,building009·office,office,
+facility_trace_010,building010·warehouse (inferred),warehouse,access_1d34612a-3d6b-4a12-b3bd-300bd3ffae25 access_a24de45c-2c3e-487c-a22c-75d06ce7e00b
+facility_trace_011,building011·hazardous waste store,warehouse,
+facility_trace_012,building012·office,office,
+facility_trace_013,building013·outfitting and pipe shop (inferred),outfitting_workshop,access_a1cfac81-d5f4-48e2-a8b2-6a9afb0294eb access_3ed34ef2-3152-4669-9801-daec24a8effc
+facility_trace_014,building014·paint shop (inferred),paint_workshop,access_fa5909f7-836c-4c79-9a89-f7440e1132b1 access_63df2729-8391-436b-9a07-113e450913ce
+facility_trace_015,building015·paint shop (inferred),paint_workshop,access_96d5d26e-13cd-4572-84c8-05a7ac523e4e access_52e234e9-7937-460d-a32c-b2d070f75530 access_1c1f1b00-6c35-49d1-ba4b-c21593d0b2fb
+facility_trace_016,building016·office,office,

@@ -1,0 +1,16 @@
+yard,scen,section,T1_sys,binding1,price1,util1,binding2,util2,secs
+yupu,main,whole,1735.65,"road161 (W=9.0, 1095 m)",108.48,1.0,"road010-6 (W=12.0, 168 m)",0.9691,56.7
+yupu,main,stops,1869.89,"road010-6 (W=12.0, 168 m)",116.87,1.0,"road026 (W=18.0, 348 m)",1.0,58.3
+yupu,erection,whole,696.97,"road161 (W=9.0, 1095 m)",43.56,1.0,"road020 (W=22.0, 216 m)",0.3849,56.2
+yupu,erection,stops,1232.64,"road161@3 (W=9.0, 50 m)",77.04,1.0,"road010-6 (W=12.0, 168 m)",0.6456,58.9
+yupu,crane,whole,1794.34,"road010-6 (W=12.0, 168 m)",111.55,1.0,"road099-4 (W=12.0, 463 m)",0.9447,58.8
+yupu,crane,stops,1794.34,"road010-6 (W=12.0, 168 m)",111.55,1.0,"road099-4 (W=12.0, 463 m)",0.9447,59.7
+yantai,main,whole,1297.89,"junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",81.12,1.0,"junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",0.9982,4.7
+yantai,main,stops,1297.89,"junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",81.12,1.0,"junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",0.9982,4.7
+yantai,erection,whole,1110.03,"road007 (W=12.0, 212 m)",69.38,1.0,"junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",0.7717,4.8
+yantai,erection,stops,1438.41,"junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",89.9,1.0,"junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",0.9982,4.8
+yantai,crane,whole,1224.65,"junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",76.42,1.0,"junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",0.9982,4.7
+yantai,crane,stops,1224.65,"junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",76.42,1.0,"junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",0.9982,4.7
+yupu_r1825,main,whole,1735.65,"road161 (W=9.0, 1095 m)",108.48,1.0,"road010-6 (W=12.0, 168 m)",0.9691,58.0
+yupu_r1825,erection,whole,696.97,"road161 (W=9.0, 1095 m)",43.56,1.0,"road020 (W=22.0, 216 m)",0.3849,58.6
+yupu_r1825,crane,whole,1794.34,"road010-6 (W=12.0, 168 m)",111.55,1.0,"road099-4 (W=12.0, 463 m)",0.9447,60.3

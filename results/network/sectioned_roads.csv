@@ -1,0 +1,5 @@
+yard,road,name,W,L,stops,edges,n,lengths
+Okpo,road_trace_027,road161,9.0,1095.2,104.5 m drive-in·zone018·assembly area; 470.5 m roadside·zone019·dry dock 1; 547.6 m drive-in·zone009·assembly area,"79.5, 129.5, 445.5, 495.5, 522.6, 572.6",7,"79.5, 50.0, 316.0, 50.0, 27.1, 50.0, 522.6"
+Okpo,road_trace_028,road020,22.0,215.6,129 m roadside·zone013·dry dock 2; 137.3 m drive-in·zone011·assembly area; 187.3 m drive-in·zone014·assembly area,"104, 112.3, 154, 162.3, 212.3",6,"104.0, 8.3, 41.7, 8.3, 50.0, 3.3"
+Yantai,road_trace_008,road007,12.0,211.6,13.5 m roadside·zone006·buffer (inferred); 52 m roadside·zone001·dry dock 2; 95.5 m roadside·zone005·buffer (inferred); 141 m roadside·zone007·buffer (inferred),"27, 38.5, 70.5, 77, 116, 120.5, 166",8,"27.0, 11.5, 32.0, 6.5, 39.0, 4.5, 45.5, 45.6"
+Yantai,road_trace_016,road014,12.0,282.5,130 m roadside·zone002·dry dock 1; 130.5 m roadside·zone013·buffer (inferred); 266 m drive-in·zone008·assembly area (inferred),"105, 155, 241",4,"105.0, 50.0, 86.0, 41.5"

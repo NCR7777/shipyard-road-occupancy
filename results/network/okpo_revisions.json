@@ -1,0 +1,22 @@
+{
+ "None": {
+  "revision": [
+   1825,
+   1833
+  ],
+  "road_res": [
+   721,
+   724
+  ],
+  "node_res": [
+   552,
+   552
+  ],
+  "access": [
+   218,
+   218
+  ],
+  "stops_same": true,
+  "ents_same": true
+ }
+}

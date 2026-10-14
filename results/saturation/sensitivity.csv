@@ -1,0 +1,24 @@
+item,Okpo,Yantai (by entity),Yantai (one stop per dock),Yantai (by stop)
+"T1 (blocks/day, mean [min, max])","1,997 [1,688, 2,269]","651 [609, 700]","653 [617, 692]","1,382 [1,272, 1,508]"
+T1′ (blocks/day),"1,720 [1,436, 1,948]","655 [612, 703]","657 [620, 695]","1,382 [1,272, 1,508]"
+"T1′ binding resources (seeds; dual price, blocks/day per extra h/day)","road161 (W = 9.0 m, 1095 m, zone019·dry dock 1 stop road) (5; 98.9); road010-6 (W = 12.0 m, 168 m) (4; 115.5); road026 (W = 18.0 m, 348 m) (1; 118.3)",building014·paint shop (inferred)·entrance001 node (10; 40.9),building014·paint shop (inferred)·entrance001 node (10; 41.1),building007·steel processing shop·entrance005 node (4; 87.0); building007·steel processing shop·entrance003 node (3; 86.5); building007·steel processing shop·entrance004 node (2; 88.3)
+dock-mouth margin = with the dock-mouth zone only T1′ / whole network T1′ (binding seeds),"1,793 / 1,720 = 1.04 (5/10)","1,471 / 655 = 2.25 (0/10)","1,224 / 657 = 1.86 (0/10)","2,412 / 1,382 = 1.75 (0/10)"
+"reservation plateau (K = 100–150 mean, 4 days)",627,436,436,479
+reservation plateau / T1′,36%,67%,66%,35%
+stepwise (reference)plateau; / T1′,984; 57%,556; 85%,555; 85%,622; 45%
+K*(20%) [interval] (reservation),"50 [50, 60]","25 [25, 25]","25 [25, 25]","25 [25, 25]"
+K*(10%) [interval] (reservation),"100 [85, 120]","35 [30, 35]","35 [35, 35]","35 [35, 40]"
+r(15) / r(30) (reservation),58% / 34%,34% / 11%,34% / 11%,38% / 13%
+"reservation / free flow, K = 20 / 40",71% / 53%,54% / 33%,54% / 33%,57% / 35%
+plateau with widths +1.5 / −1.5 m,+7% / -8%,+3% / -3%,—,+3% / -3%
+plateau with widths +3 / −3 m,—,+5% / -7%,—,—
+plateau with empty vehicles holding every road alone (4 days),-19%,-15%,—,—
+plateau with empty vehicles passing everywhere (by the steady-state criterion),+48% (4 days),"+35% (8 days, long-run estimate)",—,—
+"required fleet, regular 97 (free flow / reservation / stepwise)",5 / 6 / 6,5 / 5 / 5,—,—
+"required fleet, peak 194 (free flow / reservation / stepwise)",10 / 12 / 12,7 / 9 / 9,—,—
+peak K = 20·reservation: share of time the dock stop road is held / width-weighted,12.7% / 10.1%,16.7% / 12.4%,—,—
+peak K = 20·reservation: waiting in the dock-mouth zone min/day (share of all waiting),159 (6.6%),370 (11.2%),—,—
+peak K = 20·reservation: resource with most waiting (min/day),"road010-6 (W = 12.0 m, 168 m) 96 (lower bound); road013-5 (W = 15.0 m, 109 m) 70 (lower bound)",building014·paint shop (inferred)·entrance001 node 282; junction (road006-6 / road012-1 / road012-2) 130,—,—
+saturated K = 150: share of time the dock stop road is held (reservation / stepwise),41% / 64%,44% / 67%,48% / 55%,42% / 83%
+saturated K = 150·reservation: resource held the largest share of time (%),"road098-1 (W = 18.0 m, 197 m) 55; road026 (W = 18.0 m, 348 m) 55",building007·steel processing shop·entrance002 node 74; building014·paint shop (inferred)·entrance001 node 72,building014·paint shop (inferred)·entrance001 node 71; building007·steel processing shop·entrance004 node 61 (lower bound),building007·steel processing shop·entrance002 node 74; building007·steel processing shop·entrance001 node 62
+per point T1′ check: occupancy points / max ratio / strictly above,"9,540 / 0.701 / 0","6,960 / 0.926 / 0", (included in the left column),"3,700 / 0.904 / 0"

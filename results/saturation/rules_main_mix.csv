@@ -1,0 +1,13 @@
+key,plateau,max,K_at_max,at_150,kstar20,T1_sys,ratio,drop_150,src,cost_all,cost_K100_150
+yupu|stops|reserve|inf,628.4,661.4,150,661.4,50,1869.9,0.336,0.0,runs/okpo_rules:main_s,"[0.8, 1.03]","[1.14, 1.15]"
+yupu|stops|segment_safe|inf,232.2,278.8,26,226.3,25,1869.9,0.124,-18.8,runs/okpo_rules:main_s,"[1.8, 1.61]","[1.47, 1.45]"
+yupu|stops|segment|inf,1016.4,1058.3,140,1058.0,110,1869.9,0.544,-0.0,runs/okpo_rules:main_s,,
+yupu|whole|reserve|inf,627.7,656.2,150,656.2,50,1735.6,0.362,0.0,runs/okpo_rules:main,"[0.94, 1.35]","[1.58, 1.61]"
+yupu|whole|segment_safe|inf,228.2,278.2,32,214.7,25,1735.6,0.131,-22.8,runs/okpo_rules:main,"[2.79, 2.2]","[1.83, 1.81]"
+yupu|whole|segment|inf,985.8,1030.7,150,1030.7,100,1735.6,0.568,0.0,runs/okpo_rules:main,,
+yantai|stops|reserve|inf,456.6,467.8,150,467.8,25,1297.9,0.352,0.0,runs/yantai_safe_sectioned:main_s,"[1.01, 1.53]","[1.8, 1.84]"
+yantai|stops|segment_safe|inf,209.8,300.1,20,206.6,20,1297.9,0.162,-31.2,runs/yantai_safe_sectioned:main_s,"[1.58, 1.06]","[0.86, 0.85]"
+yantai|stops|segment|inf,651.9,662.2,105,656.6,45,1297.9,0.502,-0.8,unreleased:main_s,,
+yantai|whole|reserve|inf,454.5,466.1,150,466.1,25,1297.9,0.35,0.0,runs/yantai_rev395_saturation:main,"[0.96, 2.1]","[1.33, 2.54]"
+yantai|whole|segment_safe|inf,205.1,296.3,18,194.4,20,1297.9,0.158,-34.4,runs/yantai_safe_sectioned:main,"[2.22, 1.48]","[1.19, 1.18]"
+yantai|whole|segment|inf,627.6,642.2,90,619.9,40,1297.9,0.484,-3.5,runs/yantai_rev395_saturation:main,,

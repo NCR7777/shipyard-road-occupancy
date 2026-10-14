@@ -1,0 +1,10 @@
+curve,yard,theta,K_star,lo,hi,dirs
+yupu,yupu,0.1,105,80,110,runs/okpo_rules
+yupu,yupu,0.2,50,45,55,runs/okpo_rules
+yupu,yupu,0.3,40,35,40,runs/okpo_rules
+yantai,yantai,0.1,35,35,40,runs/yantai_rev395_saturation
+yantai,yantai,0.2,25,25,25,runs/yantai_rev395_saturation
+yantai,yantai,0.3,20,20,20,runs/yantai_rev395_saturation
+yupu_rev1824,yupu,0.1,100,85,120,unreleased + unreleased
+yupu_rev1824,yupu,0.2,50,50,60,unreleased + unreleased
+yupu_rev1824,yupu,0.3,40,35,40,unreleased + unreleased

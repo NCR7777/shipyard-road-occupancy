@@ -1,0 +1,4 @@
+span_zone_id,dock_zone_id,covered_zone_id,share
+zone_crane_span_002,zone_trace_002,zone_trace_010,0.1
+zone_crane_span_002,zone_trace_002,zone_trace_013,0.42
+zone_crane_span_001,zone_trace_001,zone_trace_005,1.0

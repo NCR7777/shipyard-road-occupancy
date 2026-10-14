@@ -1,0 +1,9 @@
+{
+ "findings": {
+  "T1_tight_check": {
+   "points": 1960,
+   "max_ratio": 0.9761215629522427,
+   "over_strict": 0
+  }
+ }
+}

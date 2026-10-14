@@ -1,0 +1,13 @@
+{
+ "t1_check": {
+  "points": 3090,
+  "max_ratio": 0.8488757919197518,
+  "over": 0
+ },
+ "anchor_reads": {
+  "handling": {
+   "cycle_at_anchor_min": 69.12,
+   "travel_free_min": 28.29931769451833
+  }
+ }
+}

@@ -1,0 +1,95 @@
+facility_id,name,class,access_points
+facility_trace_001,building001·assembly shop (inferred),assembly_workshop,access_cbef9c11-39ef-4a03-abcc-c3fa7665e276 access_b75acbcd-aea8-4db8-8b51-8f842513391f access_8e0afc86-e390-4abc-b689-b73e3cb76c4e access_4776cce0-2243-4dbc-8ea9-29c68e612368
+facility_trace_002,building002·paint shop,paint_workshop,access_34ef5964-7935-4b9b-b7a4-acd76361195a
+facility_trace_003,building003·paint shop,paint_workshop,access_87fa9495-82ea-40d3-9303-6dacbad3fff7
+facility_trace_004,building004·paint shop,paint_workshop,access_6f76aeeb-529c-4926-9f46-4a7d567bfbea
+facility_trace_005,building005·paint shop,paint_workshop,access_5e74e644-c0b3-4787-aaa0-c739190da28d
+facility_trace_006,building006·paint shop,paint_workshop,access_a761efee-bc21-4094-9a0b-81ec9af2adb2
+facility_trace_007,building007·paint shop,paint_workshop,access_0b4bbc8d-78f6-4d6c-b131-f8226a3fe4a6
+facility_trace_008,building008·paint shop,paint_workshop,access_7bb764a4-d889-4649-b4d8-2faaabaacb11
+facility_trace_009,building009·paint shop (inferred),paint_workshop,access_6f632b5e-06f7-4d1b-94d9-b271cf300d56
+facility_trace_010,building010·paint shop (inferred),paint_workshop,access_4a53fc2b-a006-4fb3-986f-170836158cd2
+facility_trace_011,building011·office,office,
+facility_trace_012,building012·maintenance shop (inferred),maintenance_workshop,access_db90b6bd-5bc4-44d6-99c8-6c7eb4693683 access_bf2877eb-065b-40e4-9beb-d238ddf83522
+facility_trace_013,building013·assembly shop (inferred),assembly_workshop,access_4759d8d4-5495-43a3-ae45-7e27e0b1320c access_04706f71-9acb-4c41-9a59-fe9621585424 access_5f15b7fd-9bf1-4312-920d-c3f2f04fa9b0 access_357b0842-5677-4334-a5c3-5df539f28171 access_64dfac2f-a4ae-487a-8bf7-2fe2d468b2f9 access_e64f5ba3-a74d-47bc-95dc-13d95f707be4 access_f410259a-b30a-485b-ba1b-ed3991b7301b access_b6548130-54cc-47c9-b6e6-53e5638bdb74
+facility_trace_014,building014·outfitting and pipe shop (inferred),outfitting_workshop,access_068679de-7532-40f6-901c-30af1cc09536 access_6ca35f80-558e-4dff-86e7-5c64ddbfdaf0 access_af6cf7fb-3ead-4988-90a1-9824694a41d5
+facility_trace_015,building015·maintenance shop (inferred),maintenance_workshop,access_07e1cac8-9af9-4884-9b5d-7ea498f045ff
+facility_trace_016,building016·office,office,
+facility_trace_017,building017·paint shop (inferred),paint_workshop,access_48cf5591-e9d8-420a-a7cb-8e60de764201
+facility_trace_018,building018·outfitting and pipe shop (inferred),outfitting_workshop,access_4c12a31a-3249-42e1-999c-c3e01581e2de access_c40442af-7458-4c2a-80b5-02c4e0cf591d
+facility_trace_019,building019·outfitting and pipe shop (inferred),outfitting_workshop,access_fd4afa6d-4134-4717-83f7-73afa5101aa6 access_5948d945-c85f-405a-91dc-53b351f5fa39
+facility_trace_020,building020·gatehouse (inferred),security_house,access_227db3ef-786c-4107-9c6c-eea582fdbe8c
+facility_trace_021,building021·gatehouse (inferred),security_house,access_68f43b17-98f5-4d83-af26-34258aa7bcfd
+facility_trace_022,building022·outfitting and pipe shop (inferred),outfitting_workshop,access_fa97b8c0-3f2e-4594-9351-9237b1aeffb5 access_485bdd63-7a22-405f-8b33-fb230d22c9fd
+facility_trace_023,building023·warehouse (inferred),warehouse,access_48dd0d4d-6235-4632-9b54-1e721cbc9f2b access_8c4bfb0b-ed66-4ad9-a8fd-186996a9487c
+facility_trace_024,building024·outfitting and pipe shop (inferred),outfitting_workshop,access_ef8794b1-c130-49b7-a811-ddcd686f6873 access_35f52510-7c1f-4f45-a789-a94582358745
+facility_trace_025,building025·paint shop (inferred),paint_workshop,access_90b2c4b3-6a62-48b1-83e6-6c0c892edad1
+facility_trace_026,building026·paint shop (inferred),paint_workshop,access_36206c21-e597-4daa-a0e5-99cbc298d56e
+facility_trace_027,building027·paint shop (inferred),paint_workshop,access_d0cfb0c9-7c8c-48a1-bea3-4696873b249b
+facility_trace_028,building028·outfitting and pipe shop (inferred),outfitting_workshop,access_122f504d-29c3-4bee-b03f-e77c8b3e2204 access_2ec68729-538e-43c8-8a09-e7d7e25507a8
+facility_trace_029,building029·outfitting and pipe shop (inferred),outfitting_workshop,access_b620cfbc-4fa5-4edf-be79-590dbd31eed9
+facility_trace_030,building030·paint shop,paint_workshop,access_28fc1025-a4bd-42ec-87d7-3678325d90f0 access_6961f49a-dd13-437c-8d8b-159e06fc1734 access_601256ae-c09d-47bb-a1f0-bc96444d4fd5 access_7a1e0eff-c05f-439e-9ef8-c0a7eacc74bf access_c04278a3-b102-437a-876c-ca9f5abe8a36 access_d4d2a2fb-b692-4636-8df4-0d88720cccd1
+facility_trace_031,building031·office (inferred),office,access_51330666-a107-42f8-8071-7d711609750a
+facility_trace_032,building032·assembly shop,assembly_workshop,access_4422d050-21cb-4f9d-985e-e31ef119d170 access_319515ec-32b9-4806-8673-50232f63a127 access_e6aa5465-fe98-49a0-ad6e-6dada352f79b access_83d049ea-4f21-461e-b324-869a1b1c3189 access_39643029-7f97-4dd7-8b8b-b573544ffca6 access_3a5b21e5-b0cd-48a0-9b0c-e59fcafdf32e
+facility_trace_033,building033·assembly shop (inferred),assembly_workshop,access_64e1f114-7ff5-405b-8313-6640dbf4590d access_c28a92bd-b425-4b69-acf2-373e5fc106af
+facility_trace_034,building034·assembly shop,assembly_workshop,access_1a5225dd-17d4-433d-a135-1ea5e9e2ea0e access_2a323963-ec40-4e0d-86dc-d143ce9e07e5 access_c41331e8-7f23-4157-bd8c-2bea4ee11c15 access_f9a3cd6f-8252-4f55-a5c9-57f45c696542 access_6b0a2fc6-ace3-47c3-a5a1-2fa713be640a access_61da8247-e811-41c1-bd47-c33644491836
+facility_trace_035,building035·steel processing shop,steel_processing_shop,access_dc963f11-42cb-4fef-b3c7-aa71d2931b21 access_67cc3da8-2584-458b-9a71-ee457e2d60a9 access_f84db028-a29a-46ff-950d-0102afa9fc6a access_8812d773-8595-4913-9db8-a58a646abe94 access_5855632f-4056-4950-b8c1-d1b487fba81e access_720f2257-81df-4e58-b9e0-8c75cc578797 access_6aa942f8-9571-419f-a31f-6299dfcde6ec
+facility_trace_036,building036·assembly shop,assembly_workshop,access_20447444-b624-4814-99e5-4231a4427330 access_82032856-a9ac-4e55-9334-b116459e2bf0 access_a9578104-dc68-4f38-ba1c-e6f11564bfdb access_6938b87b-d50c-4a0f-81f5-b726683f307c access_56d2021f-5eb8-4688-a302-614ff193046d access_8a2497ed-a04e-40ca-93d7-5fe07710cf1a access_346a5661-d716-4d09-95f7-9bb2cf20a9b1 access_0c07cf41-5e44-4a71-921c-aa34f2a40df4 access_c1b1cce9-ee5a-4f28-891c-af54d9ecd29c access_ad3ffac3-207a-4218-b9c8-dc8b52dc128e
+facility_trace_037,building037·assembly shop,assembly_workshop,access_dc3f77b0-8188-4161-a63b-89b27234c95c access_4b37a077-58b5-4f2a-84dc-aaf303aab1ad access_5352a5ac-d1d6-4e0b-ba56-eff5127d6c82 access_68b2f760-02c5-42c3-939c-4d165ac4bbd8 access_0a29e88c-3bd7-42c4-8f41-21d1d2150618 access_98719895-6bed-41c3-a369-b6f75377c0f0 access_913da7df-313d-4032-8197-82ed7ca899e8 access_92223b43-77e1-44d6-afab-4d0acff91bfb access_9e45f08c-4dc4-4f34-b28a-e4739fdb5381 access_964815cf-35b1-4f2e-98d0-70517709621d
+facility_trace_038,building038·assembly shop (inferred),assembly_workshop,access_4df483fa-8a31-4026-9a3f-0dadb7918d60 access_8b5478c2-1a85-49b6-8851-8a01f141020f access_2ecc799f-e751-4a86-b337-4c2a05266e4c access_e8de0657-e376-4391-aa88-7ed31aa5cd2d access_214bbb44-fc06-414d-a46c-c25f5c683c4c access_354eff90-9e14-4881-9429-ce8ea8f9fe18 access_57e038c4-e7c2-4bed-bc45-72c03c829aaa access_61bc61fe-e43e-480a-aead-aa00fea3bf77 access_8cd497ac-9680-477c-a639-788030d92c66 access_e1fbecd6-8a60-40e2-bdc5-bf10ae8787bf access_47f96ad0-cbd8-424b-8150-9bf67c8fcf78 access_c696f5a7-e469-4b99-8859-be16be5e9aca
+facility_trace_039,building039·assembly shop,assembly_workshop,access_14e1ccbe-736d-4f4f-9a11-f06ff0bf070f access_230b65e7-b913-4872-bf1f-6553b530771e access_541d4845-0fcf-4a33-a22b-092a004e44d5 access_efe73225-28b6-45d1-942c-fbe9f0b71f2d access_fa1331e8-5a8f-416d-89f4-d984056767d8
+facility_trace_040,building040·office,office,
+facility_trace_041,building041·steel processing shop (inferred),steel_processing_shop,access_94bafcf8-3bb1-4ee6-9f2c-fb463c3d78ac
+facility_trace_042,building042·office,office,
+facility_trace_043,building043·office,office,
+facility_trace_044,building044·office,office,
+facility_trace_045,building045·paint shop,paint_workshop,access_978a5af6-866a-4d75-a6b4-84565e2c9179 access_8e09192c-1b84-454c-98ef-bcb0e0711532 access_91dc210b-14ed-4015-8009-ff6bcc5bf3fc access_acf2fb1d-40e5-41fb-9b44-13ec0cdb9ba4 access_2a65fa42-ddbf-4f23-af5d-684a889de771
+facility_trace_046,building046·paint shop (inferred),paint_workshop,access_f046059f-90ee-472a-9a38-986d6b6c825e access_343dc2a1-b8f5-4879-a90d-e70b1e9ca15d access_99688039-aaa4-4542-a4a7-691b4839515f
+facility_trace_047,building047·warehouse (inferred),warehouse,access_8846bfaa-4777-442b-8d99-9d2ff3c5dc98
+facility_trace_048,building048·assembly shop,assembly_workshop,access_848976c9-2bad-4bf0-91c2-7bb2350df244 access_4f2b89ab-c1a2-4143-bd73-515e340ac3a2 access_b9aa8d24-0e89-4370-a0db-d5ad684934c4 access_0c530ba5-3c61-42b4-b39b-698fb34150e0 access_004b390c-62a0-4e11-b7f0-3c81f30f8c0c
+facility_trace_049,building049·paint shop,paint_workshop,access_fb8e7daf-0535-49a5-a2e5-cfc8fbee7da0 access_e6409845-c5a5-4565-9fe5-b7b4ee1b1fc9 access_4dc1d826-1229-4a09-93aa-acab6223eb33 access_30b06365-0e52-437f-be30-11ae0a6d84de access_39599d87-2ae8-42f9-a42e-58da5cd61771
+facility_trace_050,building050·paint shop (inferred),paint_workshop,access_388ce3f8-7b71-4029-81cc-658f08be6359 access_aa399b65-07ef-436e-a37e-9b57cfd0027c access_7199ddd2-faa2-48cc-9eb7-492da39e289c access_71855101-67d4-4a60-8941-7a5736b1e42e
+facility_trace_051,building051·paint shop (inferred),paint_workshop,access_1cd08673-cb83-4d7f-9568-d406fcbec735 access_710eec46-ae25-41f6-a905-2a29147331d8 access_c7567ef9-8ff3-4230-95b9-36f4eed2dde7 access_f88fc5d3-e089-4889-b4c8-d36e2b9eb4b9 access_be8d113a-1a78-48da-bda7-ba8c0ac5a39c
+facility_trace_052,building052·maintenance shop (inferred),maintenance_workshop,access_c079273a-a6d9-451a-81d0-3cfb96bab2c8
+facility_trace_053,building053·warehouse (inferred),warehouse,access_6d0c0235-72ad-4498-8628-48636e129a9f
+facility_trace_054,building054·assembly shop (inferred),assembly_workshop,access_65fad7bd-2173-4cf1-8b2f-5cec59fa0d93 access_47ef104c-9d5d-4fe2-80c6-8901b002e2ed access_ca649157-c502-4f30-be25-c912c47449f4 access_a4fbae09-b6f5-4492-91b9-5d0c90004484 access_b76078ca-b6cf-4e02-ad6e-b200ab18de3a access_7ce5e24a-9b14-4bae-a12c-b60e35d1cfbb
+facility_trace_055,building055·outfitting and pipe shop (inferred),outfitting_workshop,access_9108bc49-7408-447e-95c1-3be46ffffe4f
+facility_trace_056,building056·maintenance shop (inferred),maintenance_workshop,access_1043cdfd-a258-4c96-9482-c11f9c8853bd access_6c2a0d0a-d11b-4536-ae90-8f6b6ac6fb6a
+facility_trace_057,building057·warehouse (inferred),warehouse,access_a8ff51b8-47db-4319-8413-46205f22160f access_82c6986e-8b48-44a4-af0b-69036fd655c6
+facility_trace_058,building058·outfitting and pipe shop (inferred),outfitting_workshop,access_21ead8a0-b8ce-449d-9e4b-064134649a8e
+facility_trace_059,building059·office,office,
+facility_trace_060,building060·outfitting and pipe shop (inferred),outfitting_workshop,access_be587383-c3eb-41cd-a99a-d996f9eaa5d0 access_a3552fb7-3e1c-44b7-8b0e-c37cbda5ba59 access_4f9b4f49-6070-4084-8dea-ec4274101118 access_ff8d99bc-4b3e-47b4-9672-3c6ce79130d8
+facility_trace_061,building061·assembly shop (inferred),assembly_workshop,access_bc2353c9-5202-4090-8a29-ce2fd472de2e access_e3c5f2bb-467d-4f7d-a24a-9c3548a1c504 access_6d001a79-cfb2-426f-91a5-30c2aacfae2e
+facility_trace_062,building062·office,office,
+facility_trace_063,building063·office,office,
+facility_trace_064,building064·maintenance shop (inferred),maintenance_workshop,access_18c312f9-da60-4c51-acac-710cbdd14ce5
+facility_trace_065,building065·office,office,
+facility_trace_066,building066·office,office,
+facility_trace_067,building067·office,office,
+facility_trace_068,building068·outfitting and pipe shop (inferred),outfitting_workshop,access_d20b847f-e5ae-4fa4-93aa-180da08868a4 access_b2556d95-bde8-4e58-a3e6-3e5bc494c941
+facility_trace_069,building069·maintenance shop (inferred),maintenance_workshop,access_9d682ab7-2058-43d4-8b45-b07ea4f3126b
+facility_trace_070,building070·office (inferred),office,
+facility_trace_071,building071·warehouse (inferred),warehouse,access_3a37ada8-a421-41a3-8a9a-74355d401914
+facility_trace_072,building072·maintenance shop (inferred),maintenance_workshop,access_14fa05f6-c0a0-4891-8045-6b6f86b625a2 access_0d376a35-274c-40fe-a065-893901c161d8
+facility_trace_073,building073·outfitting and pipe shop (inferred),outfitting_workshop,access_5286f7fa-9a66-4709-85b5-928fc53745c9 access_2f0a8872-1252-40ad-8c69-e6e5c5625c9e
+facility_trace_074,building074·outfitting and pipe shop (inferred),outfitting_workshop,access_a0332a07-2f67-4767-a389-a53fc257c0fd access_679e787a-3dc7-4558-a7e0-1352fe2b6cb4 access_f26f77fd-960d-4aa8-a2f1-97ee988b7938 access_2afc160d-f2d3-467b-9bdb-5666a34b772f
+facility_trace_075,building075·outfitting and pipe shop (inferred),outfitting_workshop,access_e270df6d-9d42-47d7-833c-27bcb4e1d661 access_e3d825bf-de0b-4c6d-b96d-435f0dc4a24b access_9a188225-61c8-4a69-85d9-66318cd07f4a access_85ed9556-bfd7-4cd6-81df-06767a1db509 access_adc64615-27b4-459b-9f00-5de9812fbcf6
+facility_trace_076,building076·outfitting and pipe shop (inferred),outfitting_workshop,access_b54f8b6a-3fe8-488c-9f39-a0dba5baa05f
+facility_trace_077,building077·office,office,
+facility_trace_078,building078·warehouse (inferred),warehouse,access_71d7c8aa-ec52-42a5-8301-03679b60ee13 access_de1a5941-2837-4dda-94d7-fb3e8c50a2d8
+facility_trace_079,building079·warehouse (inferred),warehouse,access_843b1555-df47-42aa-913e-cbdd76c33018
+facility_trace_080,building080·outfitting and pipe shop (inferred),outfitting_workshop,access_c1d814e4-05d1-4360-8703-5c5e6087ae27 access_37a0267e-0770-44e5-af43-1ed269385ee2 access_0ec8bafd-5b98-4360-85b5-5bd1bdd31773 access_74a95fe8-f38d-4c5d-b14d-64e6264118d4
+facility_trace_082,building082·paint shop,paint_workshop,access_1be8e2b0-23f5-4d33-97cf-31f29ebfc4c8 access_0ccc8abd-0a9a-4d26-b08c-527d4d3e212d access_d0da262c-ce86-4268-a2fc-38a5c60e0fea access_1b9b9f47-e64f-4571-b0f7-55a877f49317 access_3c14fa67-9299-4cd4-a154-c6ffbb705cb0 access_84cd36aa-e2dc-479e-9d27-41c095f2ebc6 access_c3af58be-a5d8-4672-ba24-7d8cebeaba0a access_348174bb-a736-4a09-97fb-1235ccebf098
+facility_trace_083,building083·maintenance shop (inferred),maintenance_workshop,access_e16e6ae3-7f25-4f01-b120-d9f4defbc7c9 access_2d95ed8c-9f82-4228-a6c4-e785d4f60f24
+facility_trace_084,building084·warehouse (inferred),warehouse,access_cb6c85e2-cb4b-4c65-98ba-4fec4098a375 access_5e2b8804-86a9-45b0-ac70-b3b24207a25b
+facility_trace_085,building085·power house (inferred),power_house,access_e527e414-9a56-4a3b-ad91-6b83922c19e6 access_d627ce35-e534-45d0-bc45-81eff1b0b66c
+facility_trace_086,building086·office,office,
+facility_trace_087,building087·office,office,
+facility_trace_088,building088·office,office,
+facility_trace_089,building089·office,office,
+facility_trace_090,building090·outfitting and pipe shop (inferred),outfitting_workshop,access_02b575e2-930b-44f9-8630-46804463d78e access_3d52fb7c-de2b-4e6d-98cb-dc0265e0fca6
+facility_trace_091,building091·assembly shop (inferred),assembly_workshop,access_6a04db2f-d32c-481d-b208-6d54c2ee42a5 access_b2a68494-6ca3-47ae-ba76-c890e2dc462c access_65780404-1b96-4494-8290-62283f3bc8de
+facility_trace_092,building092·assembly shop (inferred),assembly_workshop,access_d015c4a8-1d15-4803-8003-d33a12dab3c6 access_deb52187-2e16-4fb9-801b-57e32447afa0 access_144094f5-0a14-496d-9b78-3738e625ee77 access_7fbbf77d-eb1b-4716-87f8-9e42cea3d1ed access_716c17ba-13cc-4d4a-8b7d-b6c64ec87c37 access_c49a455d-dd88-43e7-a55f-792ddb890399
+facility_trace_093,building093·assembly shop (inferred),assembly_workshop,access_0f89d134-251c-41e2-8fec-c5e40f20ff3c access_48423edf-f51d-460a-b91e-4a46b2310b27 access_318c345a-2d17-4d42-9fb1-29d821c9c252 access_77aae2b3-d450-4b14-a31b-5ff45217f101 access_db6a4c96-0c9b-4d43-9662-18fea6c369df
+facility_trace_094,building094·office,office,
+facility_trace_095,building095·maintenance shop (inferred),maintenance_workshop,access_d9bbf7a9-ce8f-44e2-a9a7-acb19d8e90e0

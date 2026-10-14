@@ -1,0 +1,7 @@
+{
+ "findings": {
+  "T1_tight_check": {
+   "over_strict": 0
+  }
+ }
+}

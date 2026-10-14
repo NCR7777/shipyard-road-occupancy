@@ -1,0 +1,9 @@
+{
+ "yard": "okpo",
+ "revision": 1833,
+ "frontage_rule": {
+  "gap": 8.0,
+  "min_len": 10.0,
+  "merge": 3.0
+ }
+}

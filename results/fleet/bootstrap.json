@@ -1,0 +1,4 @@
+{
+ "about": "Differences of required fleets between two scenarios carry a paired seed bootstrap interval: the ten seeds are resampled with replacement this many times.",
+ "bootstrap_resamples": 2000
+}

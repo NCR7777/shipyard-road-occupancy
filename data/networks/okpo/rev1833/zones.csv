@@ -1,0 +1,70 @@
+zone_id,name,class
+zone_crane_span_013,gantry crane span·dry dock 2 900 t (span 148 m),
+zone_crane_span_019,gantry crane span·dry dock 1 900 t (span 206 m),
+zone_floating_dock_a,zoneF1·floating dock (interpreted),floating_dock
+zone_floating_dock_b,zoneF2·floating dock (interpreted),floating_dock
+zone_trace_001,zone001·stockyard (inferred),yard
+zone_trace_002,zone002·assembly area (inferred),assembly_yard
+zone_trace_003,zone003·stockyard,yard
+zone_trace_004,zone004·stockyard,yard
+zone_trace_005,zone005·quay area,quay
+zone_trace_006,zone006·buffer,buffer
+zone_trace_007,zone007·buffer (inferred),buffer
+zone_trace_008,zone008·assembly area (inferred),assembly_yard
+zone_trace_009,zone009·assembly area,assembly_yard
+zone_trace_010,zone010·steel stockyard,steel_stockyard
+zone_trace_011,zone011·assembly area,assembly_yard
+zone_trace_012,zone012·assembly area,assembly_yard
+zone_trace_013,zone013·dry dock 2,dry_dock
+zone_trace_014,zone014·assembly area,assembly_yard
+zone_trace_015,zone015·stockyard (inferred),yard
+zone_trace_016,zone016·stockyard (inferred),yard
+zone_trace_017,zone017·buffer (inferred),buffer
+zone_trace_018,zone018·assembly area,assembly_yard
+zone_trace_019,zone019·dry dock 1,dry_dock
+zone_trace_020,zone020·quay area,quay
+zone_trace_021,zone021·quay area,quay
+zone_trace_022,zone022·stockyard (inferred),yard
+zone_trace_023,zone023·quay area,quay
+zone_trace_024,zone024·quay area,quay
+zone_trace_025,zone025·quay area,quay
+zone_trace_026,zone026·buffer (inferred),buffer
+zone_trace_027,zone027·stockyard (inferred),yard
+zone_trace_028,zone028·buffer (inferred),buffer
+zone_trace_029,zone029·buffer (inferred),buffer
+zone_trace_030,zone030·buffer (inferred),buffer
+zone_trace_031,zone031·assembly area,assembly_yard
+zone_trace_032,zone032·stockyard (inferred),yard
+zone_trace_033,zone033·quay area,quay
+zone_trace_034,zone034·offshore fabrication yard (inferred),offshore_fabrication_yard
+zone_trace_035,zone035·quay area,quay
+zone_trace_036,zone036·offshore fabrication yard,offshore_fabrication_yard
+zone_trace_037,zone037·offshore fabrication yard (inferred),offshore_fabrication_yard
+zone_trace_038,zone038·offshore fabrication yard (inferred),offshore_fabrication_yard
+zone_trace_039,zone039·buffer (inferred),buffer
+zone_trace_040,zone040·buffer (inferred),buffer
+zone_trace_041,zone041·offshore fabrication yard,offshore_fabrication_yard
+zone_trace_042,zone042·offshore fabrication yard,offshore_fabrication_yard
+zone_trace_043,zone043·offshore fabrication yard (inferred),offshore_fabrication_yard
+zone_trace_044,zone044·quay area (inferred),quay
+zone_trace_045,zone045·buffer (inferred),buffer
+zone_trace_046,zone046·stockyard (inferred),yard
+zone_trace_047,zone047·offshore fabrication yard (inferred),offshore_fabrication_yard
+zone_trace_048,zone048·stockyard (inferred),yard
+zone_trace_049,zone049·stockyard (inferred),yard
+zone_trace_050,zone050·quay area (inferred),quay
+zone_trace_051,zone051·stockyard (inferred),yard
+zone_trace_052,zone052·stockyard (inferred),yard
+zone_trace_053,zone053·stockyard (inferred),yard
+zone_trace_054,zone054·quay area,quay
+zone_trace_055,zone055·quay area (inferred),quay
+zone_trace_056,zone056·buffer (inferred),buffer
+zone_trace_057,zone057·buffer (inferred),buffer
+zone_trace_058,zone058·buffer (inferred),buffer
+zone_trace_059,zone059·buffer (inferred),buffer
+zone_trace_060,zone060·buffer (inferred),buffer
+zone_trace_061,zone061·buffer (inferred),buffer
+zone_trace_062,zone062·stockyard (inferred),yard
+zone_trace_063,zone063·buffer (inferred),buffer
+zone_trace_064,zone064·quay area,quay
+zone_floating_dock_c,zoneF3·floating dock (assigned by the authors),floating_dock

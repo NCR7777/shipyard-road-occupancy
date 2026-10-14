@@ -1,0 +1,362 @@
+[
+ {
+  "yard": "yupu",
+  "scen": "main",
+  "section": "whole",
+  "T1_sys": 1735.6453134218996,
+  "secs": 56.7,
+  "binding": [
+   {
+    "name": "road161 (W=9.0, 1095 m)",
+    "price_per_h": 108.47783208886874,
+    "util": 1.0
+   },
+   {
+    "name": "road010-6 (W=12.0, 168 m)",
+    "price_per_h": 0.0,
+    "util": 0.9691184774667071
+   },
+   {
+    "name": "road026 (W=18.0, 348 m)",
+    "price_per_h": 0.0,
+    "util": 0.873147106939646
+   }
+  ]
+ },
+ {
+  "yard": "yupu",
+  "scen": "main",
+  "section": "stops",
+  "T1_sys": 1869.8933406513631,
+  "secs": 58.3,
+  "binding": [
+   {
+    "name": "road010-6 (W=12.0, 168 m)",
+    "price_per_h": 116.86833379071018,
+    "util": 1.0
+   },
+   {
+    "name": "road026 (W=18.0, 348 m)",
+    "price_per_h": 0.0,
+    "util": 1.0000000000000002
+   },
+   {
+    "name": "road099-4 (W=12.0, 463 m)",
+    "price_per_h": 0.0,
+    "util": 0.9343490542563576
+   }
+  ]
+ },
+ {
+  "yard": "yupu",
+  "scen": "erection",
+  "section": "whole",
+  "T1_sys": 696.9736949812542,
+  "secs": 56.2,
+  "binding": [
+   {
+    "name": "road161 (W=9.0, 1095 m)",
+    "price_per_h": 43.560855936328394,
+    "util": 1.0
+   },
+   {
+    "name": "road020 (W=22.0, 216 m)",
+    "price_per_h": 0.0,
+    "util": 0.38489368114952666
+   },
+   {
+    "name": "road010-6 (W=12.0, 168 m)",
+    "price_per_h": 0.0,
+    "util": 0.3636809018438877
+   }
+  ]
+ },
+ {
+  "yard": "yupu",
+  "scen": "erection",
+  "section": "stops",
+  "T1_sys": 1232.636239475567,
+  "secs": 58.9,
+  "binding": [
+   {
+    "name": "road161@3 (W=9.0, 50 m)",
+    "price_per_h": 77.03976496722294,
+    "util": 1.0
+   },
+   {
+    "name": "road010-6 (W=12.0, 168 m)",
+    "price_per_h": 0.0,
+    "util": 0.6456015476011172
+   },
+   {
+    "name": "road026 (W=18.0, 348 m)",
+    "price_per_h": 0.0,
+    "util": 0.6384094233460208
+   }
+  ]
+ },
+ {
+  "yard": "yupu",
+  "scen": "crane",
+  "section": "whole",
+  "T1_sys": 1794.3367595799944,
+  "secs": 58.8,
+  "binding": [
+   {
+    "name": "road010-6 (W=12.0, 168 m)",
+    "price_per_h": 111.55192187285242,
+    "util": 1.0
+   },
+   {
+    "name": "road099-4 (W=12.0, 463 m)",
+    "price_per_h": 0.0,
+    "util": 0.9446975834866302
+   },
+   {
+    "name": "road026 (W=18.0, 348 m)",
+    "price_per_h": 0.0,
+    "util": 0.9399949400902861
+   }
+  ]
+ },
+ {
+  "yard": "yupu",
+  "scen": "crane",
+  "section": "stops",
+  "T1_sys": 1794.3367595799944,
+  "secs": 59.7,
+  "binding": [
+   {
+    "name": "road010-6 (W=12.0, 168 m)",
+    "price_per_h": 111.55192187285242,
+    "util": 1.0
+   },
+   {
+    "name": "road099-4 (W=12.0, 463 m)",
+    "price_per_h": 0.0,
+    "util": 0.9446975834866302
+   },
+   {
+    "name": "road026 (W=18.0, 348 m)",
+    "price_per_h": 0.0,
+    "util": 0.9325072791509031
+   }
+  ]
+ },
+ {
+  "yard": "yantai",
+  "scen": "main",
+  "section": "whole",
+  "T1_sys": 1297.888384763784,
+  "secs": 4.7,
+  "binding": [
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",
+    "price_per_h": 81.1180240477365,
+    "util": 1.0
+   },
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",
+    "price_per_h": 0.0,
+    "util": 0.9982025061729609
+   },
+   {
+    "name": "road007 (W=12.0, 212 m)",
+    "price_per_h": 0.0,
+    "util": 0.8974010033352479
+   }
+  ]
+ },
+ {
+  "yard": "yantai",
+  "scen": "main",
+  "section": "stops",
+  "T1_sys": 1297.888384763784,
+  "secs": 4.7,
+  "binding": [
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",
+    "price_per_h": 81.1180240477365,
+    "util": 1.0
+   },
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",
+    "price_per_h": 0.0,
+    "util": 0.9982025061729609
+   },
+   {
+    "name": "junction entrance002 node [building007·steel processing and flat-panel line shop·building007-entrance4, 651dd514]",
+    "price_per_h": 0.0,
+    "util": 0.8447158886086139
+   }
+  ]
+ },
+ {
+  "yard": "yantai",
+  "scen": "erection",
+  "section": "whole",
+  "T1_sys": 1110.0264979256388,
+  "secs": 4.8,
+  "binding": [
+   {
+    "name": "road007 (W=12.0, 212 m)",
+    "price_per_h": 69.37665612035242,
+    "util": 1.0
+   },
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",
+    "price_per_h": 0.0,
+    "util": 0.771703837942861
+   },
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",
+    "price_per_h": 0.0,
+    "util": 0.7703167050578562
+   }
+  ]
+ },
+ {
+  "yard": "yantai",
+  "scen": "erection",
+  "section": "stops",
+  "T1_sys": 1438.4099745890185,
+  "secs": 4.8,
+  "binding": [
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",
+    "price_per_h": 89.90062341181364,
+    "util": 1.0000000000000002
+   },
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",
+    "price_per_h": 0.0,
+    "util": 0.9982025061729607
+   },
+   {
+    "name": "junction entrance002 node [building007·steel processing and flat-panel line shop·building007-entrance4, 651dd514]",
+    "price_per_h": 0.0,
+    "util": 0.8447158886086135
+   }
+  ]
+ },
+ {
+  "yard": "yantai",
+  "scen": "crane",
+  "section": "whole",
+  "T1_sys": 1224.648478400665,
+  "secs": 4.7,
+  "binding": [
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",
+    "price_per_h": 76.41552990004156,
+    "util": 1.0
+   },
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",
+    "price_per_h": 0.0,
+    "util": 0.9982025061729606
+   },
+   {
+    "name": "junction entrance002 node [building007·steel processing and flat-panel line shop·building007-entrance4, 651dd514]",
+    "price_per_h": 0.0,
+    "util": 0.8447158886086131
+   }
+  ]
+ },
+ {
+  "yard": "yantai",
+  "scen": "crane",
+  "section": "stops",
+  "T1_sys": 1224.648478400665,
+  "secs": 4.7,
+  "binding": [
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",
+    "price_per_h": 76.41552990004156,
+    "util": 1.0
+   },
+   {
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",
+    "price_per_h": 0.0,
+    "util": 0.9982025061729606
+   },
+   {
+    "name": "junction entrance002 node [building007·steel processing and flat-panel line shop·building007-entrance4, 651dd514]",
+    "price_per_h": 0.0,
+    "util": 0.8447158886086131
+   }
+  ]
+ },
+ {
+  "yard": "yupu_r1825",
+  "scen": "main",
+  "section": "whole",
+  "T1_sys": 1735.6453134218996,
+  "secs": 58.0,
+  "binding": [
+   {
+    "name": "road161 (W=9.0, 1095 m)",
+    "price_per_h": 108.47783208886874,
+    "util": 1.0
+   },
+   {
+    "name": "road010-6 (W=12.0, 168 m)",
+    "price_per_h": 0.0,
+    "util": 0.9691184774667071
+   },
+   {
+    "name": "road026 (W=18.0, 348 m)",
+    "price_per_h": 0.0,
+    "util": 0.873147106939646
+   }
+  ]
+ },
+ {
+  "yard": "yupu_r1825",
+  "scen": "erection",
+  "section": "whole",
+  "T1_sys": 696.9736949812542,
+  "secs": 58.6,
+  "binding": [
+   {
+    "name": "road161 (W=9.0, 1095 m)",
+    "price_per_h": 43.560855936328394,
+    "util": 1.0
+   },
+   {
+    "name": "road020 (W=22.0, 216 m)",
+    "price_per_h": 0.0,
+    "util": 0.38489368114952666
+   },
+   {
+    "name": "road010-6 (W=12.0, 168 m)",
+    "price_per_h": 0.0,
+    "util": 0.3636809018438877
+   }
+  ]
+ },
+ {
+  "yard": "yupu_r1825",
+  "scen": "crane",
+  "section": "whole",
+  "T1_sys": 1794.3367595799944,
+  "secs": 60.3,
+  "binding": [
+   {
+    "name": "road010-6 (W=12.0, 168 m)",
+    "price_per_h": 111.55192187285242,
+    "util": 1.0
+   },
+   {
+    "name": "road099-4 (W=12.0, 463 m)",
+    "price_per_h": 0.0,
+    "util": 0.9446975834866302
+   },
+   {
+    "name": "road026 (W=18.0, 348 m)",
+    "price_per_h": 0.0,
+    "util": 0.9399949400902861
+   }
+  ]
+ }
+]

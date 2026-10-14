@@ -1,0 +1,33 @@
+zone_id,name,class
+zone_trace_001,zone001·dry dock 2,dry_dock
+zone_trace_002,zone002·dry dock 1,dry_dock
+zone_trace_003,zone003·stockyard,yard
+zone_trace_004,zone004·assembly area (inferred),assembly_yard
+zone_trace_005,zone005·buffer (inferred),buffer
+zone_trace_006,zone006·buffer (inferred),buffer
+zone_trace_007,zone007·buffer (inferred),buffer
+zone_trace_008,zone008·assembly area (inferred),assembly_yard
+zone_trace_009,zone009·buffer (inferred),buffer
+zone_trace_010,zone010·stockyard,yard
+zone_trace_011,zone011·steel stockyard,steel_stockyard
+zone_trace_012,zone012·steel stockyard,steel_stockyard
+zone_trace_013,zone013·buffer (inferred),buffer
+zone_trace_014,zone014·assembly area,assembly_yard
+zone_trace_015,zone015·assembly area,assembly_yard
+zone_trace_016,zone016·assembly area,assembly_yard
+zone_trace_017,zone017·assembly area,assembly_yard
+zone_trace_018,zone018·stockyard (inferred),yard
+zone_trace_019,zone019·assembly area (inferred),assembly_yard
+zone_trace_020,zone020·stockyard,yard
+zone_trace_021,zone021·stockyard,yard
+zone_trace_022,zone022·stockyard (inferred),yard
+zone_trace_023,zone023·buffer (inferred),buffer
+zone_trace_024,zone024·stockyard,yard
+zone_trace_025,zone025·buffer (inferred),buffer
+zone_trace_026,zone026·buffer (inferred),buffer
+zone_trace_027,zone027·buffer (inferred),buffer
+zone_trace_028,zone028·buffer (inferred),buffer
+zone_trace_029,zone029·quay area,quay
+zone_trace_030,zone030·stockyard (inferred),yard
+zone_crane_span_002,gantry crane span·dry dock 1 (measured span about 141 m),
+zone_crane_span_001,gantry crane span·dry dock 2 (measured span about 49 m),

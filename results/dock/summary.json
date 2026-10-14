@@ -1,0 +1,19 @@
+{
+ "dock_checks": {
+  "rho_same": true,
+  "reserve_max_drop_r1833": 2.048480710139977,
+  "safe_whole_falls": true,
+  "sectioning_up": {
+   "segment_safe": {
+    "n": 5,
+    "up": 5,
+    "not_up": []
+   },
+   "segment": {
+    "n": 5,
+    "up": 5,
+    "not_up": []
+   }
+  }
+ }
+}
