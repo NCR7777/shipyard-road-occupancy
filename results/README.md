@@ -14,8 +14,9 @@ script and configuration that recompute each class of files.
 | `ablation/` | ablation of the occupancy representation, main case and every move scaled: system bounds, fleets, checks | Tables 8, S3 |
 | `retiming/` | whole-network retiming of full-path reservation's schedules and offline dispatch (main case, every move scaled) | Table S5, Section 4.3 |
 | `subnet/` | sub-network instances: rule, fixed-order and best schedules, bounds (`points.csv`), the through corridor (`corridor*.csv`) | Table S4, Section 4.3 |
-| `screen/` | the screen in two levels: extra fleet against the demand ratio and the chain load (`series*.csv`, `cross*.csv`), 30-seed reruns of the low levels, waits and the widened roads, across yards and road widths (`widths*.csv`, `leave_one_out.csv`), densified low levels (`low_*.csv`) | Fig. 6, Section 4.4, Supplementary S1.4 |
-| `stochastic/` | random handling and driving times, late rebooking, full-path reservation executed in booked order (`ordered_*.csv`) | Table S6, Section 4.3 |
+| `screen/` | the screen in two levels: extra fleet against the demand ratio and the chain load (`series*.csv`, `cross*.csv`), 30-seed reruns of the low levels, waits and the widened roads, across yards and road widths (`widths*.csv`, `leave_one_out.csv`), densified low levels (`low_*.csv`), the lower end over 30 days (`stable_low.csv`, `intra_own.csv`) and the chain statistics of the upper end (`chain_stats.json`, computed from the per-resource chain loads `chain_load.json`, every move scaled and moves within areas, and `chain_conserved.json`, main case: numbers indexed by case only) | Fig. 6, Section 4.4, Supplementary S1.4 |
+| `stochastic/` | random handling and driving times, late rebooking, full-path reservation executed in booked order (`ordered_*.csv`), with every move scaled; random times in the main case (`main_case_*.csv`) | Tables S8-S10, Table 9, Fig. 5, Section 4.3 |
+| `interventions/` | interventions on the binding element of the main case (the corridor widened, the paint-shop doors relaxed, loading moved behind the doors): system bounds, plateaus, offline dispatch, fleets, the holding ratio, the corridor sub-network of the main case, why two scenarios have no comparable sub-network (`diag.json`), the two-tier lower end of Fig. 5 (`lower_tier.csv`), per-point tables (`*_points.csv`) | Tables S6-S7, Fig. 5, Section 4.3 |
 | `width_ban/` | ban on blocks wider than the passable width: bounds and fleets (`summary.json`), passable widths read on the imagery (`clear_width.json`) | Section 4.1, Supplementary S1.1 |
 | `tail/` | release at tail clearance: roadside stops within a clearing length, plateaus and fleets when the tail is booked | Appendix A.1, Supplementary S1.1 |
 | `hand/` | the three hand-computed instances: hand values and simulated throughput | Appendix A.6, Supplementary S4 |
@@ -24,9 +25,9 @@ script and configuration that recompute each class of files.
 | `bounds/` | every move scaled: system bound, route-free bound and route margin, network-bound samples, convergence, read-out of the binding resource, dual prices (`okpo/`, `yantai/`); system bounds by granularity; section and block length; bound sensitivity; sampling of origins and destinations. Main case: route-free bounds and certificates (`route_free_*.csv`, `interval_route_free.csv`), the bound with the utilisation rows only (`packing_rows.csv`), platform size (`platform_size.csv`) | Table 7, Fig. 5, Section 4.2, Supplementary S1.1-S1.2 |
 | `interval/` | every move scaled: capacity interval, crane-paced erection, 30-min loading and unloading | Fig. 5, Supplementary S1.3 |
 | `fleet/` | every move scaled: required fleets (all levels, both working days, four rules), eight-day checks, 30-min handling, crane pacing, the 10 % screen, the bootstrap size | Table S2, Fig. S2, Supplementary S1.4, Appendix B.4 |
-| `dock/` | dock-mouth thresholds rho_10 at both yards (`thresholds.csv`, one row per yard, granularity, rule and fleet), crane hours, utilisation levels, one crane at Dock 1, off-road unloading bays (`bays.csv`) | Fig. 7, Table S7, Section 4.5, Supplementary S2.1 |
+| `dock/` | dock-mouth thresholds rho_10 at both yards (`thresholds.csv`, one row per yard, granularity, rule and fleet), crane hours, utilisation levels, one crane at Dock 1, off-road unloading bays (`bays.csv`) | Fig. 7, Table S11, Section 4.5, Supplementary S2.1 |
 | `synthetic_dock/` | synthetic dock mouth: configuration, every simulated point, thresholds, waiting term | Fig. 8, Supplementary S2.2 |
-| `anchors/` | external anchor against handling time, moves per vehicle-day | Fig. 9, Sections 4.1, 4.6 |
+| `anchors/` | external anchor against handling time, moves per vehicle-day, with every move scaled and in the main case (`main_case_*.csv`: the figure, the handling-time frame, the anchors' fleets) | Fig. 9, Sections 4.1, 4.6 |
 | `runs/<run>/` | one simulation or bound batch each: `config.json`, and where kept `points*.csv` (one row per simulated point), `demand.csv` (the required-fleet search), `daily.csv` and `stable.json` (30-day runs: day-by-day readings and the K_stable search), `bound_points.json` (sampled bounds per seed) and `check.json` (the per-point check against the network bound) | the sections of the run |
 
 The runs of the main case are `runs/{okpo,yantai}_main_*` (saturation, interval rows, fleets, fleets of safe release and
@@ -34,7 +35,9 @@ the reference rule, 30-min handling, 30-day runs, screen, 30-seed screen, ablati
 `runs/okpo_intra_*`; the 30-day runs of the proportional mapping `runs/okpo_stable_30day`; random times `runs/*_stoch_*`;
 execution in booked order `runs/*_ordered_*`; the ban `runs/okpo_ban_fleet`; the off-road bays `runs/*_dock_bay*`; the
 screen across road widths and its low levels `runs/*_screen_widths`, `runs/*_screen_low`, `runs/okpo_*screen_30seeds`;
-tail booking `runs/*_tail_*`. Five batches kept no per-point table: `runs/{okpo,yantai}_intra_saturation`,
+tail booking `runs/*_tail_*`; the interventions `runs/*_interv_*`; the lower end of the screen over 30 days
+`runs/*_screen_stable_*`; random times in the main case `runs/*_stoch_main_*`; the anchors in the main case
+`runs/okpo_main_anchor*`. Five batches kept no per-point table: `runs/{okpo,yantai}_intra_saturation`,
 `runs/okpo_stable_30day`, `runs/okpo_ablation_stable` and `runs/okpo_main_ablation_stable`; their configuration (and the
 K_stable search, `stable.json`) is released, and their readings are the per-cell tables `intra_area/saturation.csv`,
 `intra_area/stable.csv` and `ablation/summary_*.json`.

@@ -1,0 +1,38 @@
+{
+ "d16_w-1.5_30d|free|n75": {
+  "K_req": 4,
+  "k0": 2,
+  "stable": 4,
+  "stable_tol": 4
+ },
+ "d16_w-1.5_30d|reserve|n75": {
+  "K_req": 5,
+  "k0": 3,
+  "stable": 4,
+  "stable_tol": 5
+ },
+ "d16_w+1.5_30d|free|n60": {
+  "K_req": 4,
+  "k0": 2,
+  "stable": 4,
+  "stable_tol": 4
+ },
+ "d16_w+1.5_30d|reserve|n60": {
+  "K_req": 4,
+  "k0": 2,
+  "stable": 4,
+  "stable_tol": 4
+ },
+ "d16_in_30d|free|n150": {
+  "K_req": 6,
+  "k0": 4,
+  "stable": 6,
+  "stable_tol": 6
+ },
+ "d16_in_30d|reserve|n150": {
+  "K_req": 7,
+  "k0": 5,
+  "stable": 7,
+  "stable_tol": 7
+ }
+}

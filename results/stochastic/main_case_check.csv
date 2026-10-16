@@ -1,0 +1,7 @@
+batch,yard,run_dir,points,checked,over_strict,over,max_ratio,deadlocks,by_model
+stoch_main_curves,yupu,runs/okpo_stoch_main_curves,3480,1740,0,0,0.4172120572500738,0,"{""free"": 1740, ""reserve_op3"": 1160, ""reserve"": 580}"
+stoch_main_8day,yupu,runs/okpo_stoch_main_8day,40,40,0,0,0.18008064231094925,0,"{""reserve_op3"": 40}"
+stoch_main_curves,yantai,runs/yantai_stoch_main_curves,3720,1860,0,0,0.5274637865809733,0,"{""free"": 1860, ""reserve_op3"": 1240, ""reserve"": 620}"
+stoch_main_8day,yantai,runs/yantai_stoch_main_8day,40,40,0,0,0.19087553249302996,0,"{""reserve_op3"": 40}"
+stoch_main_fleet,yupu,runs/okpo_stoch_main_fleet,8530,6080,0,0,0.46935806585185474,0,"{""free"": 2450, ""reserve_op3"": 5450, ""reserve"": 630}"
+stoch_main_stable,yupu,runs/okpo_stoch_main_stable,2570,1450,0,0,0.29251480984860806,0,"{""free"": 1120, ""reserve_op3"": 960, ""reserve"": 490}"

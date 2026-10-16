@@ -7,10 +7,16 @@ util_top1_name and busy_top1_name follow experiments/rerun.same: runs stored bef
   Okpo, main scenario sectioned at the stops, safe release, saturated, K = 5, seed 101: sectioning, the Banker test, the
   per-point check against T1' of the statistics window and the steady-state readings;
   Yantai (run on revision 395, whose road network is that of the released revision 396), main scenario, stepwise requests
-  with teleport recovery, saturated, K = 3, seed 101: deadlock detection and recovery, deadlock histograms and times."""
+  with teleport recovery, saturated, K = 3, seed 101: deadlock detection and recovery, deadlock histograms and times.
+Also the tables of the screen's lower end and the chain statistics, rebuilt from the released files by
+experiments/chain_statistics.py."""
 import csv
 import io
 import json
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
 
 import pytest
 
@@ -45,3 +51,17 @@ def test_rerun_stored_point(run, key):
     assert not diff, diff
     assert all(got[c] for c in ("throughput", "T1_tight_mix", "mix_shift", "thr_by_day", "util_top1_name"))
     assert sum(bool(got[c]) for c in columns) > 40
+
+
+def test_screen_tables_from_release():
+    """stable_low.csv and intra_own.csv byte for byte; best and align of chain_stats.json in every released field."""
+    rel = ROOT / "results" / "screen"
+    with tempfile.TemporaryDirectory() as d:
+        out = Path(d)
+        subprocess.run([sys.executable, "-B", "experiments/chain_statistics.py", "--out", d], cwd=ROOT, check=True)
+        for f in ("stable_low.csv", "intra_own.csv"):
+            assert (out / f).read_bytes() == (rel / f).read_bytes(), f
+        a, b = (json.loads(p.read_text(encoding="utf-8")) for p in (rel / "chain_stats.json", out / "chain_stats.json"))
+    assert all(b["best"][k] == v for k, v in a["best"].items())
+    assert len(a["align"]) == len(b["align"]) == 25
+    assert all(y[k] == v for x, y in zip(a["align"], b["align"]) for k, v in x.items())

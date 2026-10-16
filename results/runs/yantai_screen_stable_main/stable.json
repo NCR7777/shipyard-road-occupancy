@@ -1,0 +1,26 @@
+{
+ "d16_c_30d|free|n60": {
+  "K_req": 3,
+  "k0": 1,
+  "stable": 3,
+  "stable_tol": 3
+ },
+ "d16_c_30d|free|n70": {
+  "K_req": 3,
+  "k0": 1,
+  "stable": 3,
+  "stable_tol": 3
+ },
+ "d16_c_30d|reserve|n60": {
+  "K_req": 3,
+  "k0": 1,
+  "stable": 3,
+  "stable_tol": 3
+ },
+ "d16_c_30d|reserve|n70": {
+  "K_req": 3,
+  "k0": 1,
+  "stable": 3,
+  "stable_tol": 3
+ }
+}

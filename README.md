@@ -17,8 +17,8 @@ solver-independent certificate for any routing. The capacity of a yard is read a
 full-path reservation, to the bound. On the public layouts of two yards, Okpo (Hanwha Ocean, Korea) and Yantai (CIMC
 Raffles, China), the paper reads the bounds, the saturation of four traffic rules, the fleets they need (in a main case with
 the erection flow conserved and under two other mappings of demand to moves), a screen of the fleet by the ratio of demand
-to the bound, the dock mouth, and the robustness of these readings to random handling and driving times, the occupancy
-representation, road widths, platform size and the release at tail clearance.
+to the bound, the dock mouth, interventions on the binding element, and the robustness of these readings to random
+handling and driving times, the occupancy representation, road widths, platform size and the release at tail clearance.
 
 This repository holds
 
@@ -50,12 +50,16 @@ experiments/          batch runner and searches: runner.py (simulated points and
                       over-wide blocks), dock_spots.py (off-road bays at the dock), ablation*.py (ablation of the
                       occupancy representation);
                       sub-networks and the whole network: subnet_exact.py, subnet_bounds.py, subnet_gap.py, corridor.py,
-                      retime.py, offline_dispatch.py; the screen: screen_conserved.py, screen_runs.py; mechanisms.py;
+                      retime.py, offline_dispatch.py; interventions on the binding element: intervention_net.py,
+                      intervention_bounds.py, intervention_runs.py, intervention_dispatch.py, intervention_subnet*.py,
+                      intervention_diag.py; the screen: screen_conserved.py, screen_runs.py, screen_stable.py,
+                      chain_statistics.py; random times in the main case: stochastic_main_stable.py; mechanisms.py;
                       dock_mouth.py (synthetic dock mouth)
 data/networks/        derived graphs: okpo/rev1833, okpo/rev1825, yantai/rev396 (field descriptions in its README.md)
 results/              result data by use in the paper, runs/ (configurations and per-point tables of the batches),
                       MANIFEST.csv (SHA-256, source commit and paper location of every file), README.md (layout)
-paper/                reproduce.py, scripts/ (make_numbers.py, make_figures.py, make_highlights.py, src.py), highlights.tex
+paper/                reproduce.py, scripts/ (make_numbers.py, make_figures.py, make_highlights.py, check_palette.py,
+                      src.py), highlights.tex
 tests/                pytest suite of the model, the bounds and the experiment code, on the released data
 RECOMPUTE.md          which script and which configuration recompute each class of results from the derived graphs
 requirements.txt      pinned package versions (Python 3.13.5, pip)
@@ -92,7 +96,8 @@ python paper/reproduce.py
 It writes `paper/numbers.tex` (one LaTeX macro per number of the text and of the supplementary material),
 `paper/tables/*.tex`, `paper/highlights.txt` and `paper/figures/*.pdf` from `results/` in a few minutes; nothing is
 simulated. The scripts check their readings with assertions throughout (for example that every simulated point lies below
-its bound, and that the figures draw the numbers the text quotes). The PDFs carry no time stamps, so they are
+its bound, and that the figures draw the numbers the text quotes); `check_palette.py` last checks the colours of
+`paper/figures/palette.json` for colour-vision deficiencies and greyscale print. The PDFs carry no time stamps, so they are
 byte-identical across runs in the same environment (the paper's: `environment.yml`, with the fonts Times New Roman and STIX;
 on systems without Times New Roman matplotlib substitutes a font).
 
@@ -106,31 +111,35 @@ scenarios). Figures 1, 2, 8(a) and 10 are diagrams and schematics, not data figu
 | Highlights | `highlights.txt` | `make_highlights.py` | `numbers.tex` |
 | Table 7 (bounds of five scenarios) | `tables/tab_bounds.tex` | `make_numbers.py` | `main_case/bounds.csv`, `main_case/saturation.csv`, `intra_area/sampled.csv`, `bounds/okpo/`, `bounds/yantai/` (`system.csv`, `route_free.csv`, `readout.csv`), `bounds/route_free_main_case.csv` |
 | Table 8 (ablation, main case) | `tables/tab_ablation.tex` | `make_numbers.py` | `ablation/bounds_main_case.csv`, `ablation/summary_main_case.json` |
-| Table 9 (fleets K_req and K_stable) | `tables/tab_fleethead.tex` | `make_numbers.py` | `main_case/fleet.csv`, `fleet_rules.csv`, `fleet_30min.csv`; `intra_area/fleet.csv`, `fleet_30min.csv`, `stable.csv`; `fleet/crane_fleet.csv`, `runs/*_crane_fleet/demand.csv` |
+| Table 9 (fleets K_req and K_stable) | `tables/tab_fleethead.tex` | `make_numbers.py` | `main_case/fleet.csv`, `fleet_rules.csv`, `fleet_30min.csv`; `intra_area/fleet.csv`, `fleet_30min.csv`, `stable.csv`; `stochastic/main_case_fleet.csv`; `fleet/crane_fleet.csv`, `runs/*_crane_fleet/demand.csv` |
 | Table B.1 (task-flow rows) | `tables/tab_flows.tex` | `make_numbers.py` | `occupancy/params.py` (`FLOW`) |
 | Table S2 (fleets, every move scaled) | `tables/tab_fleethead_prop.tex` | `make_numbers.py` | `fleet/required_fleet.csv`, `fleet_8day.csv`, `kstar_marks.csv`, `fleet_30min.csv`; `intra_area/stable.csv`; `saturation/kstar.csv` |
 | Table S3 (ablation, every move scaled) | `tables/tab_ablation_prop.tex` | `make_numbers.py` | `ablation/bounds_proportional.csv`, `ablation/summary_proportional.json` |
 | Table S4 (sub-networks) | `tables/tab_subnet.tex` | `make_numbers.py` | `subnet/points.csv`, `subnet/corridor.csv` |
 | Table S5 (whole network) | `tables/tab_whole.tex` | `make_numbers.py` | `retiming/main_case.csv` |
-| Table S6 (random times, booked order) | `tables/tab_stoch.tex` | `make_numbers.py` | `stochastic/plateau.csv`, `curves.csv`, `ordered_plateau.csv` |
-| Table S7 (off-road bays) | `tables/tab_dockbay.tex` | `make_numbers.py` | `dock/bays.csv` |
-| Table S10 (hand-computed instances) | `numbers.tex` (macros `Hand*`) | `make_numbers.py` | `hand/instances.json`, the parameters of `runs/okpo_rev1825_safe_sectioned/config.json` |
+| Table S6 (interventions on the binding element) | `tables/tab_interv.tex` | `make_numbers.py` | `interventions/bounds.csv`, `plateau.csv`, `dispatch.csv`, `hold_ratio.csv` |
+| Table S7 (fleets under the interventions) | `tables/tab_intervfleet.tex` | `make_numbers.py` | `interventions/fleet.csv` |
+| Table S8 (plateaus of the main case under random times) | `tables/tab_stochmain.tex` | `make_numbers.py` | `stochastic/main_case_plateau.csv` |
+| Table S9 (Okpo's fleets of the main case under random times) | `tables/tab_stochmainfleet.tex` | `make_numbers.py` | `stochastic/main_case_fleet.csv` |
+| Table S10 (random times with every move scaled, booked order) | `tables/tab_stoch.tex` | `make_numbers.py` | `stochastic/plateau.csv`, `curves.csv`, `ordered_plateau.csv` |
+| Table S11 (off-road bays) | `tables/tab_dockbay.tex` | `make_numbers.py` | `dock/bays.csv` |
+| Table S14 (hand-computed instances) | `numbers.tex` (macros `Hand*`) | `make_numbers.py` | `hand/instances.json`, the parameters of `runs/okpo_rev1825_safe_sectioned/config.json` |
 | Fig. 3 (the two yards) | not generated | - | geometry not released; `main_case/binding.csv`, `bounds/*/prices.csv` |
 | Fig. 4 (saturation curves, main case) | `figures/fig_flag.pdf` | `make_figures.py` | `main_case/saturation_curves.csv`, `main_case/saturation.csv`, `saturation/kstar.csv` |
-| Fig. 5 (capacity interval) | `figures/fig_interval.pdf` | `make_figures.py` | `main_case/interval.csv`, `bounds/interval_route_free.csv`, `interval/interval.csv`, `interval/crane_interval.csv`, `interval/crane_16day_plateau.csv`, `saturation/rules.csv`, `bounds/*/route_free.csv` |
+| Fig. 5 (capacity interval) | `figures/fig_interval.pdf` | `make_figures.py` | `main_case/interval.csv`, `interventions/lower_tier.csv`, `stochastic/main_case_plateau.csv`, `bounds/interval_route_free.csv`, `interval/interval.csv`, `interval/crane_interval.csv`, `interval/crane_16day_plateau.csv`, `saturation/rules.csv`, `bounds/*/route_free.csv` |
 | Fig. 6 (the screen in two levels) | `figures/fig_screen.pdf` | `make_figures.py` | `screen/series.csv`, `screen/cross.csv`, `screen/series_main_case.csv`, `screen/cross_main_case.csv` |
 | Fig. 7 (dock-mouth thresholds) | `figures/fig_dock.pdf` | `make_figures.py` | `dock/thresholds.csv`; per-point tables in `runs/*_dock_*` (see `results/README.md`) |
 | Fig. 8(b, c) (synthetic dock mouth) | `figures/fig_dockmech_bc.pdf` | `make_figures.py` | `synthetic_dock/rho_star.csv`, `synthetic_dock/config.json`, `experiments/dock_mouth.py` |
-| Fig. 9 (anchors) | `figures/fig_anchors.pdf` | `make_figures.py` | `anchors/handling_time.csv`, `anchors/per_vehicle_rates.csv` |
+| Fig. 9 (anchors, main case) | `figures/fig_anchors.pdf` | `make_figures.py` | `anchors/main_case_handling_time.csv`, `anchors/main_case_per_vehicle.csv` |
 | Fig. S1 (moves within areas) | `figures/fig_scan.pdf` | `make_figures.py` | `main_case/scan.csv`, `main_case/scan_switch.csv` |
 | Fig. S2 (required fleet, every move scaled) | `figures/fig_workzone.pdf` | `make_figures.py` | `fleet/required_fleet.csv`, `fleet/fleet_8day.csv`, `runs/yantai_crane_fleet/demand.csv`, `saturation/kstar.csv` |
 | Section 4.1, Appendix B | `numbers.tex` | `make_numbers.py` | `network/`, `main_case/`, `intra_area/`, run configurations (`runs/*/config.json`), `occupancy/params.py`, `fleet/bootstrap.json`, `experiments/daily.py` |
-| Sections 4.2-4.3 | `numbers.tex` | `make_numbers.py` | `main_case/`, `bounds/`, `ablation/`, `saturation/`, `interval/`, `retiming/`, `subnet/`, `stochastic/` |
-| Section 4.4 | `numbers.tex` | `make_numbers.py` | `main_case/fleet*.csv`, `intra_area/`, `screen/`, `fleet/` |
+| Sections 4.2-4.3 | `numbers.tex` | `make_numbers.py` | `main_case/`, `bounds/`, `ablation/`, `saturation/`, `interval/`, `retiming/`, `subnet/`, `interventions/`, `stochastic/` |
+| Section 4.4 | `numbers.tex` | `make_numbers.py` | `main_case/fleet*.csv`, `intra_area/`, `screen/` (with `stable_low.csv`, `intra_own.csv`, `chain_stats.json`), `stochastic/main_case_fleet.csv`, `fleet/` |
 | Section 4.5 | `numbers.tex` | `make_numbers.py` | `dock/`, `synthetic_dock/`, `runs/synthetic_dock_waiting/` |
 | Section 4.6 (verification and validation) | `numbers.tex` | `make_numbers.py` | `runs/*/check.json`, `runs/*/points.csv` (column `T1_tight_mix`), the `check*.csv` files of `main_case/`, `intra_area/`, `stochastic/`, `saturation/okpo_curves_check.json`, `saturation/refusal_summary.json`, `fleet/*summary.json`; `anchors/` |
 | Appendix A | `numbers.tex` | `make_numbers.py` | `tail/`, `hand/`, `network/short_roads*.csv`, `saturation/teleport*.csv`, `bounds/sensitivity.csv` |
-| Supplementary S1-S2, S4 | `numbers.tex` | `make_numbers.py` | `width_ban/`, `bounds/`, `screen/`, `stochastic/`, `subnet/`, `retiming/`, `ablation/`, `dock/`, `hand/` |
+| Supplementary S1-S2, S4 | `numbers.tex` | `make_numbers.py` | `width_ban/`, `bounds/`, `screen/`, `stochastic/`, `subnet/`, `retiming/`, `ablation/`, `interventions/`, `dock/`, `hand/` |
 
 Every scenario of the paper has its detailed table: the per-point tables (`points.csv`, one row per fleet, scenario, rule
 and seed) of the saturation curves, the required-fleet searches, the 30-day runs (with their day-by-day table `daily.csv`),

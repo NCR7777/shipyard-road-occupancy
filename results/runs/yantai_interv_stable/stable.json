@@ -1,0 +1,56 @@
+{
+ "d16_c_door1_30d|reserve|n23": {
+  "K_req": 1,
+  "k0": 1,
+  "stable": 1,
+  "stable_tol": 1
+ },
+ "d16_c_door1_30d|reserve|n150": {
+  "K_req": 7,
+  "k0": 5,
+  "stable": 7,
+  "stable_tol": 7
+ },
+ "d16_c_door1_30d|reserve|n300": {
+  "K_req": 19,
+  "k0": 17,
+  "stable": 19,
+  "stable_tol": 20
+ },
+ "d16_c_door2_30d|reserve|n23": {
+  "K_req": 1,
+  "k0": 1,
+  "stable": 1,
+  "stable_tol": 1
+ },
+ "d16_c_door2_30d|reserve|n150": {
+  "K_req": 7,
+  "k0": 5,
+  "stable": 7,
+  "stable_tol": 7
+ },
+ "d16_c_door2_30d|reserve|n300": {
+  "K_req": 19,
+  "k0": 17,
+  "stable": 19,
+  "stable_tol": 19
+ },
+ "d16_c_30d|reserve|n23": {
+  "K_req": 1,
+  "k0": 1,
+  "stable": 1,
+  "stable_tol": 1
+ },
+ "d16_c_30d|reserve|n150": {
+  "K_req": 7,
+  "k0": 5,
+  "stable": 7,
+  "stable_tol": 7
+ },
+ "d16_c_30d|reserve|n300": {
+  "K_req": 21,
+  "k0": 19,
+  "stable": 20,
+  "stable_tol": 20
+ }
+}

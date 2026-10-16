@@ -1,0 +1,742 @@
+[
+ {
+  "key": "main_c_door1|bound|101",
+  "scen": "main_c_door1",
+  "seed": 101,
+  "n_tasks": 2000,
+  "network": 1157.692658613986,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 72.35579116337412,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1163.9564459600676,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 72.74727787250423,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1379.9258096468136,
+  "cycle_s": 1834.387571221707,
+  "empty_min_s": 33.426397449097465,
+  "handling_travel_s": 1800.9611737726095,
+  "secs": 0.67
+ },
+ {
+  "key": "main_c_door1|bound|102",
+  "scen": "main_c_door1",
+  "seed": 102,
+  "n_tasks": 2000,
+  "network": 1263.9374614276894,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_810c51f2-b7f3-424a-a68a-b6d009d61923"
+    ],
+    "price_per_h": 78.99609133923059,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building007·steel processing and flat-panel line shop·building007-entrance5, 810c51f2]"
+   }
+  ],
+  "network_tight": 1263.9374614276894,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_810c51f2-b7f3-424a-a68a-b6d009d61923"
+    ],
+    "price_per_h": 78.99609133923059,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building007·steel processing and flat-panel line shop·building007-entrance5, 810c51f2]"
+   }
+  ],
+  "network_tight_local": 1807.245251430081,
+  "cycle_s": 1844.6601219663978,
+  "empty_min_s": 40.115307844899526,
+  "handling_travel_s": 1804.5448141214983,
+  "secs": 0.65
+ },
+ {
+  "key": "main_c_door1|bound|103",
+  "scen": "main_c_door1",
+  "seed": 103,
+  "n_tasks": 2000,
+  "network": 1259.0895874648031,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 78.6930992165502,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1267.0349818183795,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 79.18968636364872,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1579.471961527451,
+  "cycle_s": 1814.8792455870116,
+  "empty_min_s": 35.50960843798913,
+  "handling_travel_s": 1779.3696371490225,
+  "secs": 0.62
+ },
+ {
+  "key": "main_c_door1|bound|104",
+  "scen": "main_c_door1",
+  "seed": 104,
+  "n_tasks": 2000,
+  "network": 1143.508018038216,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 71.46925112738849,
+    "util": 1.0,
+    "loaded_share": 1.0000000000000002,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1149.6188463919623,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 71.85117789949764,
+    "util": 1.0,
+    "loaded_share": 0.9999999999999999,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1687.3185558403306,
+  "cycle_s": 1824.9769972760332,
+  "empty_min_s": 35.52589551404267,
+  "handling_travel_s": 1789.4511017619905,
+  "secs": 0.54
+ },
+ {
+  "key": "main_c_door1|bound|105",
+  "scen": "main_c_door1",
+  "seed": 105,
+  "n_tasks": 2000,
+  "network": 1217.5647591698478,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 76.09779744811549,
+    "util": 1.0,
+    "loaded_share": 1.0000000000000002,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1223.5830906771578,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 76.47394316732236,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1785.1835726031627,
+  "cycle_s": 1833.0218038817936,
+  "empty_min_s": 33.94510407253712,
+  "handling_travel_s": 1799.0766998092565,
+  "secs": 0.65
+ },
+ {
+  "key": "main_c_door1|bound|106",
+  "scen": "main_c_door1",
+  "seed": 106,
+  "n_tasks": 2000,
+  "network": 1178.5514114883417,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 73.65946321802136,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1184.1117525385785,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 74.00698453366115,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1721.6227872990924,
+  "cycle_s": 1825.4333813362662,
+  "empty_min_s": 38.492340503556484,
+  "handling_travel_s": 1786.9410408327096,
+  "secs": 0.64
+ },
+ {
+  "key": "main_c_door1|bound|107",
+  "scen": "main_c_door1",
+  "seed": 107,
+  "n_tasks": 2000,
+  "network": 1150.2541341932913,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 71.8908833870807,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1156.881683499945,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 72.30510521874655,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1921.1842078140671,
+  "cycle_s": 1835.502800527332,
+  "empty_min_s": 38.02334522443528,
+  "handling_travel_s": 1797.4794553028967,
+  "secs": 0.64
+ },
+ {
+  "key": "main_c_door1|bound|108",
+  "scen": "main_c_door1",
+  "seed": 108,
+  "n_tasks": 2000,
+  "network": 1209.427964714448,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 75.589247794653,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1215.5294344236113,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 75.9705896514757,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1906.0658532991156,
+  "cycle_s": 1835.2222598575886,
+  "empty_min_s": 35.3090610291395,
+  "handling_travel_s": 1799.9131988284491,
+  "secs": 0.62
+ },
+ {
+  "key": "main_c_door1|bound|109",
+  "scen": "main_c_door1",
+  "seed": 109,
+  "n_tasks": 2000,
+  "network": 1232.4900699591092,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 77.03062937244431,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1238.4025681778278,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 77.40016051111424,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 2085.2782096277547,
+  "cycle_s": 1839.6563913665245,
+  "empty_min_s": 35.484318596092216,
+  "handling_travel_s": 1804.1720727704324,
+  "secs": 0.62
+ },
+ {
+  "key": "main_c_door1|bound|110",
+  "scen": "main_c_door1",
+  "seed": 110,
+  "n_tasks": 2000,
+  "network": 1317.4507328319696,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_651dd514-caf8-4fb2-9baa-476960a87250"
+    ],
+    "price_per_h": 82.34067080199809,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance002 node [building007·steel processing and flat-panel line shop·building007-entrance4, 651dd514]"
+   }
+  ],
+  "network_tight": 1317.4507328319696,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_651dd514-caf8-4fb2-9baa-476960a87250"
+    ],
+    "price_per_h": 82.34067080199809,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance002 node [building007·steel processing and flat-panel line shop·building007-entrance4, 651dd514]"
+   }
+  ],
+  "network_tight_local": 1674.7016234059843,
+  "cycle_s": 1840.7425453762219,
+  "empty_min_s": 40.90344995110029,
+  "handling_travel_s": 1799.8390954251215,
+  "secs": 0.65
+ },
+ {
+  "key": "main_c_door2|bound|101",
+  "scen": "main_c_door2",
+  "seed": 101,
+  "n_tasks": 2000,
+  "network": 1463.1441978140474,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_7a5ddb69-91bb-4e37-99cd-5aaaa0263cc2"
+    ],
+    "price_per_h": 91.44651236337796,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance004 node [building007·steel processing and flat-panel line shop·building007-entrance1, 7a5ddb69]"
+   }
+  ],
+  "network_tight": 1379.9258096468136,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_008"
+    ],
+    "price_per_h": 86.24536310292584,
+    "util": 1.0,
+    "loaded_share": 0.9964736772760362,
+    "name": "road007 (W=12.0, 212 m)"
+   }
+  ],
+  "network_tight_local": 1379.9258096468136,
+  "cycle_s": 1834.387571221707,
+  "empty_min_s": 33.426397449097465,
+  "handling_travel_s": 1800.9611737726095,
+  "secs": 0.61
+ },
+ {
+  "key": "main_c_door2|bound|102",
+  "scen": "main_c_door2",
+  "seed": 102,
+  "n_tasks": 2000,
+  "network": 1263.9374614276894,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_810c51f2-b7f3-424a-a68a-b6d009d61923"
+    ],
+    "price_per_h": 78.99609133923059,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building007·steel processing and flat-panel line shop·building007-entrance5, 810c51f2]"
+   }
+  ],
+  "network_tight": 1263.9374614276894,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_810c51f2-b7f3-424a-a68a-b6d009d61923"
+    ],
+    "price_per_h": 78.99609133923059,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building007·steel processing and flat-panel line shop·building007-entrance5, 810c51f2]"
+   }
+  ],
+  "network_tight_local": 1807.245251430081,
+  "cycle_s": 1844.6601219663978,
+  "empty_min_s": 40.115307844899526,
+  "handling_travel_s": 1804.5448141214983,
+  "secs": 0.6
+ },
+ {
+  "key": "main_c_door2|bound|103",
+  "scen": "main_c_door2",
+  "seed": 103,
+  "n_tasks": 2000,
+  "network": 1449.518808827721,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_9510d468-8dbe-4d56-9d36-c4829dc41cf7"
+    ],
+    "price_per_h": 90.59492555173256,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance003 node [building007·steel processing and flat-panel line shop·building007-entrance2, 9510d468]"
+   }
+  ],
+  "network_tight": 1449.518808827721,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_9510d468-8dbe-4d56-9d36-c4829dc41cf7"
+    ],
+    "price_per_h": 90.59492555173256,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance003 node [building007·steel processing and flat-panel line shop·building007-entrance2, 9510d468]"
+   }
+  ],
+  "network_tight_local": 1579.471961527451,
+  "cycle_s": 1814.8792455870116,
+  "empty_min_s": 35.50960843798913,
+  "handling_travel_s": 1779.3696371490225,
+  "secs": 0.66
+ },
+ {
+  "key": "main_c_door2|bound|104",
+  "scen": "main_c_door2",
+  "seed": 104,
+  "n_tasks": 2000,
+  "network": 1262.9522495514716,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_9510d468-8dbe-4d56-9d36-c4829dc41cf7"
+    ],
+    "price_per_h": 78.93451559696699,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance003 node [building007·steel processing and flat-panel line shop·building007-entrance2, 9510d468]"
+   }
+  ],
+  "network_tight": 1262.9522495514716,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_9510d468-8dbe-4d56-9d36-c4829dc41cf7"
+    ],
+    "price_per_h": 78.93451559696699,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance003 node [building007·steel processing and flat-panel line shop·building007-entrance2, 9510d468]"
+   }
+  ],
+  "network_tight_local": 1687.3185558403306,
+  "cycle_s": 1824.9769972760332,
+  "empty_min_s": 35.52589551404267,
+  "handling_travel_s": 1789.4511017619905,
+  "secs": 0.61
+ },
+ {
+  "key": "main_c_door2|bound|105",
+  "scen": "main_c_door2",
+  "seed": 105,
+  "n_tasks": 2000,
+  "network": 1406.7454175451194,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_7a5ddb69-91bb-4e37-99cd-5aaaa0263cc2"
+    ],
+    "price_per_h": 87.92158859656996,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance004 node [building007·steel processing and flat-panel line shop·building007-entrance1, 7a5ddb69]"
+   }
+  ],
+  "network_tight": 1406.7454175451194,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_7a5ddb69-91bb-4e37-99cd-5aaaa0263cc2"
+    ],
+    "price_per_h": 87.92158859656996,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance004 node [building007·steel processing and flat-panel line shop·building007-entrance1, 7a5ddb69]"
+   }
+  ],
+  "network_tight_local": 1785.1835726031627,
+  "cycle_s": 1833.0218038817936,
+  "empty_min_s": 33.94510407253712,
+  "handling_travel_s": 1799.0766998092565,
+  "secs": 0.66
+ },
+ {
+  "key": "main_c_door2|bound|106",
+  "scen": "main_c_door2",
+  "seed": 106,
+  "n_tasks": 2000,
+  "network": 1290.639168882152,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_a77d841a-1886-44a3-8a64-b89f1cf25213"
+    ],
+    "price_per_h": 80.6649480551345,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance005 node [building007·steel processing and flat-panel line shop·building007-entrance3, a77d841a]"
+   }
+  ],
+  "network_tight": 1290.639168882152,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_a77d841a-1886-44a3-8a64-b89f1cf25213"
+    ],
+    "price_per_h": 80.6649480551345,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance005 node [building007·steel processing and flat-panel line shop·building007-entrance3, a77d841a]"
+   }
+  ],
+  "network_tight_local": 1721.6227872990924,
+  "cycle_s": 1825.4333813362662,
+  "empty_min_s": 38.492340503556484,
+  "handling_travel_s": 1786.9410408327096,
+  "secs": 0.54
+ },
+ {
+  "key": "main_c_door2|bound|107",
+  "scen": "main_c_door2",
+  "seed": 107,
+  "n_tasks": 2000,
+  "network": 1335.3038337824923,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_a77d841a-1886-44a3-8a64-b89f1cf25213"
+    ],
+    "price_per_h": 83.45648961140577,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance005 node [building007·steel processing and flat-panel line shop·building007-entrance3, a77d841a]"
+   }
+  ],
+  "network_tight": 1335.3038337824923,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_a77d841a-1886-44a3-8a64-b89f1cf25213"
+    ],
+    "price_per_h": 83.45648961140577,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance005 node [building007·steel processing and flat-panel line shop·building007-entrance3, a77d841a]"
+   }
+  ],
+  "network_tight_local": 1921.1842078140671,
+  "cycle_s": 1835.502800527332,
+  "empty_min_s": 38.02334522443528,
+  "handling_travel_s": 1797.4794553028967,
+  "secs": 0.58
+ },
+ {
+  "key": "main_c_door2|bound|108",
+  "scen": "main_c_door2",
+  "seed": 108,
+  "n_tasks": 2000,
+  "network": 1326.2988835257447,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_a77d841a-1886-44a3-8a64-b89f1cf25213"
+    ],
+    "price_per_h": 82.89368022035904,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance005 node [building007·steel processing and flat-panel line shop·building007-entrance3, a77d841a]"
+   }
+  ],
+  "network_tight": 1326.2988835257447,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_a77d841a-1886-44a3-8a64-b89f1cf25213"
+    ],
+    "price_per_h": 82.89368022035904,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance005 node [building007·steel processing and flat-panel line shop·building007-entrance3, a77d841a]"
+   }
+  ],
+  "network_tight_local": 1906.0658532991156,
+  "cycle_s": 1835.2222598575886,
+  "empty_min_s": 35.3090610291395,
+  "handling_travel_s": 1799.9131988284491,
+  "secs": 0.66
+ },
+ {
+  "key": "main_c_door2|bound|109",
+  "scen": "main_c_door2",
+  "seed": 109,
+  "n_tasks": 2000,
+  "network": 1406.0500429321273,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_7a5ddb69-91bb-4e37-99cd-5aaaa0263cc2"
+    ],
+    "price_per_h": 87.87812768325796,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance004 node [building007·steel processing and flat-panel line shop·building007-entrance1, 7a5ddb69]"
+   }
+  ],
+  "network_tight": 1406.0500429321273,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_7a5ddb69-91bb-4e37-99cd-5aaaa0263cc2"
+    ],
+    "price_per_h": 87.87812768325796,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance004 node [building007·steel processing and flat-panel line shop·building007-entrance1, 7a5ddb69]"
+   }
+  ],
+  "network_tight_local": 2085.2782096277547,
+  "cycle_s": 1839.6563913665245,
+  "empty_min_s": 35.484318596092216,
+  "handling_travel_s": 1804.1720727704324,
+  "secs": 0.63
+ },
+ {
+  "key": "main_c_door2|bound|110",
+  "scen": "main_c_door2",
+  "seed": 110,
+  "n_tasks": 2000,
+  "network": 1317.4507328319696,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_651dd514-caf8-4fb2-9baa-476960a87250"
+    ],
+    "price_per_h": 82.34067080199809,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance002 node [building007·steel processing and flat-panel line shop·building007-entrance4, 651dd514]"
+   }
+  ],
+  "network_tight": 1317.4507328319696,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_651dd514-caf8-4fb2-9baa-476960a87250"
+    ],
+    "price_per_h": 82.34067080199809,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance002 node [building007·steel processing and flat-panel line shop·building007-entrance4, 651dd514]"
+   }
+  ],
+  "network_tight_local": 1674.7016234059843,
+  "cycle_s": 1840.7425453762219,
+  "empty_min_s": 40.90344995110029,
+  "handling_travel_s": 1799.8390954251215,
+  "secs": 0.63
+ }
+]

@@ -15,11 +15,15 @@ Figures of this paper, in their order:
                     results/bounds/interval_route_free.csv; erection-heavy mix from results/interval/interval.csv and
                     results/saturation/rules.csv; crane-paced erection from results/interval/crane_interval.csv, Okpo's
                     crane-paced lower end over 16 days from results/interval/crane_16day_plateau.csv; the route-free bound
-                    of the other rows from results/bounds/*/route_free.csv
-  fig_screen.pdf    Figure 6, the screen in two levels: extra fleet of full-path reservation over free flow with
-                    fractional fleets, ten series, (a) against demand over the system bound with the lower end and the
-                    range of the 16-h upper ends, (b) the road-width series against the chain load S_d with each yard's
-                    upper end; results/screen/{series.csv, cross.csv}; the main case on 16-h days (thick) from
+                    of the other rows from results/bounds/*/route_free.csv; the two-tier lower end of the main case
+                    (offline dispatch) from results/interventions/lower_tier.csv and its random-time markers from
+                    results/stochastic/main_case_plateau.csv
+  fig_screen.pdf    Figure 6, the screen in two levels, full-path reservation against free flow, ten series and the main
+                    case on 16-h days: (a) every tested level as a cell against demand over the system bound, classed
+                    below the lower end in whole vehicles (same fleet, one more) and from it by the extra fleet with
+                    fractional fleets (at most or over 10 %), with the lower end and the range of the 16-h upper ends;
+                    (b) the extra fleet against the chain load S_d, main case (thick) and road widths, with each yard's
+                    upper end; results/screen/{series.csv, cross.csv}; the main case on 16-h days from
                     results/screen/{series_main_case.csv, cross_main_case.csv}
   fig_dock.pdf      Figure 7, dock-mouth threshold (10 % throughput drop) vs fleet size, whole and sectioned dock roads;
                     results/dock/thresholds.csv (eight days, or 16 where the eight-day runs were not steady)
@@ -28,8 +32,8 @@ Figures of this paper, in their order:
                     results/synthetic_dock/rho_star.csv; the geometry printed in (a) is checked against
                     experiments/dock_mouth.py
   fig_anchors.pdf   Figure 9, external anchors and the Okpo model at the same scale (moves per vehicle-day against the
-                    handling time; 16-h values at the main handling time); results/anchors/{handling_time.csv,
-                    per_vehicle_rates.csv}
+                    handling time; 16-h values at the main handling time), main case; results/anchors/
+                    {main_case_handling_time.csv, main_case_per_vehicle.csv}
   fig_scan.pdf      Supplementary Figure S1, system bound against the share of moves within an area, erection conserved,
                     with the switch of the binding element; results/main_case/{scan.csv, scan_switch.csv}
   fig_workzone.pdf  Supplementary Figure S2, plant-level daily demand vs required fleet with every move scaled with the
@@ -37,7 +41,7 @@ Figures of this paper, in their order:
                     results/runs/yantai_crane_fleet/demand.csv and Okpo's own-volume cells over eight days from
                     results/fleet/fleet_8day.csv (src.demand); K* from results/saturation/kstar.csv
 Figures 1, 2, 8(a) and 10 are diagrams and schematics, not drawn by this code; they use the colours of
-figures/palette.json.
+figures/palette.json, which scripts/check_palette.py checks.
 
 Style of this paper's figures: drawn at the text width of the CAS single-column layout (164.6 mm) and inserted at
 1:1; Times New Roman with STIX mathematics, TrueType embedded (pdf.fonttype 42), 9-pt text and nothing below 8 pt
@@ -57,6 +61,7 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.colors import to_rgba
 from matplotlib.legend_handler import HandlerTuple
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch, Polygon
@@ -76,9 +81,11 @@ FIGW, MM = 164.6 / 25.4, 1 / 25.4          # text width of the CAS single-column
 # colour (and, pale, docks); orange for safe release and its margin steps (and, pale, assembly areas); teal for the
 # reference rule (and, pale, stockyards and buffers); plum for the two yards; red only for the elements that bind the
 # system bound. Neutrals: free flow, the bounds, external anchors, roads, text. The rules differ also in lightness (the
-# main colour darkest) and keep their markers and line styles, for black-and-white print and colour-blind readers
-# (chosen to stay apart under simulated protanopia, deuteranopia and tritanopia). The hex values are written to
-# figures/palette.json, which the schematics (Figures 2 and 9a, not drawn by this code) use; their resource
+# main colour darkest) and keep their markers and line styles, for black-and-white print and colour-blind readers. The
+# cells of the screen (Figure 6a) run from light to dark: neutrals in whole vehicles, the main colour's blues with
+# fractional fleets; scripts/check_palette.py checks this under simulated protanopia, deuteranopia and tritanopia. The
+# hex values are written to figures/palette.json, which the schematics (Figures 2 and 9a, not drawn by this code) use;
+# their resource
 # classes (res_*, numbered 1-6 in Figure 2) take three further hues, pale for their areas, and three of them share the
 # value of road_major, stop and crane, which draw the same things.
 PALETTE = {   # role: (hex, use, figures)
@@ -91,8 +98,16 @@ PALETTE = {   # role: (hex, use, figures)
     "margin_2": ("#EBA563", "as margin_0, two empty vehicles fit", "9"),
     "interval_fill": ("#D6E2F1", "capacity interval bar (pale main colour)", "5"),
     "interval_fill_light": ("#EAF0F8", "capacity interval with 30-min handling, thin bar (paler interval_fill)", "5"),
+    "offline_dispatch": ("#C2185B", "offline dispatch of full-path reservation's tasks, all tasks known: range over "
+                                    "seeds, the second lower marker", "5"),
+    "booked_random": ("#8C6D1F", "full-path reservation executed in booked order under random times: down triangles, "
+                                 "filled for CV 0.3, open for CV 0.6, the third lower marker", "5"),
     "extra_fleet_fill": ("#E6EEF8", "extra fleet of full-path reservation over free flow, between the two lines "
                                     "(paler main colour)", "6"),
+    "cell_same": ("#E8E6E0", "screen cell below the lower end, in whole vehicles: same fleet as free flow", "6"),
+    "cell_frac_low": ("#B3C8E4", "screen cell from the lower end, fractional fleets: at most 10 % more", "6"),
+    "cell_one_more": ("#96928A", "screen cell below the lower end, in whole vehicles: one vehicle more", "6"),
+    "cell_frac_high": ("#1F3F73", "screen cell from the lower end, fractional fleets: over 10 % more", "6"),
     "yard_okpo": ("#6B3A7D", "Okpo as a series: diamonds", "7"),
     "yard_yantai": ("#B48AC4", "Yantai as a series: down triangles", "7"),
     "bound_system": ("#1A1A1A", "system bound: solid line; upper end of the capacity interval", "4, 5"),
@@ -350,7 +365,20 @@ for gname, cases in groups:
             rf = float(RFB[y][kind]["T1pp"])
             rf = rf if rf > up + 0.5 else None
         R5.append(dict(group=gname, label=f"{YNAME[y]}, {'whole road' if sec == 'whole' else 'sectioned'}", low=low,
-                       up=up, safe=safe, ref=ref, lo3=lo3, up3=up3, rf=rf))
+                       up=up, safe=safe, ref=ref, lo3=lo3, up3=up3, rf=rf, yard=y, kind=kind, sec=sec))
+# two-tier lower end of the main-case whole-road rows (interventions/lower_tier.csv): full-path reservation's plateau, guaranteed
+# online (the lower end of the bar), and offline dispatch of the same tasks, reachable when all are known (range over
+# seeds); and the plateau of full-path reservation executed in booked order under random times (stochastic/main_case_plateau.csv,
+# booked on projected occupancy at mean durations), {yard: (CV 0.3, CV 0.6)} in moves/day.
+LT5 = {r["yard"]: r for r in rows("results/interventions/lower_tier.csv")}
+PL5 = {(r["yard"], r["level"], r["model"]): float(r["plateau"]) for r in rows("results/stochastic/main_case_plateau.csv")}
+LOWER_RANDOM = {y: (PL5[(y, "cv3", "reserve_op3")], PL5[(y, "cv6", "reserve_op3")]) for y in ("yupu", "yantai")}
+for r in R5:
+    if r["kind"] == "main" and r["sec"] == "whole":
+        lt = LT5[r["yard"]]
+        assert abs(float(lt["online"]) - r["low"]) < 1e-6 and abs(float(lt["lam_S"]) - r["up"]) < 0.01
+        r["offline"] = (float(lt["offline_lo"]), float(lt["offline_hi"]))
+        r["random"] = LOWER_RANDOM.get(r["yard"])
 # each row as a share of its own system bound with 10-min handling (= 100 %), so the length of a bar is the width of the
 # interval; moves/day and the share in two columns on the right; the rows in a label column, grouped by the mix
 share = lambda r, v: 100 * v / r["up"]
@@ -365,8 +393,8 @@ for gi, (gname, cases) in enumerate(groups):
     YP5 += ys
     GRP5.append((gname, statistics.mean(ys)))
     yv -= len(cases)
-YTOP5 = 0.75
-fig = plt.figure(figsize=(FIGW, 92 * MM), layout="constrained")
+YTOP5 = 0.95                                        # room above the first row for its offline-dispatch marker
+fig = plt.figure(figsize=(FIGW, 96 * MM), layout="constrained")   # 4 mm of it for the fifth legend row
 gs = fig.add_gridspec(1, 3, width_ratios=[40, 96, 26])
 axl = fig.add_subplot(gs[0])
 ax = fig.add_subplot(gs[1], sharey=axl)
@@ -386,6 +414,17 @@ for r, y_ in zip(R5, YP5):
     if r["safe"] is not None:
         ax.plot([share(r, r["safe"])], [y_], **rk("segment_safe", linestyle=""))
         ax.plot([share(r, r["ref"])], [y_], **rk("segment", linestyle=""))
+    if r.get("offline"):                            # offline dispatch, above the bar: a range with end ticks
+        yo = y_ + 0.27
+        ax.plot([share(r, v) for v in r["offline"]], [yo, yo], color=C["offline_dispatch"], linewidth=1.4,
+                solid_capstyle="butt", zorder=4)
+        ax.plot([share(r, v) for v in r["offline"]], [yo, yo], marker="|", color=C["offline_dispatch"], markersize=5,
+                markeredgewidth=1.2, linestyle="", zorder=4)
+    if r.get("random") is not None:                 # random times, executed in booked order, on the offline line
+        yo = y_ + 0.27
+        for v, face in zip(r["random"], (C["booked_random"], PAPER)):
+            ax.plot([share(r, v)], [yo], marker="v", markersize=MS, color=C["booked_random"], markerfacecolor=face,
+                    markeredgewidth=0.9, linestyle="", zorder=4)
     if r["lo3"] is not None:                        # 30-min handling, scaled to the same 10-min bound, under the row
         y3 = y_ - 0.32
         ax.barh(y3, share(r, r["up3"]) - share(r, r["lo3"]), left=share(r, r["lo3"]), height=0.13,
@@ -424,18 +463,25 @@ ax.set_axisbelow(True)
 # every mark named, column by column: the interval with 10-min handling, the other two rules, 30-min handling (the open
 # circle is its lower end, the full-path reservation plateau; the thin bar runs up to its system bound, the short tick)
 fig.legend(handles=[Line2D([], [], **rk("reserve", linestyle="", markersize=MS_PT)),
-                    Line2D([], [], marker="|", color=C["bound_system"], markersize=9, markeredgewidth=1.8, linestyle=""),
-                    Line2D([], [], color=C["interval_fill"], linewidth=6, solid_capstyle="butt"),
+                    (Line2D([], [], color=C["interval_fill"], linewidth=6, solid_capstyle="butt"),
+                     Line2D([], [], marker="|", color=C["bound_system"], markersize=9, markeredgewidth=1.8, linestyle="")),
+                    Line2D([], [], **RF_MK),
                     Line2D([], [], **rk("segment_safe", linestyle="")),
                     Line2D([], [], **rk("segment", linestyle="")),
-                    Line2D([], [], **rk("reserve", linestyle="", markersize=MS - 0.8, markerfacecolor=PAPER)),
-                    Line2D([], [], color=C["interval_fill_light"], linewidth=2.5, solid_capstyle="butt"),
-                    Line2D([], [], **RF_MK)],
-           labels=["lower end: simulated feasible throughput\n(full-path reservation)", "upper end: system bound",
-                   "capacity interval", "safe release",
-                   "reference rule", "lower end, 30-min handling", "30-min handling: interval",
-                   "upper end if rerouting: route-free bound"],
-           loc="outside upper center", ncol=3, fontsize=FS_NOTE, handlelength=1.6, columnspacing=1.2, handletextpad=0.5)
+                    (Line2D([], [], color=C["interval_fill_light"], linewidth=2.5, solid_capstyle="butt"),
+                     Line2D([], [], **rk("reserve", linestyle="", markersize=MS - 0.8, markerfacecolor=PAPER))),
+                    Line2D([], [], color=C["offline_dispatch"], linewidth=1.4, marker="|", markersize=5,
+                           markeredgewidth=1.2),
+                    Line2D([], [], marker="v", markersize=MS, color=C["booked_random"], markeredgewidth=0.9,
+                           linestyle=""),
+                    Line2D([], [], marker="v", markersize=MS, color=C["booked_random"], markerfacecolor=PAPER,
+                           markeredgewidth=0.9, linestyle="")],
+           labels=["lower end: full-path reservation's plateau", "capacity interval up to the system bound",
+                   "route-free bound", "safe release", "reference rule", "30-min handling (thin bar, open circle)",
+                   "offline dispatch (all tasks known)", "random times, CV 0.3 (booked order)",
+                   "random times, CV 0.6 (booked order)"],
+           handler_map={tuple: HandlerTuple(ndivide=None, pad=0.3)}, loc="outside upper center", ncol=2,
+           fontsize=FS_NOTE, handlelength=1.8, columnspacing=3.0, handletextpad=0.5)
 # the numbers drawn are those of the rows (read back from the figure): bar ends, the other two rules, both ends with
 # 30-min handling, the two columns; and those the text quotes (numbers.tex)
 xs = {round(float(x), 6) for ln in ax.lines for x in ln.get_xdata()}
@@ -443,6 +489,18 @@ bars = sorted((round(p.get_x(), 6), round(p.get_x() + p.get_width(), 6)) for p i
 assert bars == sorted([(round(share(r, r["low"]), 6), 100.0) for r in R5]
                       + [(round(share(r, r["lo3"]), 6), round(share(r, r["up3"]), 6)) for r in R5 if r["lo3"]]), bars
 assert all(round(share(r, r[k]), 6) in xs for r in R5 for k in ("low", "safe", "ref", "lo3", "up3", "rf") if r[k]) and 100 in xs
+assert [r["label"] for r in R5 if r.get("offline")] == ["Okpo, whole road", "Yantai, whole road"]
+assert all(round(share(r, v), 6) in xs for r in R5 if r.get("offline") for v in r["offline"])
+assert all(round(share(r, v), 6) in xs for r in R5 if r.get("random") for v in r["random"])
+for r in R5:                                        # the random-time markers as the text quotes them
+    if r.get("random"):
+        k = {"yupu": "Yu", "yantai": "Ya"}[r["yard"]]
+        assert f"{share(r, r['random'][0]):.1f}\\%" == MACRO["StochMainLo" + k]
+        assert f"{share(r, r['random'][1]):.1f}\\%" == MACRO["StochMainHi" + k]
+for r in R5:                                        # the offline ranges as Fig. 5's caption quotes them
+    if r.get("offline"):
+        k = {"yupu": "Yu", "yantai": "Ya"}[r["yard"]]
+        assert f"{share(r, r['offline'][0]):.0f}--{share(r, r['offline'][1]):.0f}\\%" == MACRO["LowOffline" + k]
 # route-free markers: Okpo's main-case rows (whole and sectioned) and Okpo's whole-road rows of the other scenarios
 # (Yantai's route margins are zero), the main-case and crane-paced ones as the text quotes them
 assert [r["label"] for r in R5 if r["rf"]] == ["Okpo, whole road", "Okpo, sectioned", "Okpo, whole road",
@@ -460,7 +518,7 @@ for r, low_m, pct_m, pct30_m in zip(R5, ("YuConsResLowWhole", "YuConsResLowSec",
                                      "YaConsLoadThirtySecRatio", None, None, None, None)):
     assert (low_m is None or grp(r['low']).replace(",", "{,}") == MACRO[low_m]) and f"{share(r, r['low']):.0f}%" == pc(pct_m), r
     assert pct30_m is None or f"{100 * r['lo3'] / r['up3']:.0f}%" == pc(pct30_m), r
-SRC_INTERVAL = "results/main_case/interval.csv (main case); results/interval/interval.csv, crane_interval.csv, crane_16day_plateau.csv; results/saturation/rules.csv; results/bounds/*/route_free.csv, results/bounds/interval_route_free.csv"
+SRC_INTERVAL = "results/main_case/interval.csv (main case); results/interventions/lower_tier.csv; results/stochastic/main_case_plateau.csv; results/interval/interval.csv, crane_interval.csv, crane_16day_plateau.csv; results/saturation/rules.csv; results/bounds/*/route_free.csv, results/bounds/interval_route_free.csv"
 save(fig, "fig_interval.pdf", SRC_INTERVAL)
 
 # ================================================================== Supplementary Figure S2: required fleet (every move scaled)
@@ -561,8 +619,9 @@ SER7 = {"okpo_16": ("yupu", 16, "-"), "okpo_24": ("yupu", 24, "-"), "yantai_16":
         "yantai_w-1.5": ("yantai", 16, "--"), "yantai_w+1.5": ("yantai", 16, ":"), "intra_16": ("yupu", 16, "-."),
         "intra_24": ("yupu", 24, "-.")}
 assert set(SER7) == {r["series"] for r in F7}
-# (series_main_case.csv, cross_main_case.csv): the main case on 16-h days at both yards, drawn thick; its 24-h series
-# stay in the supplementary material. The lower end stays that of the ten series (the main case needs at most one
+# (series_main_case.csv, cross_main_case.csv): the main case on 16-h days at both yards, in the top rows of (a) and thick
+# in (b); its 24-h series stay in the supplementary material. The lower end stays that of the ten series (the main case
+# needs at most one
 # vehicle more below it, in one cell); the upper ends include the main case
 F7C = [r for r in rows("results/screen/series_main_case.csv") if r["series"] in ("okpo_c16", "yantai_c16")]
 CR7C = {(r["series"], r["axis"], r["measure"]): r for r in rows("results/screen/cross_main_case.csv")}
@@ -573,42 +632,100 @@ UP7 = [100 * float(CR7[(s, "ratio", "gap_frac")]["last"]) for s in SER7 if SER7[
 assert f"{LOW7:.1f}%" == pc("ScreenLowEnd") and f"{min(UP7):.1f}%" == pc("ScreenUpLo") and f"{max(UP7):.1f}%" == pc("ScreenUpHi")
 XMAX7 = 25.0                                    # levels up to a quarter of the bound; all beyond exceed 10 % by far
 assert all(float(r["gap_frac"]) > 0.10 for r in F7 + F7C if 100 * float(r["ratio"]) > XMAX7)
-fig, (axa, axb) = plt.subplots(1, 2, figsize=(FIGW, 82 * MM), layout="constrained", sharey=True)
-style7 = lambda y, h, ls: dict(color=YCOL[y], linestyle=ls, linewidth=0.9, marker=YMK[y], markersize=MS - 0.4,
-                               markerfacecolor=YCOL[y] if h == 16 else PAPER, markeredgewidth=0.8)
-for s, (y, h, ls) in SER7.items():
-    pts = sorted((100 * float(r["ratio"]), float(r["S_d"]), 100 * float(r["gap_frac"])) for r in F7 if r["series"] == s)
-    pts = [p for p in pts if p[0] <= XMAX7]
-    axa.plot([p[0] for p in pts], [p[2] for p in pts], gid=f"{s}|a", **style7(y, h, ls))
-    if h == 16 and not s.startswith("intra"):                  # (b): a yard's three road widths
-        axb.plot([p[1] for p in pts], [p[2] for p in pts], gid=f"{s}|b", **style7(y, h, ls))
-LW7C = 2.0                                                     # the main case, thick, on both panels
-for s, (y, h, ls) in SERC.items():
-    pts = sorted((100 * float(r["ratio"]), float(r["S_d"]), 100 * float(r["gap_frac"])) for r in F7C if r["series"] == s)
-    pts = [p for p in pts if p[0] <= XMAX7]
-    axa.plot([p[0] for p in pts], [p[2] for p in pts], gid=f"{s}|a", **{**style7(y, h, ls), "linewidth": LW7C}, zorder=3)
-    axb.plot([p[1] for p in pts], [p[2] for p in pts], gid=f"{s}|b", **{**style7(y, h, ls), "linewidth": LW7C}, zorder=3)
-for ax in (axa, axb):
-    ax.axhline(10, color=MUTED, linewidth=LW_REF, linestyle=(0, (4, 2)), zorder=0.5)
-    ax.set_xscale("log")
-    ax.xaxis.set_minor_locator(NullLocator())
-    grid(ax)
-# (a) the lower end, a sufficient condition read on the demand ratio, and the range of the yards' upper ends
-axa.axvspan(1.0, LOW7, color=BAND, linewidth=0, zorder=0)
-axa.axvline(LOW7, color=INK2, linewidth=LW_THIN, zorder=0.6)
+# (a) every tested level of each series as a cell, classed as Section 4.4 reads the screen: below the lower end in whole
+# vehicles (same fleet, one vehicle more), from it by the extra fleet with fractional fleets (at most or over 10 %); the
+# main case in the top rows; each cell reaches halfway (log) to its neighbours and stops at the lower end. (b) the extra
+# fleet against the chain load: the main case thick, marked and labelled, the road widths a faded background in the
+# yard's colour; the y axis stops at 55 %, the lines leaving through the top edge
+CLS7 = ("same fleet", "one vehicle more", "at most 10% more", "over 10% more")
+CCOL7 = (C["cell_same"], C["cell_one_more"], C["cell_frac_low"], C["cell_frac_high"])
+
+
+def cls7(r):
+    if 100 * float(r["ratio"]) < LOW7:                 # below the lower end: whole vehicles, at most one more
+        dk = int(r["K_res"]) - int(r["K_free"])
+        assert dk in (0, 1), r
+        return dk
+    return 2 + (float(r["gap_frac"]) > 0.10)           # from it: fractional fleets
+
+
+ROW7 = [("okpo_c16", "Okpo, 16 h"), ("yantai_c16", "Yantai, 16 h"), ("okpo_16", "Okpo, 16 h"), ("okpo_24", "Okpo, 24 h"),
+        ("yantai_16", "Yantai, 16 h"), ("yantai_24", "Yantai, 24 h"), ("okpo_w-1.5", "Okpo, \u22121.5 m"),
+        ("okpo_w+1.5", "Okpo, +1.5 m"), ("yantai_w-1.5", "Yantai, \u22121.5 m"), ("yantai_w+1.5", "Yantai, +1.5 m"),
+        ("intra_16", "Okpo, 16 h"), ("intra_24", "Okpo, 24 h")]
+GRP7 = (("Main\ncase", 0, 2), ("Every\nmove\nscaled", 2, 6), ("All\nroads,\n16 h", 6, 10), ("Intra-\narea", 10, 12))
+assert [s for s, _ in ROW7] == list(SERC) + list(SER7)
+DATA7 = {s: sorted((r for r in (F7C if s in SERC else F7) if r["series"] == s and 100 * float(r["ratio"]) <= XMAX7),
+                   key=lambda r: float(r["ratio"])) for s, _ in ROW7}
+# below the lower end, ten seeds: one vehicle more in three cells; with 30 seeds the first two need equal fleets (open
+# circles), the main case's still one more (S1.4)
+ODD7 = {("intra_16", "150"), ("okpo_w-1.5", "75")}
+assert {(s, r["n"]) for s in DATA7 for r in DATA7[s] if 100 * float(r["ratio"]) < LOW7 and cls7(r) == 1} == \
+       ODD7 | {("okpo_c16", "75")}
+assert f"{100 * float(next(r for r in DATA7['okpo_c16'] if r['n'] == '75')['ratio']):.1f}%" == pc("ScreenOddRatio")
+fig = plt.figure(figsize=(FIGW, 84 * MM), layout="constrained")
+gs = fig.add_gridspec(1, 3, width_ratios=[33, 68, 60])
+axa = fig.add_subplot(gs[1])
+axl = fig.add_subplot(gs[0], sharey=axa)                # group and row names
+axb = fig.add_subplot(gs[2])
+for i, (s, lab) in enumerate(ROW7):
+    xs7 = [100 * float(r["ratio"]) for r in DATA7[s]]
+    mid = [math.sqrt(a * b) for a, b in zip(xs7, xs7[1:])]
+    for r, x, x0, x1 in zip(DATA7[s], xs7, [xs7[0] ** 2 / mid[0]] + mid, mid + [xs7[-1] ** 2 / mid[-1]]):
+        x0, x1 = (x0, min(x1, LOW7)) if x < LOW7 else (max(x0, LOW7), x1)
+        axa.barh(-i, x1 - x0, left=x0, height=0.62, color=CCOL7[cls7(r)], edgecolor=PAPER, linewidth=0.6, zorder=2,
+                 gid=f"{s}|{r['n']}")
+        if (s, r["n"]) in ODD7:
+            axa.plot([x], [-i], linestyle="", marker="o", markersize=2.8, markerfacecolor=PAPER, markeredgecolor=INK,
+                     markeredgewidth=0.6, zorder=3, gid=f"odd|{s}|{r['n']}")
+    axl.text(1, -i, lab, fontsize=FS_TEXT, color=INK if i < 2 else INK2, ha="right", va="center",
+             fontweight="bold" if i < 2 else "normal")
+for g, a, b in GRP7:
+    axl.text(0, -(a + b - 1) / 2, g, fontsize=FS_NOTE, color=INK, ha="left", va="center")
+    if a:
+        for ax in (axl, axa):
+            ax.axhline(-a + 0.5, color=GRID, linewidth=LW_REF, clip_on=False)
 axa.axvspan(min(UP7), max(UP7), color=C["extra_fleet_fill"], linewidth=0, zorder=0)
-axa.text((1.0 * LOW7) ** 0.5, 92, f"below {LOW7:.1f}%:\nat most one\nextra vehicle;\nsame fleet in\n"
-         f"{MACRO['ScreenLowSame']} of {MACRO['ScreenLowCells']} cells", fontsize=FS_NOTE, color=INK, ha="center", va="top")
-axa.text((min(UP7) * max(UP7)) ** 0.5, 92, "upper ends,\n16-h days", fontsize=FS_NOTE, color=INK, ha="center", va="top",
-         bbox={"facecolor": PAPER, "edgecolor": "none", "pad": 0.5, "alpha": 0.85})
-axa.text(1.05, 11, "10%", fontsize=FS_NOTE, color=INK2, ha="left", va="bottom")
+axa.axvline(LOW7, color=INK, linewidth=0.9, zorder=4)
+axa.text((1.0 * LOW7) ** 0.5, 0.6, f"below {LOW7:.1f}%:\nat most one more", fontsize=FS_NOTE, color=INK, ha="center",
+         va="bottom")
+axa.text((min(UP7) * max(UP7)) ** 0.5, 0.6, "upper ends,\n16-h days", fontsize=FS_NOTE, color=INK, ha="center", va="bottom")
+axa.set_xscale("log")
+axa.xaxis.set_minor_locator(NullLocator())
 axa.set_xlim(1.0, XMAX7)
 axa.xaxis.set_major_locator(FixedLocator([1, 2, LOW7, 10, 20]))
 axa.set_xticklabels(["1", "2", f"{LOW7:.1f}", "10", "20"])
+axa.set_ylim(-len(ROW7) + 0.4, 2.2)
+axa.tick_params(axis="y", left=False, labelleft=False)
+axa.spines["left"].set_visible(False)
+axa.grid(True, axis="x", color=GRID, linewidth=0.5)
+axa.set_axisbelow(True)
 axa.set_xlabel("Daily demand / system bound (%, logarithmic)")
-axa.set_ylabel("Extra fleet of full-path reservation (%)")
-axa.set_ylim(-5, 105)
-axa.set_title("(a) Demand ratio", color=INK)
+axa.set_title("(a) Demand ratio, every tested level", color=INK)
+axl.set_xlim(0, 1)
+axl.axis("off")
+style7 = lambda y: dict(color=YCOL[y], linestyle="-", linewidth=0.8, alpha=0.45)
+LW7C = 2.0                                                     # the main case, thick
+styleC = lambda y: dict(color=YCOL[y], linestyle="-", linewidth=LW7C, marker=YMK[y], markersize=MS - 0.4,
+                        markerfacecolor=YCOL[y], markeredgewidth=0.8)
+LAB7 = {"yupu": ("Okpo, main case", "right"), "yantai": ("Yantai, main case", "left")}
+YTOP7 = 55
+pts7 = lambda s, src: [q for q in sorted((100 * float(r["ratio"]), float(r["S_d"]), 100 * float(r["gap_frac"]))
+                                         for r in src if r["series"] == s) if q[0] <= XMAX7]
+for s, (y, h, ls) in SER7.items():                             # (b): a yard's three road widths
+    if h == 16 and not s.startswith("intra"):
+        pts = pts7(s, F7)
+        axb.plot([q[1] for q in pts], [q[2] for q in pts], gid=f"{s}|b", **style7(y))
+for s, (y, h, ls) in SERC.items():
+    pts = pts7(s, F7C)
+    axb.plot([q[1] for q in pts], [q[2] for q in pts], gid=f"{s}|b", **styleC(y), zorder=3)
+    q = next(q for q in pts if q[2] >= (25 if y == "yupu" else 10))   # Okpo labelled at 25 %, Yantai at 10 %
+    lab, ha = LAB7[y]
+    axb.annotate(lab, xy=(q[1], q[2]), xytext=(-6, 4) if ha == "right" else (8, -2), textcoords="offset points", ha=ha,
+                 va="bottom" if ha == "right" else "top", fontsize=FS_NOTE, color=YCOL[y], fontweight="bold",
+                 bbox={"facecolor": PAPER, "edgecolor": "none", "pad": 0.6, "alpha": 0.85}, zorder=4)
+axb.axhline(10, color=MUTED, linewidth=LW_REF, linestyle=(0, (4, 2)), zorder=0.6)   # above the grid lines (0.5)
+axb.text(0.42, 11, "10%", fontsize=FS_NOTE, color=INK2, ha="left", va="bottom")
 # (b) the chain load at each yard's upper end (last crossing with fractional fleets, three road widths)
 SDU = {y: [float(CR7[(s, "S_d", "gap_frac")]["last"]) for s in SER7 if SER7[s][0] == y and SER7[s][1] == 16
            and not s.startswith("intra") and (s.endswith("16") or "1.5" in s)] for y in YARDS}
@@ -616,39 +733,51 @@ for y in YARDS:
     assert f"{min(SDU[y]):.2f}--{max(SDU[y]):.2f}" == MACRO[{"yupu": "Yu", "yantai": "Ya"}[y] + "ChainUp"]
     axb.axvspan(min(SDU[y]), max(SDU[y]), color=YCOL[y], alpha=0.25, linewidth=0, zorder=0)
     left = y == "yupu"                                  # Okpo's label left of its band, Yantai's right of its own
-    axb.text(min(SDU[y]) * 0.96 if left else max(SDU[y]) * 1.04, 100,
-             f"{YNAME[y]}'s{' ' if left else chr(10)}upper end\n{min(SDU[y]):.2f}–{max(SDU[y]):.2f}", fontsize=FS_NOTE,
-             color=YCOL[y],
+    axb.text(min(SDU[y]) * 0.96 if left else max(SDU[y]) * 1.04, YTOP7 - 3,
+             f"{YNAME[y]}'s{' ' if left else chr(10)}upper end\n{min(SDU[y]):.2f}\u2013{max(SDU[y]):.2f}", fontsize=FS_NOTE,
+             color=YCOL[y], bbox={"facecolor": PAPER, "edgecolor": "none", "pad": 0.6, "alpha": 0.85}, zorder=4,
              ha="right" if left else "left", va="top")
+axb.set_xscale("log")
+axb.xaxis.set_minor_locator(NullLocator())
+grid(axb)
 axb.set_xlim(0.4, 6.0)
 axb.xaxis.set_major_locator(FixedLocator([0.5, 1, 2, 4]))
 axb.set_xticklabels(["0.5", "1", "2", "4"])
 axb.set_xlabel("Chain load $S$ (logarithmic)")
+axb.set_ylabel("Extra fleet of full-path reservation (%)")
+axb.set_ylim(-3, YTOP7)
 axb.set_title("(b) Chain load, 16-h days", color=INK)
-mk7 = lambda y, filled: Line2D([], [], linestyle="", marker=YMK[y], markersize=MS_PT - 1, color=YCOL[y],
-                               markerfacecolor=YCOL[y] if filled else PAPER, markeredgewidth=0.8)
-ln7 = lambda ls: Line2D([], [], color=INK2, linestyle=ls, linewidth=0.9)
-fig.legend(handles=[mk7("yupu", True), mk7("yantai", True), (mk7("yupu", False), mk7("yantai", False)),
-                    Line2D([], [], color=INK2, linestyle="-", linewidth=LW7C), ln7("-"), ln7("--"), ln7(":"), ln7("-.")],
-           labels=["Okpo", "Yantai", "open: 24-h day", "main case, 16-h days", "every move scaled, roads as mapped",
-                   "all roads 1.5 m narrower", "all roads 1.5 m wider",
-                   f"{MACRO['IntraMoves']} of {MACRO['MovesPerBlock']} moves within areas"],
-           handler_map={tuple: HandlerTuple(ndivide=None, pad=0.3)}, loc="outside upper center", ncol=4, fontsize=FS_NOTE,
-           handlelength=2.2, columnspacing=1.2)
-# the numbers drawn are those of the series (read back from the figure)
-got = {ln.get_gid(): (list(ln.get_xdata()), list(ln.get_ydata())) for a in (axa, axb) for ln in a.lines if ln.get_gid()}
+# legends: the classes in their two regions (a heading without a mark above each; the open circles in the caption), then
+# the lines of (b)
+fig.legend(handles=[Line2D([], [], linestyle=""), Patch(color=CCOL7[0]), Patch(color=CCOL7[1]),
+                    Line2D([], [], linestyle=""), Patch(color=CCOL7[2]), Patch(color=CCOL7[3])],
+           labels=[f"below {LOW7:.1f}% (whole vehicles):", CLS7[0], CLS7[1],
+                   f"from {LOW7:.1f}% (fractional fleets):", CLS7[2], CLS7[3]],
+           loc="outside upper left", ncol=2, fontsize=FS_NOTE, handlelength=1.6, columnspacing=1.6)
+fig.legend(handles=[(Line2D([], [], **styleC("yupu")), Line2D([], [], **styleC("yantai"))),
+                    (Line2D([], [], **style7("yupu")), Line2D([], [], **style7("yantai")))],
+           labels=["(b) main case, 16-h days", "(b) every move scaled; all\nroads 1.5 m narrower or wider"],
+           handler_map={tuple: HandlerTuple(ndivide=None, pad=0.3)}, loc="outside upper right", fontsize=FS_NOTE,
+           handlelength=2.4)
+# the cells drawn are those of the series, in the colour of their class and on the right side of the lower end; the
+# open circles; the lines of (b) (read back from the figure)
+cells = {pa.get_gid(): pa for pa in axa.patches if pa.get_gid()}
+assert len(cells) == sum(len(v) for v in DATA7.values())
+for s, rs in DATA7.items():
+    for r in rs:
+        pa, x = cells[f"{s}|{r['n']}"], 100 * float(r["ratio"])
+        assert pa.get_x() <= x <= pa.get_x() + pa.get_width() and pa.get_facecolor() == to_rgba(CCOL7[cls7(r)])
+        assert pa.get_x() + pa.get_width() <= LOW7 if x < LOW7 else pa.get_x() >= LOW7
+assert {tuple(ln.get_gid().split("|")[1:]) for ln in axa.lines if (ln.get_gid() or "").startswith("odd|")} == ODD7
+got = {ln.get_gid(): (list(ln.get_xdata()), list(ln.get_ydata())) for ln in axb.lines if ln.get_gid()}
 for s, (y, h, ls) in SER7.items():
-    pts = sorted((100 * float(r["ratio"]), float(r["S_d"]), 100 * float(r["gap_frac"])) for r in F7 if r["series"] == s)
-    pts = [p for p in pts if p[0] <= XMAX7]
-    assert got[f"{s}|a"] == ([p[0] for p in pts], [p[2] for p in pts])
     assert (f"{s}|b" in got) == (h == 16 and not s.startswith("intra"))
-for s in SERC:                                  # the main case: both panels; its upper end inside its yard's band in (b)
-    pts = sorted((100 * float(r["ratio"]), float(r["S_d"]), 100 * float(r["gap_frac"])) for r in F7C if r["series"] == s)
-    pts = [p for p in pts if p[0] <= XMAX7]
-    assert got[f"{s}|a"] == ([p[0] for p in pts], [p[2] for p in pts]) and got[f"{s}|b"] == ([p[1] for p in pts], [p[2] for p in pts])
-    y = SERC[s][0]
-    assert min(SDU[y]) <= float(CR7C[(s, "S_d", "gap_frac")]["last"]) <= max(SDU[y])
-SRC_SCREEN = "results/screen/series.csv, cross.csv (gap_frac; axes ratio and S_d); results/screen/series_main_case.csv, cross_main_case.csv (main case, 16-h days)"
+    if f"{s}|b" in got:
+        assert got[f"{s}|b"] == ([q[1] for q in pts7(s, F7)], [q[2] for q in pts7(s, F7)])
+for s in SERC:                                  # the main case; its upper end inside its yard's band in (b)
+    assert got[f"{s}|b"] == ([q[1] for q in pts7(s, F7C)], [q[2] for q in pts7(s, F7C)])
+    assert min(SDU[SERC[s][0]]) <= float(CR7C[(s, "S_d", "gap_frac")]["last"]) <= max(SDU[SERC[s][0]])
+SRC_SCREEN = "results/screen/series.csv, cross.csv (K_free, K_res, gap_frac; axes ratio and S_d); results/screen/series_main_case.csv, cross_main_case.csv (main case, 16-h days)"
 save(fig, "fig_screen.pdf", SRC_SCREEN)
 
 # ================================================================== Supplementary Figure S1: rehandling within areas
@@ -831,10 +960,12 @@ save(fig, "fig_dockmech_bc.pdf", "results/synthetic_dock/rho_star.csv, config.js
 
 # ================================================================== Figure 9: external anchors against handling time
 # the numbers of the anchor table (make_numbers.py tab_anchor): Okpo with 30 vehicles at saturation, moves per
-# vehicle-day with t min each of loading and unloading on 24-h days (handling_time.csv), the four rules at the main
-# handling time on 16-h days (per_vehicle_rates.csv, column r1833); safe release was run at the main handling time only
-AF = rows("results/anchors/handling_time.csv")
-S72 = {r["macro"]: float(r["r1833"]) for r in rows("results/anchors/per_vehicle_rates.csv")}
+# vehicle-day with t min each of loading and unloading on 24-h days (main_case_handling_time.csv), the four rules at the
+# main handling time on 16-h days (main_case_per_vehicle.csv); safe release was run at the main handling time only
+AF = [r for r in rows("results/anchors/main_case_handling_time.csv") if r["map"] == "conserved"]       # main case
+F9 = {(r["map"], r["panel"], int(r["load_min"]), r["model"]): float(r["per_truck"]) for r in rows("results/anchors/main_case_per_vehicle.csv")}
+S72 = {f"YuPerTruck{nm}{d}": F9[("conserved", p_, 10, mo)] for nm, mo in (("Free", "free"), ("Res", "reserve"),
+       ("Ref", "segment"), ("Safe", "segment_safe")) for d, p_ in (("", "b"), ("Day", "a"))}
 tt = [float(r["load_min"]) for r in AF]
 hhi, shen = num("HHIRate"), num("ShenRate")
 assert all(abs(float(r["anchor"]) - 500 / 24) < 1e-9 for r in AF) and f"{hhi:.1f}" == f"{500 / 24:.1f}"
@@ -873,4 +1004,5 @@ ax2.grid(False, axis="x")
 h_, l_ = ax.get_legend_handles_labels()
 order = [l_.index(LABEL[m].replace(" (teleport recovery)", "")) for m in ORDER]           # rule order of the paper
 fig.legend([h_[k] for k in order], [l_[k] for k in order], loc="outside upper center", ncol=4, fontsize=FS_TEXT)
-save(fig, "fig_anchors.pdf", "results/anchors/handling_time.csv, per_vehicle_rates.csv (column r1833)")
+assert all(f"{S72[k]:.1f}" == MACRO[k] for k in S72)
+save(fig, "fig_anchors.pdf", "results/anchors/main_case_handling_time.csv, main_case_per_vehicle.csv (main case)")

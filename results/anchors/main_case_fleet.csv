@@ -1,0 +1,5 @@
+map,day_h,demand,anchor,anchor_fleet,K_free,K_free_lo,K_free_hi,K_res,K_res_lo,K_res_hi,res_fail_above,missing,between,between_ci,src
+conserved,24,500,Hyundai,24,17,17,17,27,27,28,[],"{""free"": [], ""reserve"": []}",True,True,runs/okpo_main_anchor_fleet main_anchor_fleet d24_c
+conserved,24,600,unnamed Korean yard,30,21,20,21,39,38,40,[],"{""free"": [19], ""reserve"": [36]}",True,True,runs/okpo_main_anchor_fleet main_anchor_fleet d24_c
+proportional,24,500,Hyundai,24,17,17,17,27,26,28,[],"{""free"": [], ""reserve"": []}",True,True,fleet/required_fleet.csv
+proportional,24,600,unnamed Korean yard,30,20,20,20,37,35,38,[],"{""free"": [], ""reserve"": []}",True,True,fleet/required_fleet.csv

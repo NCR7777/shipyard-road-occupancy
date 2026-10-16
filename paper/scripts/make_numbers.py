@@ -24,14 +24,19 @@ lists each file) and checked with assertions as it is read. Sources, by director
   ablation/        the ablation of the occupancy representation (both mappings)
   retiming/        whole-network retiming and offline dispatch
   subnet/          sub-network instances: best schedules, the through corridor
-  screen/          the screen in two levels (demand ratio and chain load), across yards and road widths, low levels
-  stochastic/      random handling and driving times, late rebooking, execution in booked order
+  screen/          the screen in two levels (demand ratio and chain load), across yards and road widths, low levels,
+                   the chain statistics of the upper end and the lower end over 30 days
+  stochastic/      random handling and driving times, late rebooking, execution in booked order; random times in the
+                   main case (main_case_*.csv)
+  interventions/   interventions on the binding element: bounds, plateaus, offline dispatch, fleets, holding ratio,
+                   the corridor sub-network of the main case, the two-tier lower end of Fig. 5
   width_ban/       the ban on blocks wider than the passable width
   tail/            release at tail clearance: roadside stops, plateaus and fleets when the tail is booked
   hand/            the hand-computed instances
   dock/            dock-mouth thresholds (thresholds.csv, summary.json), crane hours, utilisation levels, one crane at
                    Dock 1, off-road unloading bays (bays.csv)
-  anchors/         moves per vehicle-day against handling time and by rule (the external anchor)
+  anchors/         moves per vehicle-day against handling time and by rule (the external anchor), with every move
+                   scaled and in the main case (main_case_*.csv)
   synthetic_dock/  synthetic dock mouth: thresholds rho_10 (rho_star.csv), per-point throughput, waiting term
   runs/<run>/      configuration (config.json), per-point results (points.csv) and per-point bound check (check.json) of
                    the simulation batches; the run names are in src.py
@@ -43,7 +48,7 @@ where a reading differs between the revisions, the rev 1833 value is used and th
 Only the macros and tables that the paper uses are written: the macros of the text, the tables and the Highlights, those
 the figures check, and the computations and checks they rest on. The tables are those printed: tab_bounds, tab_ablation,
 tab_fleethead (main text), tab_flows (Appendix B), tab_fleethead_prop, tab_ablation_prop, tab_subnet, tab_whole,
-tab_stoch and tab_dockbay (supplementary material).
+tab_interv, tab_intervfleet, tab_stochmain, tab_stochmainfleet, tab_stoch and tab_dockbay (supplementary material).
 
 Run from paper/: python scripts/make_numbers.py (or, from the repository root, python paper/reproduce.py).
 """
@@ -434,12 +439,17 @@ diff = [abs(int(kreq4("yupu", float(r["day_h"]), "whole", "reserve", int(float(r
         and r["K_req"].isdigit()]
 num("SecFleetMaxDiff", max(diff))
 assert max(diff) == js("results/fleet/sectioned_summary.json")["SecFleetMaxDiff"]["r1833"]
-# moves per vehicle-day at Okpo with 30 vehicles, on the map with floating docks (per_vehicle_rates.csv, column r1833):
-# 16-h days in the text, 24-h days ("Day") in the anchor figure
+# moves per vehicle-day at Okpo with 30 vehicles, main case (anchors/main_case_per_vehicle.csv, map conserved): 16-h days
+# with 10-min handling (panel b, the saturation runs of the main case) and 24-h days ("Day", panel a, t = 10 min); every
+# move scaled is the comparison in the same file and equals per_vehicle_rates.csv (column r1833)
+F9 = {(r["map"], r["panel"], int(r["load_min"]), r["model"]): float(r["per_truck"])
+      for r in rows("results/anchors/main_case_per_vehicle.csv")}
 SEC72 = {r["macro"]: r for r in rows("results/anchors/per_vehicle_rates.csv")}
-assert set(SEC72) == {f"YuPerTruck{m}{d}" for m in ("Free", "Res", "Ref", "Safe") for d in ("", "Day")}
-for m_ in ("Free", "Res", "Ref", "Safe"):
-    num("YuPerTruck" + m_, SEC72["YuPerTruck" + m_]["r1833"], 1)
+for m_, mo in (("Free", "free"), ("Res", "reserve"), ("Ref", "segment"), ("Safe", "segment_safe")):
+    num("YuPerTruck" + m_, F9[("conserved", "b", 10, mo)], 1)
+    num("YuPerTruck" + m_ + "Day", F9[("conserved", "a", 10, mo)], 1)
+    assert close(F9[("proportional", "b", 10, mo)], SEC72["YuPerTruck" + m_]["r1833"], 0.005)
+    assert close(F9[("proportional", "a", 10, mo)], SEC72["YuPerTruck" + m_ + "Day"]["r1833"], 0.005)
 num("HHIRate", 500 / 24, 1)        # Park and Seo (2006): about 500 moves/day with 24 transporters, 24-h days
 num("ShenRate", 600 / 30)          # Shen et al. (2018): about 600 moves/day with about 30 transporters
 
@@ -1026,23 +1036,24 @@ for y in YARDS:
     rng("ScreenDemand" + Y[y], LOWN[y])
 # external anchor and handling time: driving part of the free-flow cycle at Okpo (30 vehicles, 24-h days), and the handling
 # time each at which free flow would fall to Hyundai's rate (Park and Seo 2006: about 500 moves/day with 24 transporters)
-fr24 = float(SEC72["YuPerTruckFreeDay"]["r1833"])
+fr24 = F9[("conserved", "a", 10, "free")]                          # main case
 drive = 24 * 60 / fr24 - 2 * P["load_s"] / 60
-HND = L30_SUM["anchor_reads"]["handling"]
-assert abs(HND["cycle_at_anchor_min"] - 24 * 60 / (500 / 24)) < 0.01 and abs(HND["travel_free_min"] - drive) < 0.1
+HND = js("results/anchors/main_case_summary.json")["reads"]["conserved"]["handling"]
+assert abs(HND["cycle_at_anchor_min"] - 24 * 60 / (500 / 24)) < 0.01 and abs(HND["drive_from_free10_min"] - drive) < 0.01
 num("AnchorDriveMin", drive)
 num("AnchorHandleMax", (24 * 60 / (500 / 24) - drive) / 2)
 num("AnchorCycleMin", HND["cycle_at_anchor_min"])
 num("MaxVehClear", max(P["block_l"][1], P["plat_len"]) + P["long_clear"])
-# the anchor framed by handling time (handling_time.csv): moves per vehicle-day at Okpo, 30 vehicles, 24-h days, t min each
-AF = rows("results/anchors/handling_time.csv")
+# the anchor framed by handling time (main_case_handling_time.csv): moves per vehicle-day at Okpo, 30 vehicles, 24-h days,
+# t min each
+AF = [r for r in rows("results/anchors/main_case_handling_time.csv") if r["map"] == "conserved"]
 assert abs(float(AF[0]["free"]) - fr24) < 1e-9 and abs(float(AF[0]["anchor"]) - 500 / 24) < 1e-9
 assert all((float(r["free"]) > float(r["anchor"])) == (r["free_above"] == "True") for r in AF)
 # the anchor figure draws the same numbers: its first column is the main handling time, the rates of
 # per_vehicle_rates.csv
 assert float(AF[0]["load_min"]) == float(MAC["LoadMin"])
 for col, m in (("free", "Free"), ("reference", "Ref"), ("reserve", "Res")):
-    assert fmt(AF[0][col], 1) == fmt(SEC72[f"YuPerTruck{m}Day"]["r1833"], 1)
+    assert fmt(AF[0][col], 1) == MAC[f"YuPerTruck{m}Day"]
 # required fleets with 30-min loading and unloading (fleet_30min.csv), whole roads, both yards: rows of the
 # required-fleet table
 FL30 = {(r["yard"], r["day_h"], r["model"], int(r["demand"])): r for r in rows("results/fleet/fleet_30min.csv")}
@@ -1570,6 +1581,8 @@ for tag, c in (("Stable", "K_stable"), ("", "K_req")):
     e_ = [cK(16, "reserve", n, c) / cK(16, "free", n, c) - 1 for n in (339, 350)]
     pct(f"YuCons{tag}OwnExtraLo", min(e_))
     pct(f"YuCons{tag}OwnExtraHi", max(e_))
+prange("YuConsStableOwnExtra", [cK(16, "reserve", n) / cK(16, "free", n) - 1 for n in (339, 350)])   # one range, "61--72\%",
+assert MAC["YuConsStableOwnExtra"] == MAC["YuConsStableOwnExtraLo"][:-2] + "--" + MAC["YuConsStableOwnExtraHi"]  # abstract, conclusions
 irange("YuConsStablePeakRes", [cK(16, "reserve", n) for n in (678, 700)])
 irange("YuConsPeakRes", [cK(16, "reserve", n, "K_req") for n in (678, 700)])
 irange("YuConsStableDayRes", [cK(24, "reserve", n) for n in (339, 350)])
@@ -1647,6 +1660,25 @@ for n in (339, 350):
         r_ = L3061[(h, n)]
         c += [r_["Kreq_free"], r_["Kreq_reserve"], "--", "--", r_["Kstable_free"], r_["Kstable_reserve"]]
     T7.append(f"{fmt(n)} & " + " & ".join(c) + r" \\")
+# Okpo's own volumes with 15-min mean handling (stochastic/main_case_fleet.csv): every duration fixed at its mean (full-path
+# reservation), and random times with coefficients of variation 0.3 and 0.6 (full-path reservation executed in booked
+# order, booked on projected occupancy at mean durations); free flow under the same times; peaks in the table note
+F78 = {(r["level"], int(r["day_h"]), int(r["demand"]), r["model"]): r for r in rows("results/stochastic/main_case_fleet.csv")}
+for h in (16, 24):                                  # its deterministic 10-min fleets are those of main_case/fleet.csv
+    for n in (339, 350):
+        for mo in ("free", "reserve"):
+            assert int(F78[("d10", h, n, mo)]["K_stable"]) == cK(h, mo, n)
+gt = lambda v: v.replace(">", "$>$")
+two = lambda vals: ", ".join(dict.fromkeys(gt(v) for v in vals))      # 339 and 350 moves/day, one value if equal
+T7.append(head(r"\quad\emph{" + MAC["OkOwn"] + " and " + MAC["OkDirect"] + " moves/day, " + fmt(1.5 * P["load_s"] / 60)
+               + r"-min mean handling: fixed; random, executed in booked order}"))
+for lv, lab in (("m15", "fixed"), ("cv3", "CV 0.3"), ("cv6", "CV 0.6")):
+    rule = "reserve" if lv == "m15" else "reserve_op3"
+    c = []
+    for h in (16, 24):
+        g = lambda mo, col: two([F78[(lv, h, n, mo)][col] for n in (339, 350)])
+        c += [g("free", "K_req"), g(rule, "K_req"), "--", "--", g("free", "K_stable"), g(rule, "K_stable")]
+    T7.append(f"{lab} & " + " & ".join(c) + r" \\")
 T7.append(head(r"\emph{" + MAC["IntraMoves"] + r" of " + MAC["MovesPerBlock"] + r" moves per block within an area} "
                r"(onset of saturation $K^{*}$ = " + kst(INTRA_KS) + ")"))
 for n in (339, 350, 678, 700):
@@ -1800,7 +1832,7 @@ for title, ru, lvs, note in OPE:
 write("tab_stoch.tex", lines)
 num("OpeRuns", sum(int(r["points"]) for r in CK65 if r["rule"].startswith("reserve_op")))
 num("OpeCheckMax", max(float(r["max_ratio"]) for r in CK65), 2)
-# throughput as a share of the deterministic plateau that the Change column of Table S6 uses: the CV levels against
+# throughput as a share of the deterministic plateau that the Change column of Table S10 uses: the CV levels against
 # deterministic mean durations (m15), the slower speeds (v2) against deterministic 15-min handling at nominal speeds
 # (r15); ordered_plateau.csv over plateau.csv, paired seeds: projected occupancy, and at mean times; booked at nominal
 # times the throughput fell from day to day (eight-day runs, long8.csv)
@@ -1809,7 +1841,7 @@ SH65 = lambda ru, y, lv: float(PL65[(y, ru, lv)]["plateau"]) / REF65(y, lv)
 prange("OpeProjShare", [SH65("reserve_op2", y, lv) for y in YARDS for lv in ("cv3", "cv6", "v2")])
 prange("OpeMeanShare", [SH65("reserve_op3", y, lv) for y in YARDS for lv in ("cv3", "cv6")])
 assert all(f"{signed(SH65(ru, y, lv) - 1)}" in " ".join(lines) for _, ru, lvs, _ in OPE for y in YARDS for lv in lvs)
-num("OpeRefMeanYu", REF65("yupu", "cv3"))                 # the reference rows, Table S6 (m15)
+num("OpeRefMeanYu", REF65("yupu", "cv3"))                 # the reference rows, Table S10 (m15)
 num("OpeRefMeanYa", REF65("yantai", "cv3"))
 L865 = rows("results/stochastic/ordered_eight_day.csv")
 nom8 = [-float(r["rel_d5_8"]) for r in L865 if r["rule"] == "reserve_op"]
@@ -2457,6 +2489,257 @@ num("HandThreeSeg", r3["reference"], 2)
 assert abs(float(MAC["HandThreeSeg"]) - lam3) < 0.075 and fmt(r1["bound"], 2) == MAC["HandOneBound"] and \
     fmt(r2["bound"], 2) == MAC["HandTwoBound"]
 assert r3["reference_deadlocks"] == 0 and fmt(r3["bound"], 2) == MAC["HandThreeBound"]
+
+# ---------------------------------------------------------------- interventions, chain statistics, random times, anchors
+# interventions on the binding element (main case, whole roads, 16 h, 10-min handling: bounds.csv, plateau.csv,
+# ect.csv, fleet.csv), the holding ratio (holding.csv), the corridor sub-network drawn from the main-case stream
+# (subnet.csv), the two-tier lower end of Fig. 5 (lower_tier.csv) and why two scenarios have no comparable sub-network
+B76 = {(r["yard"], r["scen"]): r for r in rows("results/interventions/bounds.csv")}
+P76 = {(r["yard"], r["scen"]): r for r in rows("results/interventions/plateau.csv")}
+E76 = {(r["yard"], r["scen"]): r for r in rows("results/interventions/dispatch.csv")}
+H76 = {(r["yard"], r["scen"]): r for r in rows("results/interventions/hold_ratio.csv")}
+F76 = {(r["yard"], r["scen"], int(r["demand"])): r for r in rows("results/interventions/fleet.csv")}
+S76 = {r["inst"]: r for r in rows("results/interventions/subnet.csv")}
+LT76 = {r["yard"]: r for r in rows("results/interventions/lower_tier.csv")}
+for y in YARDS:                                   # the baselines are the paper's (main-case bound and plateau, offline dispatch)
+    assert close(B76[(y, "base")]["T1_sys"], lamC[y], 0.01) and close(LT76[y]["lam_S"], lamC[y], 0.01)
+    assert close(P76[(y, "base")]["plateau"], SAT61[(y, "conserved", "reserve")]["plateau"], 1e-6)
+    assert close(LT76[y]["online"], P76[(y, "base")]["plateau"], 1e-9)
+    assert (LT76[y]["mapping"], LT76[y]["section"]) == ("conserved", "whole")
+    pct("LowOnline" + Y[y], LT76[y]["online_ratio"], 1)
+    prange("LowOffline" + Y[y], [float(LT76[y]["offline_ratio_lo"]), float(LT76[y]["offline_ratio_hi"])])
+lows = [float(LT76[y][k]) for y in YARDS for k in ("offline_ratio_lo", "offline_ratio_hi")]
+assert f"{100 * min(lows):.0f}--{100 * max(lows):.0f}\\%" == MAC["WholeEct"]       # the range the text quotes (retiming)
+# the corridor sub-network with tasks of the main case (9 points: N = 20, 30, 60 and three seeds; K = 8)
+scm = S76["yupu_corridor_c"]
+assert (scm["mapping"], scm["n"]) == ("conserved", "9")
+r2 = lambda a, b: f"{float(a):.2f}--{float(b):.2f}"
+put("SubCorrMainBest", r2(scm["best_N_min"], scm["best_N_max"]))
+put("SubCorrMainUb", r2(scm["ub_N_min"], scm["ub_N_max"]))
+prange("SubCorrMainGap", [float(scm["gap_min"]), float(scm["gap_max"])])
+put("SubCorrMainExtrap", r2(scm["extrap_min"], scm["extrap_max"]))
+prange("SubCorrMainForced", [float(scm["forced_min"]), float(scm["forced_max"])])
+dock1 = next(r for k, r in S76.items() if k.startswith("yupu_dock1"))
+assert f"{float(dock1['extrap_min']):.3f}--{float(dock1['extrap_max']):.3f}" == MAC["SubDockExtrap"]
+# the holding ratio: share of time the binding element is held in the best known whole-network schedule (offline
+# dispatch, 6.4 s drive-off) over that in the best schedules of its sub-network; meaningful only where the element
+# binds its own sub-network (sub_bind_same of n_sub points)
+hy, ha = H76[("yupu", "base")], H76[("yantai", "base")]
+assert res_name(hy["element"]) == "through corridor" and res_name(ha["element"]) == "paint-shop doors"
+assert all(H76[k]["applicable"] == "True" for k in (("yupu", "base"), ("yupu", "w13"), ("yantai", "base"), ("yantai", "door1")))
+assert H76[("yupu", "w14")]["applicable"] == H76[("yantai", "door2")]["applicable"] == "False"
+for k, r in (("Yu", hy), ("Ya", ha)):
+    num("Hold" + k, r["ratio_clr"], 2)
+    prange("Hold" + k + "Whole", [float(r["clr_min"]), float(r["clr_max"])])
+    prange("Hold" + k + "Sub", [float(r["sub_min"]), float(r["sub_max"])])
+assert MAC["HoldYuWhole"] == MAC["WholeCorrBusy"] and close(hy["sub_min"], scm["hold1_min"]) and close(hy["sub_max"], scm["hold1_max"])
+num("HoldYuWide", H76[("yupu", "w13")]["ratio_clr"], 2)
+num("HoldYaOne", H76[("yantai", "door1")]["ratio_clr"], 2)
+assert MAC["HoldYuWide"] == MAC["HoldYu"]
+# interventions: the corridor widened from 12 m by 1 and 2 m; at Yantai the doors pass traffic only, loading moved
+# behind each door into two positions (the door_stop retrofit of the runs' configuration, positions per door); without
+# added positions the bound does not move
+(npos,) = {s["bays"] for sc in js("results/runs/yantai_interv_saturation/config.json")["scenarios"].values()
+           for s in sc.get("retrofit") or [] if s["kind"] == "door_stop"}
+num("IntYaPositions", npos)
+for sc_, end in (("w13", "Lo"), ("w14", "Hi")):
+    num("IntYuWiden" + end, int(sc_[1:]) - 12)
+    pct("IntYuBound" + end, B76[("yupu", sc_)]["rel"], 1)
+    pct("IntYuPlat" + end, P76[("yupu", sc_)]["rel"], 1)
+    assert abs(float(P76[("yupu", sc_)]["diff"])) < float(P76[("yupu", sc_)]["diff_hw"])     # paired 95 % interval contains 0
+assert {res_name(B76[("yupu", "w14")][t]) for t in ("top1", "top2")} == {"east corridor", "central road"}
+pct("IntYaBoundOne", B76[("yantai", "door1")]["rel"], 1)
+pct("IntYaBound", B76[("yantai", "door2")]["rel"], 1)
+pct("IntYaPlatOne", P76[("yantai", "door1")]["rel"], 1)
+pct("IntYaPlat", P76[("yantai", "door2")]["rel"], 1)
+for sc_ in ("door1", "door2"):
+    assert float(P76[("yantai", sc_)]["diff"]) > float(P76[("yantai", sc_)]["diff_hw"])        # gains outside the noise
+assert abs(float(B76[("yantai", "door1_b1")]["T1_sys"]) / lamC["yantai"] - 1) < 1e-6
+assert abs(float(B76[("yantai", "door2_b1")]["T1_sys"]) / lamC["yantai"] - 1) < 0.002         # positions, not doorways
+dYu = [r for k, r in F76.items() if k[0] == "yupu" and k[1] != "base"]
+assert all(int(r["dK_lo"]) <= 0 <= int(r["dK_hi"]) for r in dYu)                             # every paired interval holds 0
+num("IntYuFleetMax", max(max(abs(int(r["dK_req"])), abs(int(r["dK_stable"]))) for r in dYu))
+dE = [float(x) for sc_ in ("w13", "w14") for x in json.loads(E76[("yupu", sc_)]["clr_diffs"])]
+put("IntYuEct", f"$-${fmt(-min(dE))} to $+${fmt(max(dE))}")
+ya300 = {sc_: F76[("yantai", sc_, 300)] for sc_ in ("base", "door1", "door2")}
+num("IntYaLevel", 300)
+num("IntYaFleetBase", ya300["base"]["K_req"])
+num("IntYaFleetNew", ya300["door2"]["K_req"])
+num("IntYaFleetSaved", int(ya300["base"]["K_req"]) - int(ya300["door2"]["K_req"]))
+assert ya300["door1"]["K_req"] == ya300["door2"]["K_req"] and int(ya300["door2"]["dK_hi"]) < 0
+# the two scenarios without a comparable sub-network (diag.json, holding.csv)
+D76 = js("results/interventions/diag.json")
+de, bb = D76["r0994"], D76["big_ball"]
+assert de["scen"] == "w14" and res_name(de["road"]) == "east corridor" and de["both_within"]["1000"] == 0
+num("DiagEastPerK", de["via_per_1000"])
+num("DiagEastNearKm", 1)
+pair("DiagEastMed", [de["o_dist"]["median"], de["d_dist"]["median"]])
+num("DiagBallKm", bb["R"] / 1000, 1)
+num("DiagBallRoads", bb["roads"])
+num("DiagYardRoads", bb["roads_yard"])
+num("DiagBallFleetRatio", bb["lamF"] / bb["lamN"], 2)
+hd2 = H76[("yantai", "door2")]
+assert int(hd2["sub_bind_same"]) == 0 and "building015" in hd2["sub_bind_top"]                      # a neighbouring paint shop
+num("DiagDoorSub", hd2["n_sub"])
+prange("DiagDoorSubBusy", [float(hd2["sub_min"]), float(hd2["sub_max"])])
+prange("DiagDoorWhole", [float(hd2["clr_min"]), float(hd2["clr_max"])])
+# the intervention tables of Section S1.7: bounds, binding elements, plateau, offline dispatch, holding ratio; fleets
+ELEM = {("yupu", "base"): "through corridor", ("yupu", "w13"): "through corridor, central road and east corridor, tied",
+        ("yupu", "w14"): "east corridor and central road, tied", ("yantai", "base"): "a paint-shop door",
+        ("yantai", "door1"): "the other paint-shop door", ("yantai", "door2"): "three panel-line hall doors, tied",
+        ("yantai", "door1_b1"): "the loading position behind the door",
+        ("yantai", "door2_b1"): "the loading positions behind the doors"}
+LAB = {("yupu", "base"): "Okpo, as built", ("yupu", "w13"): "Okpo, corridor 13~m", ("yupu", "w14"): "Okpo, corridor 14~m",
+       ("yantai", "base"): "Yantai, as built", ("yantai", "door1"): "Yantai, one door relaxed",
+       ("yantai", "door2"): "Yantai, both doors relaxed", ("yantai", "door1_b1"): "Yantai, loading moved behind one door",
+       ("yantai", "door2_b1"): "Yantai, loading moved behind both doors"}
+# the names agree with the binding elements of bounds.csv (all elements at full use, ties included)
+TOPS = lambda k: [res_name(B76[k][f"top{i}"]) for i in (1, 2, 3) if float(B76[k][f"util{i}"]) > 1 - 1e-6]
+assert TOPS(("yupu", "base")) == ["through corridor"] and TOPS(("yantai", "base")) == ["paint-shop doors"]
+assert sorted(TOPS(("yupu", "w13"))) == ["central road", "east corridor", "through corridor"]
+assert sorted(TOPS(("yupu", "w14"))) == ["central road", "east corridor"]
+assert TOPS(("yantai", "door1")) == ["paint-shop doors"] and B76[("yantai", "door1")]["res1"] != B76[("yantai", "base")]["res1"]
+assert TOPS(("yantai", "door2")) == ["panel-line hall doors"] * 3
+assert all(B76[("yantai", k)]["res1"].startswith("b|") for k in ("door1_b1", "door2_b1"))
+sg = lambda v: "0" if int(v) == 0 else f"{int(v):+d}".replace("+", "$+$").replace("-", "$-$")   # signed integer
+lines = []
+for k in ELEM:
+    b = B76[k]
+    rel = "--" if k[1] == "base" else (("" if float(b["rel"]) < 5e-4 else "$+$") + fmt(100 * float(b["rel"]), 1) + r"\%")
+    pl, ec, hr = P76.get(k), E76.get(k), H76.get(k)
+    pls = "--" if pl is None else (fmt(pl["plateau"]) if k[1] == "base" else
+                                   rf"{fmt(pl['plateau'])} ($+${fmt(pl['diff'], 1)} $\pm$ {fmt(pl['diff_hw'], 1)})")
+    ecs = "--" if ec is None else f"{fmt(ec['clr_min'])}--{fmt(ec['clr_max'])}"
+    hrs = "--" if hr is None else (fmt(hr["ratio_clr"], 2) if hr["applicable"] == "True" else
+                                   rf"-- ({fmt(100 * float(hr['clr_min']))}--{fmt(100 * float(hr['clr_max']))}\%)")
+    lines.append(f"{LAB[k]} & {fmt(b['T1_sys'])} & {rel} & {ELEM[k]} & {pls} & {ecs} & {hrs} \\\\")
+write("tab_interv.tex", lines)
+lines = []
+for y, levels, scs in (("yupu", (339, 350, 678, 700), ("w13", "w14")), ("yantai", (23, 150, 300), ("door1", "door2"))):
+    for n in levels:
+        b = F76[(y, "base", n)]
+        cells = []
+        for sc_ in scs:
+            r = F76[(y, sc_, n)]
+            d = int(r["dK_req"])
+            iv = f"; {sg(r['dK_lo'])} to {sg(r['dK_hi'])}" if r["dK_lo"] != "" and r["dK_lo"] != r["dK_hi"] else ""
+            ds = sg(d)
+            cells.append(f"{r['K_req']} ({ds}{iv}) / {r['K_stable']}")
+        lines.append(f"{yname[y] if n == levels[0] else ''} & {n} & {b['K_req']} / {b['K_stable']} & " + " & ".join(cells) + r" \\")
+write("tab_intervfleet.tex", lines)
+# the lower end of the screen without a long-run backlog (30-day runs, stable.csv: eight cells about the lower end), the
+# intra-area own volume by both criteria (intra_own.csv) and the chain statistics of the upper end (summary.json)
+ST77 = rows("results/screen/stable_low.csv")
+assert all(r[f"K_req_{m}"] == r[f"K_stable_{m}"] for r in ST77 for m in ("free", "res"))
+assert all(int(r["dK_stable"]) == int(r["dK_req10"]) for r in ST77)
+num("StableLowCells", len(ST77))
+num("StableLowMaxDiff", max(int(r["dK_stable"]) for r in ST77))
+put("StableSlopeMax", fmt(max(abs(float(r[f"slope_req_{m}"])) for r in ST77 for m in ("free", "res")), 2))
+num("StableBacklogMax", max(float(r["day30_req_res"]) for r in ST77), 1)       # full-path reservation at K_req
+IO77 = {(int(r["day_h"]), int(r["n"])): r for r in rows("results/screen/intra_own.csv")}
+io = IO77[(16, int(MAC["OkOwn"]))]
+for k, col in (("ReqFree", "K_req_free"), ("ReqRes", "K_req_res"), ("StableFree", "K_stable_free"),
+               ("StableRes", "K_stable_res")):
+    num("YuIntraOwn" + k, io[col])
+pct("YuIntraOwnReqExtra", io["gap_req"])
+pct("YuIntraOwnStableExtra", io["gap_stable"])
+assert MAC["YuIntraOwnStableExtra"] == MAC["YuIntraStableOwnExtraLo"]
+S77 = js("results/screen/chain_stats.json")
+stats77 = [a for a in S77["align"] if a["axis"] != "ratio"]
+assert not any(a["overlap"] for a in S77["align"])                     # no statistic lets the two yards' ranges meet
+num("ChainStatN", len(stats77))
+best77, sd77 = S77["best"], next(a for a in stats77 if a["axis"] == "full_k0_S")
+assert best77["ratio"] == min(a["ratio"] for a in stats77)
+num("ChainBestRatio", best77["ratio"], 2)
+pct("ChainBestSpread", best77["okpo_range"], 1)
+num("ChainSdRatio", sd77["ratio"], 2)
+num("ChainDemandRatio", next(a for a in S77["align"] if a["axis"] == "ratio")["ratio"], 2)
+# the external anchors in the main case, 24-h days (anchor_fleet.csv): required fleets of free flow and full-path
+# reservation at the anchors' volumes; the anchors' fleets lie between them, also at the ends of the intervals
+AFL = {(r["map"], r["anchor"]): r for r in rows("results/anchors/main_case_fleet.csv")}
+for key, nm, fleet_m, moves_m in (("Hyundai", "HHI", "HHIFleet", "HHIMoves"),
+                                  ("unnamed Korean yard", "Shen", "ShenFleet", "ShenMoves")):
+    r = AFL[("conserved", key)]
+    assert r["day_h"] == "24" and int(r["anchor_fleet"]) == int(MAC[fleet_m]) and int(r["demand"]) == int(MAC[moves_m])
+    assert r["between"] == r["between_ci"] == "True"
+    num("Anchor" + nm + "Free", r["K_free"])
+    num("Anchor" + nm + "Res", r["K_res"])
+dmap = max(abs(F9[("conserved", pn, t, mo)] - F9[("proportional", pn, t, mo)]) for (mp, pn, t, mo) in F9 if mp == "conserved")
+num("AnchorMapDiff", dmap, 1)                    # every move scaled against the main case, largest difference
+
+# random handling and driving times in the main case (plateau.csv, fleet.csv, check.csv, long8.csv): handling 10 min
+# plus a lognormal part, mean 15 min, coefficients of variation 0.3 and 0.6, speed factors uniform on [0.9, 1]; the rule
+# executed in booked order and booked on projected occupancy at mean durations (reserve_op3); the deterministic run with
+# every duration at its mean (m15) separates the longer mean from the randomness
+PL78 = {(r["yard"], r["level"], r["model"]): r for r in rows("results/stochastic/main_case_plateau.csv")}
+pl = lambda y, lv, mo: float(PL78[(y, lv, mo)]["plateau"])
+for y in YARDS:
+    assert close(pl(y, "d10", "reserve"), SAT61[(y, "conserved", "reserve")]["plateau"], 1e-6)
+    assert close(PL78[(y, "d10", "reserve")]["lam_S"], lamC[y], 0.01)
+    pct("StochMainMean" + Y[y], PL78[(y, "m15", "reserve")]["ratio"], 1)
+    pct("StochMainLo" + Y[y], PL78[(y, "cv3", "reserve_op3")]["ratio"], 1)
+    pct("StochMainHi" + Y[y], PL78[(y, "cv6", "reserve_op3")]["ratio"], 1)
+fd = [abs(pl(y, lv, "free") / pl(y, "m15", "free") - 1) for y in YARDS for lv in ("cv3", "cv6")]
+assert max(fd) < 0.001
+pct("StochMainFreeDiff", 0.001, 1)                  # free flow under random times within 0.1 % of its fixed-mean plateau
+prange("StochMainMeanDrop", [1 - pl(y, "m15", "reserve") / pl(y, "d10", "reserve") for y in YARDS])
+prange("StochMainRandDropLo", [1 - pl(y, "cv3", "reserve_op3") / pl(y, "m15", "reserve") for y in YARDS])
+prange("StochMainRandDropHi", [1 - pl(y, "cv6", "reserve_op3") / pl(y, "m15", "reserve") for y in YARDS])
+own = (339, 350)
+f78 = lambda lv, h, mo, col: [F78[(lv, h, n, mo)][col] for n in own]
+irange("StochMainKs", [int(v) for v in f78("cv3", 16, "reserve_op3", "K_stable")])
+irange("StochMainFree", [int(v) for v in f78("cv3", 16, "free", "K_stable")])
+prange("StochMainExtra", [float(v) for v in f78("cv3", 16, "reserve_op3", "extra_K_stable")])
+prange("StochMainExtraReq", [float(v) for v in f78("cv3", 16, "reserve_op3", "extra_K_req")])
+irange("StochMainMeanKs", [int(v) for v in f78("m15", 16, "reserve", "K_stable")])
+irange("StochMainMeanFree", [int(v) for v in f78("m15", 16, "free", "K_stable")])
+prange("StochMainMeanExtra", [float(v) for v in f78("m15", 16, "reserve", "extra_K_stable")])
+assert f78("cv6", 16, "reserve_op3", "K_req") == [">150", ">150"]
+pair("StochMainHiThr", [float(v) for v in f78("cv6", 16, "reserve_op3", "thr_K150")])
+irange("StochMainDayKs", [int(v) for v in f78("cv3", 24, "reserve_op3", "K_stable")])
+irange("StochMainDayFree", [int(v) for v in f78("cv3", 24, "free", "K_stable")])
+prange("StochMainDayExtra", [float(v) for v in f78("cv3", 24, "reserve_op3", "extra_K_stable")])
+kf = [int(v) for v in f78("cv3", 16, "reserve_op3", "K_tol_first")]  # the wider reading: the first fleet within tolerance
+pair("StochMainKsFirst", kf)
+prange("StochMainExtraFirst", [k / int(f) - 1 for k, f in zip(kf, f78("cv3", 16, "free", "K_stable"))])
+assert all(F78[(lv, h, n, "reserve_op3")]["K_req"] == ">150" for lv in ("cv3", "cv6") for h in (16, 24) for n in (678, 700))
+CH78 = rows("results/stochastic/main_case_check.csv")
+assert sum(int(r["deadlocks"]) for r in CH78) == 0 and sum(int(r["over"]) + int(r["over_strict"]) for r in CH78) == 0
+num("StochMainPoints", sum(int(r["checked"]) for r in CH78))
+num("StochMainRuns", sum(json.loads(r["by_model"]).get("reserve_op3", 0) for r in CH78))
+put("StochMainMaxRatio", fmt(max(float(r["max_ratio"]) for r in CH78), 3))
+L78 = rows("results/stochastic/main_case_eight_day.csv")
+assert all(r["deadlocks"] == "0" for r in L78)
+num("StochMainLongSteady", sum(r["steady"] == "True" for r in L78))
+num("StochMainLongCells", len(L78))
+num("StochMainLongPp", max(100 * float(PL78[(r["yard"], r["level"], "reserve_op3")]["ratio"]) * abs(float(r["rel_d5_8"]))
+                           for r in L78 if r["steady"] != "True"), 1)
+# the two tables of Section S1.8: plateaus at both yards; Okpo's fleets at its own volumes and peaks
+TIMES = {"d10": "deterministic, " + MAC["LoadMin"] + " min", "m15": "deterministic, " + MAC["StochMeanMin"] + " min",
+         "cv3": "random, CV " + MAC["StochCvLo"], "cv6": "random, CV " + MAC["StochCvHi"]}
+lines = []
+for y in YARDS:
+    for i, lv in enumerate(("d10", "m15", "cv3", "cv6")):
+        mo = "reserve_op3" if lv.startswith("cv") else "reserve"
+        r, fr = PL78[(y, lv, mo)], PL78[(y, lv, "free")]
+        ci = "" if r["plateau_ci"] == "" else rf" $\pm$ {fmt(r['plateau_ci'], 1)}"
+        lines.append(f"{yname[y] if i == 0 else ''} & {TIMES[lv]} & {fmt(r['plateau'])}{ci} & "
+                     f"{fmt(100 * float(r['ratio']), 1)}\\% & {fmt(fr['plateau'])} & {fmt(100 * float(fr['ratio']))}\\% \\\\")
+write("tab_stochmain.tex", lines)
+lines = []
+for h in (16, 24):
+    for i, lv in enumerate(("d10", "m15", "cv3", "cv6")):
+        mo = "reserve_op3" if lv.startswith("cv") else "reserve"
+        kfree = two(f78(lv, h, "free", "K_req")) + " / " + two(f78(lv, h, "free", "K_stable"))
+        ks = f78(lv, h, mo, "K_stable")
+        fs = f78(lv, h, "free", "K_stable")
+        ex = [int(k) / int(f) - 1 for k, f in zip(ks, fs) if k.isdigit()]
+        exs = "--" if len(ex) < 2 else (f"{fmt(100 * min(ex))}--{fmt(100 * max(ex))}\\%" if fmt(100 * min(ex)) != fmt(100 * max(ex))
+                                        else f"{fmt(100 * ex[0])}\\%")
+        peak = two([F78[(lv, h, n, mo)]["K_req"] for n in (678, 700)])
+        lines.append(f"{str(h) + '-h' if i == 0 else ''} & {TIMES[lv]} & {kfree} & {two(f78(lv, h, mo, 'K_req'))} & "
+                     f"{two(ks)} & {exs} & {peak} \\\\")
+write("tab_stochmainfleet.tex", lines)
 
 # ---------------------------------------------------------------- numbers.tex
 out = ["% generated by make_numbers.py from the result files; do not edit"]    # neutral: the file goes to the journal

@@ -1,0 +1,10 @@
+{
+ "reads": {
+  "conserved": {
+   "handling": {
+    "cycle_at_anchor_min": 69.12,
+    "drive_from_free10_min": 28.70532526588748
+   }
+  }
+ }
+}

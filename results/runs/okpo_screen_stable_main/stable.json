@@ -1,0 +1,38 @@
+{
+ "d16_c_30d|free|n75": {
+  "K_req": 4,
+  "k0": 2,
+  "stable": 4,
+  "stable_tol": 4
+ },
+ "d16_c_30d|free|n85": {
+  "K_req": 5,
+  "k0": 3,
+  "stable": 5,
+  "stable_tol": 5
+ },
+ "d16_c_30d|free|n100": {
+  "K_req": 6,
+  "k0": 4,
+  "stable": 6,
+  "stable_tol": 6
+ },
+ "d16_c_30d|reserve|n75": {
+  "K_req": 5,
+  "k0": 3,
+  "stable": 5,
+  "stable_tol": 5
+ },
+ "d16_c_30d|reserve|n85": {
+  "K_req": 5,
+  "k0": 3,
+  "stable": 5,
+  "stable_tol": 5
+ },
+ "d16_c_30d|reserve|n100": {
+  "K_req": 6,
+  "k0": 4,
+  "stable": 6,
+  "stable_tol": 6
+ }
+}

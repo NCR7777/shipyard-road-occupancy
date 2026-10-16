@@ -10,7 +10,8 @@ Scenario keys of the revision turn to modules outside occupancy/ (without them e
 demand_map (task stream of a demand mapping: demand_mapping, demand_mapping_var with intra_var, conserved_mapping),
 daily_stats (daily readings under continuous release: daily), stoch (random handling and driving times: stochastic),
 width_ban (ban on blocks wider than the passable width: width_ban), bay_spots (unloading bay and off-road waiting place at the
-dock: dock_spots), occ_rep (ablation of the occupancy representation: ablation, ablation_conserved). Rules outside
+dock: dock_spots), occ_rep (ablation of the occupancy representation: ablation, ablation_conserved), a retrofit change of kind
+door_stop (doors for passage only, with handling bays inside: the network class intervention_net.DoorNet). Rules outside
 occupancy.sim: reserve_rb (full-path reservation with late rebooking: stochastic), reserve_op (execution in booked order:
 ordered), reserve_op2 (booking on projected occupancy: ordered_proj), reserve_op3 (the same with mean durations: op3_sim),
 reserve_tlw and reserve_tlw_timer (booking the tail, and release by timer counted by the same definition: tail_booking).
@@ -63,6 +64,9 @@ DEMAND_PEAK = (678, 700)         # Okpo erection peak = regular x 2 (as the peak
 LOAD30 = {"load_s": 1800.0, "unload_s": 1800.0}
 # required fleet with 30-min loading and unloading: every level of the required-fleet table (Okpo 10 levels, Yantai 5)
 ANCHOR_LEVELS = {"yupu": tuple(sorted(set(P.PLANT_LEVELS) | set(REFERENCE_DEMAND) | set(DEMAND_PEAK))), "yantai": P.PLANT_LEVELS}
+# daily moves of the two external anchors (fleets under the conserved mapping, 24 h): HHI about 500 a day (24 vehicles, 24 h;
+# Park and Seo 2006), an unnamed Korean yard about 600 a day (about 30 vehicles; Shen et al. 2018)
+ANCHOR_MOVES = (500, 600)
 # screen (fleet gap against daily demand / system bound) at its low end. System bound (main flow mix, whole roads, handling
 # 10 min) Okpo 1,736, Yantai 1,298 tasks/16 h (24 h: x 1.5): Okpo 50-250 -> 0.03-0.14 at 16 h, 0.02-0.10 at 24 h; Yantai
 # 25-200 -> 0.02-0.15 at 16 h, 0.01-0.10 at 24 h; continues the lowest plant level (ratio from 0.12)
@@ -210,7 +214,10 @@ def net_for(cfg, p):
     """(network, dock-mouth resources), cached by the parameters that decide stops and sections."""
     k = (cfg["network"], json.dumps(cfg.get("roles") or {}, sort_keys=True)) + tuple(json.dumps(p.get(x), sort_keys=True) for x in NET_KEYS)
     if k not in NETS:
-        net = Net(cfg["network"], p, cfg.get("roles"))
+        cls = Net
+        if any(s.get("kind") == "door_stop" for s in p.get("retrofit") or []):    # door retrofit acting per door
+            from intervention_net import DoorNet as cls                             # (experiments/intervention_net.py; else Net)
+        net = cls(cfg["network"], p, cfg.get("roles"))
         NETS[k] = net, set().union(*net.near(P.DOCK_CLASS))
     return NETS[k]
 

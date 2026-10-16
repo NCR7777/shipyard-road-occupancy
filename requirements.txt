@@ -16,6 +16,10 @@ six==1.17.0
 psutil==7.2.2
 # CP-SAT (constraint programming) of the sub-network instances and the whole-network retiming (exact/, experiments/)
 ortools==9.15.6755
+# isotonic fit in the chain statistics of the screen (experiments/chain_statistics.py)
+scikit-learn==1.6.1
+joblib==1.4.2
+threadpoolctl==3.5.0
 pytest==8.3.4
 pluggy==1.5.0
 iniconfig==1.1.1

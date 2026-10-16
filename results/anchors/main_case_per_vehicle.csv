@@ -1,0 +1,41 @@
+map,panel,day_h,load_min,model,per_truck,ci,n,src
+conserved,a,24,10,free,29.565555555555555,0.12038665528359237,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,10,reserve,17.68111111111111,0.3002483818605464,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,10,segment,21.42111111111111,0.14866484106170177,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,10,segment_safe,13.311111111111112,0.5521457690872835,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,20,free,20.990000000000002,0.06769431075535082,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,20,reserve,14.464444444444444,0.24018958853269665,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,20,segment,16.41777777777778,0.14238279192738493,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,30,free,16.25777777777778,0.046915555555555224,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,30,reserve,11.867777777777778,0.15902116857299511,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,30,segment,13.167777777777777,0.07871991107718554,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,45,free,12.132222222222222,0.027391618164669056,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,45,reserve,9.288888888888888,0.0961073895233224,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,45,segment,10.045555555555556,0.09165533939441914,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,60,free,9.734444444444444,0.02292818859174806,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,60,reserve,7.576666666666666,0.09972371217704637,10,runs/okpo_main_anchor main_anchor
+conserved,a,24,60,segment,8.031111111111112,0.07731195630466434,10,runs/okpo_main_anchor main_anchor
+conserved,b,16,10,free,19.75,0.08379871960482083,10,runs/okpo_main_saturation main_saturation main_c K=30
+conserved,b,16,10,reserve,11.885555555555555,0.19533162139307972,10,runs/okpo_main_saturation main_saturation main_c K=30
+conserved,b,16,10,segment_safe,8.94888888888889,0.5843966914838618,10,runs/okpo_main_saturation main_saturation main_c K=30
+conserved,b,16,10,segment,14.298888888888888,0.11749515988980493,10,runs/okpo_main_saturation main_saturation main_c K=30
+proportional,a,24,10,free,29.772222222222222,0.09871923436984342,10,unreleased anchor runs
+proportional,a,24,10,reserve,18.088888888888892,0.30410294748105715,10,unreleased anchor runs
+proportional,a,24,10,segment,21.566666666666666,0.1715706708942733,10,unreleased anchor runs
+proportional,a,24,10,segment_safe,13.783333333333335,0.5189794977039435,10,unreleased anchor runs
+proportional,a,24,20,free,21.093333333333334,0.04467799060437353,10,unreleased anchor runs
+proportional,a,24,20,reserve,14.564444444444444,0.19463869540291334,10,unreleased anchor runs
+proportional,a,24,20,segment,16.467777777777776,0.10513693882823909,10,unreleased anchor runs
+proportional,a,24,30,free,16.315555555555555,0.04225590329129105,10,unreleased anchor runs
+proportional,a,24,30,reserve,11.88888888888889,0.13983612878501867,10,unreleased anchor runs
+proportional,a,24,30,segment,13.127777777777776,0.10377966938556785,10,unreleased anchor runs
+proportional,a,24,45,free,12.175555555555556,0.03261958542174338,10,unreleased anchor runs
+proportional,a,24,45,reserve,9.30111111111111,0.12613773191375266,10,unreleased anchor runs
+proportional,a,24,45,segment,9.983333333333333,0.1333225352109001,10,unreleased anchor runs
+proportional,a,24,60,free,9.734444444444446,0.026874260575529798,10,unreleased anchor runs
+proportional,a,24,60,reserve,7.590000000000001,0.06821075332479322,10,unreleased anchor runs
+proportional,a,24,60,segment,8.048888888888888,0.09619498552162759,10,unreleased anchor runs
+proportional,b,16,10,free,19.884444444444444,0.07071162078173779,10,runs/okpo_rules main K=30
+proportional,b,16,10,reserve,12.05,0.24325148643805036,10,runs/okpo_rules main K=30
+proportional,b,16,10,segment_safe,9.164444444444445,0.4483762873213734,10,runs/okpo_rules main K=30
+proportional,b,16,10,segment,14.36,0.13199719967100684,10,runs/okpo_rules main K=30
