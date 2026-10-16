@@ -1,0 +1,1112 @@
+[
+ {
+  "key": "main_c_l30|bound|101",
+  "scen": "main_c_l30",
+  "seed": 101,
+  "n_tasks": 2000,
+  "network": 391.9590212627021,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.49743882891888,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 392.6744729795132,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.542154561219576,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 499.8204876580325,
+  "cycle_s": 4234.387571221702,
+  "empty_min_s": 33.426397449097465,
+  "handling_travel_s": 4200.9611737726045,
+  "secs": 1.71
+ },
+ {
+  "key": "main_c_l30|bound|102",
+  "scen": "main_c_l30",
+  "seed": 102,
+  "n_tasks": 2000,
+  "network": 417.463824967105,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 26.09148906044406,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 418.21742912973707,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 26.138589320608567,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 652.5306777813317,
+  "cycle_s": 4244.660121966394,
+  "empty_min_s": 40.115307844899526,
+  "handling_travel_s": 4204.544814121495,
+  "secs": 0.65
+ },
+ {
+  "key": "main_c_l30|bound|103",
+  "scen": "main_c_l30",
+  "seed": 103,
+  "n_tasks": 2000,
+  "network": 399.08287313886115,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 24.94267957117882,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 399.7538337567417,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 24.984614609796356,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 575.6092544131346,
+  "cycle_s": 4214.879245586994,
+  "empty_min_s": 35.50960843798913,
+  "handling_travel_s": 4179.369637149005,
+  "secs": 0.63
+ },
+ {
+  "key": "main_c_l30|bound|104",
+  "scen": "main_c_l30",
+  "seed": 104,
+  "n_tasks": 2000,
+  "network": 387.17141724594825,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.198213577871766,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 387.8694822960606,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.241842643503787,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 619.7746605487653,
+  "cycle_s": 4224.976997276026,
+  "empty_min_s": 35.52589551404267,
+  "handling_travel_s": 4189.451101761983,
+  "secs": 0.75
+ },
+ {
+  "key": "main_c_l30|bound|105",
+  "scen": "main_c_l30",
+  "seed": 105,
+  "n_tasks": 2000,
+  "network": 412.28982927407895,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 25.768114329629935,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 412.9776571103105,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 25.811103569394405,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 649.6319535797222,
+  "cycle_s": 4233.021803881781,
+  "empty_min_s": 33.94510407253712,
+  "handling_travel_s": 4199.076699809244,
+  "secs": 0.7
+ },
+ {
+  "key": "main_c_l30|bound|106",
+  "scen": "main_c_l30",
+  "seed": 106,
+  "n_tasks": 2000,
+  "network": 382.24899955922126,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 23.89056247245133,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 382.978105309024,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 23.936131581814,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 626.381040837922,
+  "cycle_s": 4225.433381336255,
+  "empty_min_s": 38.492340503556484,
+  "handling_travel_s": 4186.9410408326985,
+  "secs": 0.72
+ },
+ {
+  "key": "main_c_l30|bound|107",
+  "scen": "main_c_l30",
+  "seed": 107,
+  "n_tasks": 2000,
+  "network": 389.51582864047134,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.344739290029462,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 390.2729470005975,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.392059187537345,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 698.3383462086618,
+  "cycle_s": 4235.502800527321,
+  "empty_min_s": 38.02334522443528,
+  "handling_travel_s": 4197.479455302885,
+  "secs": 0.71
+ },
+ {
+  "key": "main_c_l30|bound|108",
+  "scen": "main_c_l30",
+  "seed": 108,
+  "n_tasks": 2000,
+  "network": 409.59760809986665,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 25.599850506241662,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 410.29510570643686,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 25.643444106652304,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 701.4184376817192,
+  "cycle_s": 4235.222259857575,
+  "empty_min_s": 35.3090610291395,
+  "handling_travel_s": 4199.913198828436,
+  "secs": 1.72
+ },
+ {
+  "key": "main_c_l30|bound|109",
+  "scen": "main_c_l30",
+  "seed": 109,
+  "n_tasks": 2000,
+  "network": 417.58903441397234,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 26.09931465087327,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 418.2656266522636,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 26.14160166576648,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 770.8551081389767,
+  "cycle_s": 4239.6563913665195,
+  "empty_min_s": 35.484318596092216,
+  "handling_travel_s": 4204.172072770427,
+  "secs": 0.8
+ },
+ {
+  "key": "main_c_l30|bound|110",
+  "scen": "main_c_l30",
+  "seed": 110,
+  "n_tasks": 2000,
+  "network": 431.6206004712307,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 26.976287529451916,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 432.48832835270207,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 27.03052052204388,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 612.1525901925856,
+  "cycle_s": 4240.742545376215,
+  "empty_min_s": 40.90344995110029,
+  "handling_travel_s": 4199.839095425115,
+  "secs": 1.81
+ },
+ {
+  "key": "main_c_s_l30|bound|101",
+  "scen": "main_c_s_l30",
+  "seed": 101,
+  "n_tasks": 2000,
+  "network": 391.9590212627021,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.49743882891888,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 392.6744729795132,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.542154561219576,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1139.4278380914575,
+  "cycle_s": 4234.387571221702,
+  "empty_min_s": 33.426397449097465,
+  "handling_travel_s": 4200.9611737726045,
+  "secs": 0.91
+ },
+ {
+  "key": "main_c_s_l30|bound|102",
+  "scen": "main_c_s_l30",
+  "seed": 102,
+  "n_tasks": 2000,
+  "network": 417.463824967105,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 26.09148906044406,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 418.21742912973707,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 26.138589320608567,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 1423.8721705503879,
+  "cycle_s": 4244.660121966394,
+  "empty_min_s": 40.115307844899526,
+  "handling_travel_s": 4204.544814121495,
+  "secs": 0.91
+ },
+ {
+  "key": "main_c_s_l30|bound|103",
+  "scen": "main_c_s_l30",
+  "seed": 103,
+  "n_tasks": 2000,
+  "network": 399.08287313886115,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 24.94267957117882,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 399.7538337567417,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 24.984614609796356,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 1304.464137851965,
+  "cycle_s": 4214.879245586994,
+  "empty_min_s": 35.50960843798913,
+  "handling_travel_s": 4179.369637149005,
+  "secs": 0.91
+ },
+ {
+  "key": "main_c_s_l30|bound|104",
+  "scen": "main_c_s_l30",
+  "seed": 104,
+  "n_tasks": 2000,
+  "network": 387.17141724594825,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.198213577871766,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 387.8694822960606,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.241842643503787,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1171.4478498882665,
+  "cycle_s": 4224.976997276026,
+  "empty_min_s": 35.52589551404268,
+  "handling_travel_s": 4189.451101761983,
+  "secs": 0.92
+ },
+ {
+  "key": "main_c_s_l30|bound|105",
+  "scen": "main_c_s_l30",
+  "seed": 105,
+  "n_tasks": 2000,
+  "network": 412.28982927407895,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 25.768114329629935,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 412.9776571103105,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 25.811103569394405,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1226.3295398778014,
+  "cycle_s": 4233.021803881781,
+  "empty_min_s": 33.94510407253712,
+  "handling_travel_s": 4199.076699809244,
+  "secs": 0.8
+ },
+ {
+  "key": "main_c_s_l30|bound|106",
+  "scen": "main_c_s_l30",
+  "seed": 106,
+  "n_tasks": 2000,
+  "network": 382.24899955922126,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 23.89056247245133,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 382.978105309024,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 23.936131581814,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 1394.3771643833866,
+  "cycle_s": 4225.433381336255,
+  "empty_min_s": 38.492340503556484,
+  "handling_travel_s": 4186.9410408326985,
+  "secs": 0.8
+ },
+ {
+  "key": "main_c_s_l30|bound|107",
+  "scen": "main_c_s_l30",
+  "seed": 107,
+  "n_tasks": 2000,
+  "network": 389.51582864047134,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.344739290029462,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 390.2729470005975,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 24.392059187537345,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1488.324340796722,
+  "cycle_s": 4235.502800527321,
+  "empty_min_s": 38.02334522443528,
+  "handling_travel_s": 4197.479455302885,
+  "secs": 0.94
+ },
+ {
+  "key": "main_c_s_l30|bound|108",
+  "scen": "main_c_s_l30",
+  "seed": 108,
+  "n_tasks": 2000,
+  "network": 409.59760809986665,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 25.599850506241662,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 410.29510570643686,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 25.643444106652304,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1152.8202026344536,
+  "cycle_s": 4235.222259857575,
+  "empty_min_s": 35.3090610291395,
+  "handling_travel_s": 4199.913198828436,
+  "secs": 0.85
+ },
+ {
+  "key": "main_c_s_l30|bound|109",
+  "scen": "main_c_s_l30",
+  "seed": 109,
+  "n_tasks": 2000,
+  "network": 417.58903441397234,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 26.09931465087327,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 418.2656266522636,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 26.14160166576648,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 1220.7730427417196,
+  "cycle_s": 4239.6563913665195,
+  "empty_min_s": 35.484318596092216,
+  "handling_travel_s": 4204.172072770427,
+  "secs": 0.9
+ },
+ {
+  "key": "main_c_s_l30|bound|110",
+  "scen": "main_c_s_l30",
+  "seed": 110,
+  "n_tasks": 2000,
+  "network": 431.6206004712307,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 26.976287529451916,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 432.48832835270207,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 27.03052052204388,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 1175.307553310332,
+  "cycle_s": 4240.742545376215,
+  "empty_min_s": 40.90344995110029,
+  "handling_travel_s": 4199.839095425115,
+  "secs": 1.05
+ },
+ {
+  "key": "main_c_s|bound|101",
+  "scen": "main_c_s",
+  "seed": 101,
+  "n_tasks": 2000,
+  "network": 1157.692658613986,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 72.35579116337412,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1163.9564459600676,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 72.74727787250423,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 2349.419765641711,
+  "cycle_s": 1834.387571221707,
+  "empty_min_s": 33.426397449097465,
+  "handling_travel_s": 1800.9611737726095,
+  "secs": 1.96
+ },
+ {
+  "key": "main_c_s|bound|102",
+  "scen": "main_c_s",
+  "seed": 102,
+  "n_tasks": 2000,
+  "network": 1231.4000065952325,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 76.96250041220203,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 1237.9801467544921,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 77.37375917215576,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 2353.8759773140555,
+  "cycle_s": 1844.6601219663978,
+  "empty_min_s": 40.115307844899526,
+  "handling_travel_s": 1804.5448141214983,
+  "secs": 0.67
+ },
+ {
+  "key": "main_c_s|bound|103",
+  "scen": "main_c_s",
+  "seed": 103,
+  "n_tasks": 2000,
+  "network": 1177.169666907108,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 73.57310418169425,
+    "util": 1.0,
+    "loaded_share": 0.9999999999999999,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 1183.0266625063932,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 73.93916640664958,
+    "util": 1.0000000000000002,
+    "loaded_share": 1.0000000000000002,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 2466.364188587017,
+  "cycle_s": 1814.8792455870116,
+  "empty_min_s": 35.50960843798913,
+  "handling_travel_s": 1779.3696371490225,
+  "secs": 0.72
+ },
+ {
+  "key": "main_c_s|bound|104",
+  "scen": "main_c_s",
+  "seed": 104,
+  "n_tasks": 2000,
+  "network": 1143.508018038216,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 71.46925112738849,
+    "util": 1.0,
+    "loaded_share": 1.0000000000000002,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1149.6188463919623,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 71.85117789949764,
+    "util": 1.0,
+    "loaded_share": 0.9999999999999999,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 2438.2074094839895,
+  "cycle_s": 1824.9769972760332,
+  "empty_min_s": 35.52589551404268,
+  "handling_travel_s": 1789.4511017619905,
+  "secs": 0.76
+ },
+ {
+  "key": "main_c_s|bound|105",
+  "scen": "main_c_s",
+  "seed": 105,
+  "n_tasks": 2000,
+  "network": 1217.5647591698478,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 76.09779744811549,
+    "util": 1.0,
+    "loaded_share": 1.0000000000000002,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1223.5830906771578,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 76.47394316732236,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 2408.93149497967,
+  "cycle_s": 1833.0218038817936,
+  "empty_min_s": 33.94510407253712,
+  "handling_travel_s": 1799.0766998092565,
+  "secs": 0.74
+ },
+ {
+  "key": "main_c_s|bound|106",
+  "scen": "main_c_s",
+  "seed": 106,
+  "n_tasks": 2000,
+  "network": 1127.4858037744348,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 70.46786273590219,
+    "util": 1.0,
+    "loaded_share": 0.9999999999999999,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 1133.8528499253,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 70.86580312033125,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 2470.55804427353,
+  "cycle_s": 1825.4333813362662,
+  "empty_min_s": 38.492340503556484,
+  "handling_travel_s": 1786.9410408327096,
+  "secs": 0.78
+ },
+ {
+  "key": "main_c_s|bound|107",
+  "scen": "main_c_s",
+  "seed": 107,
+  "n_tasks": 2000,
+  "network": 1150.2541341932913,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 71.8908833870807,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1156.881683499945,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 72.30510521874655,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 2424.2889653084135,
+  "cycle_s": 1835.502800527332,
+  "empty_min_s": 38.02334522443528,
+  "handling_travel_s": 1797.4794553028967,
+  "secs": 2.06
+ },
+ {
+  "key": "main_c_s|bound|108",
+  "scen": "main_c_s",
+  "seed": 108,
+  "n_tasks": 2000,
+  "network": 1209.427964714448,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 75.589247794653,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1215.5294344236113,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 75.9705896514757,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 2419.7877914290193,
+  "cycle_s": 1835.2222598575886,
+  "empty_min_s": 35.3090610291395,
+  "handling_travel_s": 1799.9131988284491,
+  "secs": 0.89
+ },
+ {
+  "key": "main_c_s|bound|109",
+  "scen": "main_c_s",
+  "seed": 109,
+  "n_tasks": 2000,
+  "network": 1232.4900699591092,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 77.03062937244431,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight": 1238.4025681778278,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28"
+    ],
+    "price_per_h": 77.40016051111424,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]"
+   }
+  ],
+  "network_tight_local": 2392.8805079237245,
+  "cycle_s": 1839.6563913665245,
+  "empty_min_s": 35.484318596092216,
+  "handling_travel_s": 1804.1720727704324,
+  "secs": 0.92
+ },
+ {
+  "key": "main_c_s|bound|110",
+  "scen": "main_c_s",
+  "seed": 110,
+  "n_tasks": 2000,
+  "network": 1272.9131301361042,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 79.55707063350651,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight": 1280.4898618006737,
+  "binding_tight": [
+   {
+    "res": [
+     "n",
+     "node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13"
+    ],
+    "price_per_h": 80.0306163625421,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+   }
+  ],
+  "network_tight_local": 2423.3036720511154,
+  "cycle_s": 1840.7425453762219,
+  "empty_min_s": 40.90344995110029,
+  "handling_travel_s": 1799.8390954251215,
+  "secs": 0.74
+ }
+]

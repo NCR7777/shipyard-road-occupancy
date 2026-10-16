@@ -1,0 +1,302 @@
+{
+ "about": "Passable width G (m) of the roads checked on the imagery, by yard and road: the width between fixed obstacles on both sides; roads not listed keep their mapped width.",
+ "yupu": {
+  "road_trace_004": {
+   "name": "road004",
+   "W": 12,
+   "G": 25
+  },
+  "road_trace_660": {
+   "name": "road005-4",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_003": {
+   "name": "road003",
+   "W": 12,
+   "G": 19
+  },
+  "road_trace_661": {
+   "name": "road005-3",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_522": {
+   "name": "road005-2",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_520": {
+   "name": "road005-1",
+   "W": 12,
+   "G": 26
+  },
+  "road_trace_013": {
+   "name": "road010-1",
+   "W": 12,
+   "G": 25
+  },
+  "road_trace_617": {
+   "name": "road010-2",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_613": {
+   "name": "road010-3",
+   "W": 12,
+   "G": 26
+  },
+  "road_trace_045": {
+   "name": "road010-4",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_612": {
+   "name": "road010-5",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_044": {
+   "name": "road010-6",
+   "W": 12,
+   "G": 27
+  },
+  "road_trace_062": {
+   "name": "road051",
+   "W": 12,
+   "G": 14
+  },
+  "road_trace_059": {
+   "name": "road052",
+   "W": 12,
+   "G": 24
+  },
+  "road_trace_055": {
+   "name": "road046",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_122": {
+   "name": "road102",
+   "W": 12,
+   "G": 13
+  },
+  "road_trace_142": {
+   "name": "road099-1",
+   "W": 12,
+   "G": 14
+  },
+  "road_trace_140": {
+   "name": "road099-2",
+   "W": 12,
+   "G": 13
+  },
+  "road_trace_343": {
+   "name": "road104-5",
+   "W": 12,
+   "G": 19.5
+  },
+  "road_trace_141": {
+   "name": "road099-3",
+   "W": 12,
+   "G": 27
+  },
+  "road_trace_145": {
+   "name": "road099-4",
+   "W": 12,
+   "G": 11
+  },
+  "road_trace_147": {
+   "name": "road118",
+   "W": 12,
+   "G": 16
+  },
+  "road_trace_148": {
+   "name": "road119",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_166": {
+   "name": "road099-5",
+   "W": 12,
+   "G": 12.5
+  },
+  "road_trace_129": {
+   "name": "road106",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_337": {
+   "name": "road104-4",
+   "W": 12,
+   "G": 19.5
+  },
+  "road_trace_027": {
+   "name": "road161",
+   "W": 9,
+   "G": 11.5
+  },
+  "road_trace_039": {
+   "name": "road030",
+   "W": 12,
+   "G": 26
+  },
+  "road_trace_623": {
+   "name": "road012-1",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_624": {
+   "name": "road012-2",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_621": {
+   "name": "road012-3",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_336": {
+   "name": "road104-3",
+   "W": 12,
+   "G": 19.5
+  },
+  "road_trace_333": {
+   "name": "road105-1",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_052": {
+   "name": "road033-1",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_339": {
+   "name": "road104-2",
+   "W": 12,
+   "G": 20.5
+  },
+  "road_trace_495": {
+   "name": "road340",
+   "W": 5.403481907343757,
+   "G": 10
+  },
+  "road_trace_518": {
+   "name": "road033-2",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_516": {
+   "name": "road033-3",
+   "W": 12,
+   "G": 31
+  },
+  "road_trace_378": {
+   "name": "road036-6",
+   "W": 12,
+   "G": 27
+  },
+  "road_trace_334": {
+   "name": "road105-2",
+   "W": 12,
+   "G": 12
+  }
+ },
+ "yantai": {
+  "road_trace_049": {
+   "name": "road025-1",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_082": {
+   "name": "road025-2",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_076": {
+   "name": "road025-3",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_011": {
+   "name": "road010",
+   "W": 8,
+   "G": 8
+  },
+  "road_trace_086": {
+   "name": "road025-4",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_008": {
+   "name": "road007",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_055": {
+   "name": "road025-5",
+   "W": 12,
+   "G": 12
+  },
+  "road_5b1b52ae-8067-4fa6-b76e-deaff191c33e": {
+   "name": "road013-2",
+   "W": 12,
+   "G": 12
+  },
+  "road_eafc1faf-0bef-43b0-a192-881b9170477f": {
+   "name": "road013-1",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_010": {
+   "name": "road009",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_012": {
+   "name": "road011",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_009": {
+   "name": "road008",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_037": {
+   "name": "road034",
+   "W": 6,
+   "G": 15
+  },
+  "road_trace_044": {
+   "name": "road032-2",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_016": {
+   "name": "road014",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_043": {
+   "name": "road032-1",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_129": {
+   "name": "road032-3",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_036": {
+   "name": "road033",
+   "W": 12,
+   "G": 12
+  },
+  "road_trace_127": {
+   "name": "road032-4",
+   "W": 12,
+   "G": 12
+  }
+ }
+}

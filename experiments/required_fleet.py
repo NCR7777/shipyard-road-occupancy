@@ -1,20 +1,25 @@
 """Required fleet of a demand level: the smallest fleet K whose ten-seed mean throughput (statistics window: days 2-4 after one
 day of warm-up) reaches 0.99 x the daily vehicle demand (daily demand less the lifts by gantry cranes; without lifts, the
-daily demand). Points are written one by one and the search is stateless (it is read from the points written so far), so an
-interrupted run resumes by computing the missing points.
+daily demand; under a demand mapping the daily demand times its share released to the vehicles, demand_mapping.share: n x
+0.345 for inter-area moves only). Points are written one by one and the search is stateless (it is read from the points
+written so far), so an interrupted run resumes by computing the missing points.
 
 Finite demand: each day's tasks are released in 8 batches at equal intervals over the working day (16 or 24 h), for 4 days.
 The search, on integer K:
   free flow, full-path reservation and the reference rule (throughput rises with K): first K = 150; not reached -> ">150";
     otherwise bisection on the integers between the last fleet that fails and the first that reaches the target; then
     K_req + 1 ... + 3 are tested and marked if the target fails again above K_req (fail_above);
-  safe release (throughput rises and then falls with K): SAFE_LOW, SAFE_PEAK of the yard and SAFE_SCAN first; if some
-    K <= 150 reaches the target, every integer from 1 to the smallest one is computed (so K_req is the smallest integer that
-    reaches it); if none does, SAFE_HIGH (100-200) is scanned for the lowest level whose target fails at K <= 150, with
-    ">200" if it fails there too; finally K_req + 1 ... + 5 are tested.
-Run:   python experiments/required_fleet.py results/runs/<run>/config.json --out <dir> [--procs N]
-(the configurations of the stored searches: results/runs/*_fleet_*/config.json). Writes <dir>/points/, points.csv and
-demand.csv (one row per search: scenario, rule, level, K_req, the fleets probed and their mean throughputs).
+  rules whose throughput need not rise with K (NONMONO: safe release rises and then falls with K; full-path reservation with
+    late rebooking peaks near K = 60 under random times; for execution in booked order and booking on projected occupancy
+    monotonicity is not proved): SAFE_LOW, SAFE_PEAK of the yard and SAFE_SCAN first; if some K <= 150 reaches the target,
+    every integer from 1 to the smallest one is computed (FILL_ALL, also when the smallest passing fleet is next to a failing
+    probe; so K_req is the smallest integer that reaches it); if none does, SAFE_HIGH (100-200) is scanned for the lowest
+    level whose target fails at K <= 150, with ">200" if it fails there too (not for NO_HIGH: those stop at ">150"); finally
+    K_req + 1 ... + 5 are tested.
+Run:   python experiments/required_fleet.py results/runs/<run>/config.json --out <dir> [--procs N] [--slots DIR]
+(the configurations of the stored searches: results/runs/*_fleet_*/config.json; --slots: machine-wide CPU slots as in
+experiments/runner.py, default the environment variable CPU_SLOTS, off when neither is given). Writes <dir>/points/,
+points.csv and demand.csv (one row per search: scenario, rule, level, K_req, the fleets probed and their mean throughputs).
 """
 import argparse
 import csv
@@ -32,7 +37,14 @@ SAFE_SCAN = (20, 30, 40, 50, 60, 80, 100, 120)
 SAFE_LOW = (10, 15)
 SAFE_PEAK = {"yupu": (31,), "yantai": (18, 20)}        # fleet of the largest saturated throughput of safe release, main scenario
 SAFE_HIGH = tuple(range(100, 201, 10))
-ABOVE = {"segment_safe": 5}                            # fleets tested above K_req (default 3)
+ABOVE = {"segment_safe": 5, "reserve_rb": 5, "reserve_op": 5, "reserve_op2": 5, "reserve_op3": 5}   # tested above K_req (else 3)
+# rules whose throughput need not rise with K, searched as safe release: full-path reservation with late rebooking peaks
+# near K = 60 under random times and falls; for execution in booked order (nominal booking, booking on projected occupancy
+# and its version with mean durations) monotonicity under random times is not proved
+NONMONO = ("segment_safe", "reserve_rb", "reserve_op", "reserve_op2", "reserve_op3")
+# with the smallest passing fleet K1 <= 150, every integer 1 ... K1 - 1 is computed, whether or not K1 is next to a failing fleet
+FILL_ALL = ("reserve_rb", "segment_safe", "reserve_op", "reserve_op2", "reserve_op3")
+NO_HIGH = ("reserve_op2", "reserve_op3")       # K up to 150: no scan of 100-200; failing at every K <= 150 gives ">150"
 
 
 def truck_demand(level, lift_rel):
@@ -49,19 +61,24 @@ def load(out):
 
 
 def evaluate(cfg, pts, s, m, lvl, K):
-    """(mean throughput, target) when all seeds of the cell are computed, else None. Target = 0.99 x daily vehicle demand."""
+    """(mean throughput, target) when all seeds of the cell are computed, else None. Target = 0.99 x daily vehicle demand
+    (under a demand mapping of the scenario: of the daily demand times demand_mapping.share)."""
     xs = [pts.get((s, m, lvl, K, sd)) for sd in cfg["seeds"]]
     if any(x is None for x in xs):
         return None
     lift = sum((x.get("lift") or {}).get("released_per_day", 0.0) for x in xs) / len(xs)
-    return sum(x["throughput"] for x in xs) / len(xs), 0.99 * truck_demand(cfg["demand"][lvl], lift)
+    n, sp = cfg["demand"][lvl], cfg.get("scenarios", {}).get(s, {})
+    if sp.get("demand_map"):
+        import demand_mapping
+        n *= demand_mapping.share(sp)
+    return sum(x["throughput"] for x in xs) / len(xs), 0.99 * truck_demand(n, lift)
 
 
 def search(cfg, pts, s, m, lvl):
     """(fleets to compute next, empty when decided; the result or None), from the points written so far."""
     Ks = sorted({k[3] for k in pts if k[:3] == (s, m, lvl)} | {150})
     ev = {K: e for K in Ks if (e := evaluate(cfg, pts, s, m, lvl, K)) is not None}
-    safe = m == "segment_safe"
+    safe = m in NONMONO
     probes = sorted(set(SAFE_LOW + SAFE_PEAK[cfg["yard"]] + SAFE_SCAN + (150,))) if safe else (150,)
     todo = [K for K in probes if K not in ev]
     if todo:
@@ -75,7 +92,7 @@ def search(cfg, pts, s, m, lvl):
     def reached(lv):
         es = (evaluate(cfg, pts, s, m, lv, k) for k in {k[3] for k in pts if k[:3] == (s, m, lv)})
         return any(e[0] >= e[1] for e in es if e is not None)
-    high = safe and all(reached(lv) for lv, x in cfg["demand"].items() if x < cfg["demand"][lvl])
+    high = safe and m not in NO_HIGH and all(reached(lv) for lv, x in cfg["demand"].items() if x < cfg["demand"][lvl])
     if high and not any(ok[K] for K in ev if K <= 150):
         todo = [K for K in SAFE_HIGH if K not in ev]
         if todo:
@@ -88,11 +105,13 @@ def search(cfg, pts, s, m, lvl):
                         high_scan=high if safe else None)
     K1 = min(passing)
     lo = max((K for K in ev if K < K1), default=0)            # every fleet below K1 fails (K1 is the smallest that passes)
+    if m in FILL_ALL and K1 <= 150 and (todo := [K for K in range(1, K1) if K not in ev]):
+        return todo, None
     if K1 - lo > 1:
         if not safe:                                         # monotone rules: bisection on the integers
             return [(lo + K1) // 2], None
-        # safe release: every integer below K1 (from 1 when K1 <= 150, so K_req is the smallest integer that reaches the
-        # target); above 150 only those between K1 and the previous fleet
+        # rules that need not be monotone: every integer below K1 (from 1 when K1 <= 150, so K_req is the smallest integer
+        # that reaches the target); above 150 only those between K1 and the previous fleet
         return [K for K in range(1 if K1 <= 150 else lo + 1, K1) if K not in ev], None
     above = range(K1 + 1, K1 + 1 + ABOVE.get(m, 3))
     todo = [K for K in above if K not in ev]
@@ -131,6 +150,8 @@ def main():
     ap.add_argument("config")
     ap.add_argument("--out", required=True)
     ap.add_argument("--procs", type=int, default=max(1, (os.cpu_count() or 2) - 1))
+    ap.add_argument("--slots", default=os.environ.get("CPU_SLOTS"), help="directory of machine-wide CPU slots (cpu_slots.Slots); "
+                                                                         "default: environment variable CPU_SLOTS, else off")
     a = ap.parse_args()
     cfg = R.load_config(a.config)
     out = Path(a.out)
@@ -145,7 +166,7 @@ def main():
         if not need:
             break
         need.sort(key=lambda k: -int(k.split("|")[3]))           # large fleets first
-        R.run_pool(cfg, out, min(a.procs, len(need)), need)
+        R.run_pool(cfg, out, min(a.procs, len(need)), need, slots_dir=a.slots)
         pts = load(out)
     rows = summarize(cfg, out, searches, pts)
     print(f"{len(rows)} searches, {len(pts)} points; demand.csv in {out}")

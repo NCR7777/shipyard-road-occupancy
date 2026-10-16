@@ -1,0 +1,33 @@
+{
+ "networks": {
+  "yupu": "okpo/rev1833",
+  "yantai": "yantai/rev396"
+ },
+ "yards": [
+  "yupu",
+  "yantai"
+ ],
+ "seeds": [
+  101,
+  102,
+  103
+ ],
+ "K": 100,
+ "days": 2,
+ "modes": [
+  "all",
+  "conflict"
+ ],
+ "tol": 1e-07,
+ "scenario": "main",
+ "rule": "reserve (departure at the booked time)",
+ "same_minutes": 25.0,
+ "unit": 0.01,
+ "width_scale": 1000,
+ "same_dests": [
+  "as full-path reservation (destination held while the empty vehicle drives off, 6.4 s; main reading)",
+  "Definition 1(c) (destination released when unloading ends)"
+ ],
+ "ortools": "9.15.6755",
+ "demand_map": "conserved"
+}

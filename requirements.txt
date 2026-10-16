@@ -14,6 +14,8 @@ packaging==24.2
 python-dateutil==2.9.0.post0
 six==1.17.0
 psutil==7.2.2
+# CP-SAT (constraint programming) of the sub-network instances and the whole-network retiming (exact/, experiments/)
+ortools==9.15.6755
 pytest==8.3.4
 pluggy==1.5.0
 iniconfig==1.1.1

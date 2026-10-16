@@ -1,0 +1,6 @@
+batch,yard,dir,points,checked,over,max_ratio
+main_fleet_rules,yupu,runs/okpo_main_fleet_rules,3620,3620,0,0.43151473677187974
+main_fleet_30min,yupu,runs/okpo_main_fleet_30min,820,400,0,0.5132188182508973
+main_stable_30min,yupu,runs/okpo_main_stable_30min,420,250,0,0.3858069280836124
+main_interval,yupu,runs/okpo_main_interval,2930,2900,0,0.6811831339418639
+main_interval,yantai,runs/yantai_main_interval,3130,3100,0,0.7753920060242381

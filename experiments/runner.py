@@ -6,24 +6,38 @@ overrides), the traffic rules per scenario (models), the demand levels (tasks a 
 tasks), the fleet sizes K, the seeds and the size of the task samples of the bound (n_mix). A point is
 "<scenario>|<rule>|<level>|<K>|<seed>"; a bound sample is "<scenario>|bound|<seed>".
 
+Scenario keys of the revision turn to modules outside occupancy/ (without them every code path is that of the earlier runs):
+demand_map (task stream of a demand mapping: demand_mapping, demand_mapping_var with intra_var, conserved_mapping),
+daily_stats (daily readings under continuous release: daily), stoch (random handling and driving times: stochastic),
+width_ban (ban on blocks wider than the passable width: width_ban), bay_spots (unloading bay and off-road waiting place at the
+dock: dock_spots), occ_rep (ablation of the occupancy representation: ablation, ablation_conserved). Rules outside
+occupancy.sim: reserve_rb (full-path reservation with late rebooking: stochastic), reserve_op (execution in booked order:
+ordered), reserve_op2 (booking on projected occupancy: ordered_proj), reserve_op3 (the same with mean durations: op3_sim),
+reserve_tlw and reserve_tlw_timer (booking the tail, and release by timer counted by the same definition: tail_booking).
+
 Each simulated point of an occupancy rule is checked against the network bound T1' of the tasks completed in its own
 statistics window (T1_tight_mix, occupancy.bound.bounds_window: lifts by a gantry crane in the same window hold the cranes in
-absolute terms, crane rows with the window edge term); the throughput must not exceed it. Saturated points also get the
-steady-state readings (mix shift, daily drift).
+absolute terms, crane rows with the window edge term); the throughput must not exceed it. Under random times the bound is
+taken at the nominal times (bound_params). Saturated points also get the steady-state readings (mix shift, daily drift).
 
-Run:   python experiments/runner.py results/runs/<run>/config.json --out <dir> [--procs N] [--only KEY_PREFIX ...]
+Run:   python experiments/runner.py results/runs/<run>/config.json --out <dir> [--procs N] [--only KEY_PREFIX ...] [--slots DIR]
 Writes <dir>/points/<key>.json (one file per point, a cache for resuming), <dir>/points.csv (one row per simulated point, the
 layout of the stored points.csv files) and <dir>/summary.json (sampled bounds and the per-point check). Processes are pinned
-to the cores other than core 0.
+to the cores other than core 0. --slots DIR (default: the environment variable CPU_SLOTS; off when neither is given): a
+directory holding a module cpu_slots whose class Slots shares the cores of the machine between several jobs (methods want,
+take, give, close; attribute held); one slot is taken per point. Without it an ordinary process pool is used.
+Other modules use compute, sweep, run_pool and slot_imap, the constants of the batches (SCREEN_LEVELS, STOCH_SCEN, ...) and
+the hash helpers (mapping_sha, ...) of this module.
 """
 import argparse
 import collections
 import csv
+import hashlib
 import json
 import math
-import multiprocessing as mp
 import os
 import sys
+import threading
 import time
 import traceback
 from pathlib import Path
@@ -39,6 +53,114 @@ STEADY_DRIFT_TOL = 0.05   # and |daily drift| <= 5 %
 # parameters that decide the stops and sections of a network (the cache key of net_for)
 NET_KEYS = ("frontage_gap", "frontage_min_len", "frontage_merge", "dock_stops", "section", "section_min_m", "section_gap_m", "block_m",
             "retrofit")
+
+# ---------------------------------------------------------------- constants of the batches
+SEEDS = tuple(range(101, 111))
+N_MIX = 2000                     # task mix of the network bound: the first N_MIX tasks of the seed's task stream
+# daily demands of external references: Okpo by the same conversion 339, the Hanwha system 350, HHI about 500 in 24 h
+REFERENCE_DEMAND = (339, 350, 500)
+DEMAND_PEAK = (678, 700)         # Okpo erection peak = regular x 2 (as the peak of PLANT_LEVELS): 2 x 339, 2 x 350
+LOAD30 = {"load_s": 1800.0, "unload_s": 1800.0}
+# required fleet with 30-min loading and unloading: every level of the required-fleet table (Okpo 10 levels, Yantai 5)
+ANCHOR_LEVELS = {"yupu": tuple(sorted(set(P.PLANT_LEVELS) | set(REFERENCE_DEMAND) | set(DEMAND_PEAK))), "yantai": P.PLANT_LEVELS}
+# screen (fleet gap against daily demand / system bound) at its low end. System bound (main flow mix, whole roads, handling
+# 10 min) Okpo 1,736, Yantai 1,298 tasks/16 h (24 h: x 1.5): Okpo 50-250 -> 0.03-0.14 at 16 h, 0.02-0.10 at 24 h; Yantai
+# 25-200 -> 0.02-0.15 at 16 h, 0.01-0.10 at 24 h; continues the lowest plant level (ratio from 0.12)
+SCREEN_LEVELS = {"yupu": (50, 100, 150, 200, 250), "yantai": (25, 50, 100, 150, 200)}
+# finer levels (a separate batch): the 10 % crossing of the first batch lies at Okpo 50-200, Yantai 100-200, between levels
+# 0.02-0.04 apart (as ratios); three levels are inserted
+SCREEN_MID_LEVELS = {"yupu": (75, 125, 175), "yantai": (75, 125, 175)}
+# screen with intra-area moves: the low Okpo levels (both batches) plus the plant levels 300, 450, 500, 600: with the system
+# bound at 3,168 tasks/16 h the 24-h ratio has no level between 350 (7.4 %) and 678 (14.3 %), and the 10 % crossing must lie
+# between levels (339, 350, 678, 700 are in the required-fleet batch)
+MAPPING_SCREEN_LEVELS = tuple(sorted(SCREEN_LEVELS["yupu"] + SCREEN_MID_LEVELS["yupu"] + (300, 450, 500, 600)))
+MAPPING_VARS = ("open", "stop", "open_stop")       # variants of experiments/demand_mapping_var.py
+# fleet points of the scan over the share of intra-area moves (Okpo plant demand, 16 h); 0 and 0.655 are the conserved
+# mapping and the intra mapping
+CONSERVED_FLEET_Q = (0.25, 0.5)
+DOCK_KS = (20, 40, 60, 100, 150)          # fleets at which the dock-mouth thresholds are read (the columns of the dock table)
+# screen: finer levels at demand ratios 2 %-6 % (tasks/16 h; Okpo bound 1,735.6 -> 3.5 %, 4.0 %, 4.9 %, Yantai 1,297.9 ->
+# 2.7 %, 4.6 %, 5.4 %), not overlapping SCREEN_LEVELS
+SCREEN_LOW_LEVELS = {"yupu": (60, 70, 85), "yantai": (35, 60, 70)}
+# fleets at which the dock with one off-road unloading bay (8 days) is not steady at rho_10; all rho levels of these fleets are
+# run for 16 days (as for the on-road side of the dock figure)
+DOCK_BAY_16D_KS = {"yupu": (40, 60, 100, 150), "yantai": (60, 100, 150)}
+# random handling and driving times (experiments/stochastic.py, Sim.draw; occupancy/ unchanged). Handling = nominal value h0 +
+# lognormal, E[T] = 1.5 h0 (15 min), CV 0.3 / 0.6; the speed of each trip is multiplied by U[0.9, 1.0] (never faster than
+# nominal, so the bound still holds). Variants: speed +-10 % (U[0.9, 1.1], checked against the bound at 1.1 x speed,
+# bound_params) and booking at the 0.9 quantile (book_q). Deterministic mean case m15: handling 15 min, speed x 1/E[1/f]
+# (driving time at its mean). Under random times full-path reservation uses late rebooking (reserve_rb; at nominal durations
+# event by event equal to reserve). The deterministic h0 case is not recomputed (the runs of the earlier version serve).
+STOCH_KS = (5, 10, 20, 30, 40, 60, 80, 100, 120, 150)
+STOCH_SPD = 0.1 / math.log(10 / 9)          # f ~ U[0.9, 1]: E[1/f] = ln(10/9) / 0.1, mean driving time = nominal / STOCH_SPD
+
+
+def stoch_params(cv, hi=1.0, q=None):
+    return dict(mean=1.5, cv=cv, speed=[0.9, hi], book_q=q)
+
+
+STOCH_SCEN = {"m15": dict(load_s=900.0, unload_s=900.0, v_empty=P.DEFAULTS["v_empty"] * STOCH_SPD,
+                          v_loaded=P.DEFAULTS["v_loaded"] * STOCH_SPD),
+              "cv3": dict(stoch=stoch_params(0.3)), "cv6": dict(stoch=stoch_params(0.6)),
+              "cv6pm": dict(stoch=stoch_params(0.6, 1.1)), "cv6q": dict(stoch=stoch_params(0.6, q=0.9))}
+# control rows: V1 = nominal handling, speed U[0.999, 1]; V2 = handling 15 min without variation (booked at the nominal
+# 10 min), nominal speed; r15 = full-path reservation, handling 15 min, nominal speed
+STOCH_VAR = {"v1": dict(stoch=dict(mean=1.0, cv=0.0, speed=[0.999, 1.0], book_q=None)),
+             "v2": dict(stoch=dict(mean=1.5, cv=0.0, speed=[1.0, 1.0], book_q=None)), "r15": dict(load_s=900.0, unload_s=900.0)}
+STOCH_RULES = ("free", "reserve_rb", "segment_safe")
+STOCH_MODELS = {"m15": ("free", "reserve", "segment_safe"), "cv3": STOCH_RULES, "cv6": STOCH_RULES, "cv6pm": STOCH_RULES,
+                "cv6q": ("reserve_rb",)}
+# passable widths from the image check (per yard and map road: name, road width W, passable width G)
+CLEAR_WIDTH = ROOT / "results" / "width_ban" / "clear_width.json"
+
+
+def clear_widths():
+    """{yard: {map road: passable width G}} (roads not listed: the road width); keys other than yards (about) are skipped."""
+    raw = CLEAR_WIDTH.read_bytes()
+    return {y: {r: float(v["G"]) for r, v in rs.items()} for y, rs in json.loads(raw).items() if y in ("yupu", "yantai")}
+
+
+def bound_params(p):
+    """Nominal parameters of the per-point check under random times: with a speed factor above 1 (the +-10 % variant) the bound
+    is taken at the fastest speed; otherwise p itself (the nominal times of the random cases are lower limits)."""
+    hi = (p.get("stoch") or {}).get("speed", [0, 1.0])[1]
+    return dict(p, v_empty=p["v_empty"] * hi, v_loaded=p["v_loaded"] * hi) if hi > 1 else p
+
+
+# ---------------------------------------------------------------- hashes of the modules a batch also depends on
+def ordered_proj_sha():
+    """Points of booking on projected occupancy also depend on experiments/ordered_proj.py; its SHA-256 goes into the
+    configuration."""
+    import ordered_proj
+    return ordered_proj.code_sha256()
+
+
+def ordered_sha():
+    """Points of execution in booked order also depend on experiments/ordered.py and stochastic.py (how the random durations
+    are drawn); their SHA-256 goes into the configuration."""
+    import ordered
+    return ordered.code_sha256()
+
+
+def mapping_sha(var=False, *more):
+    """Points under a demand mapping also depend on experiments/demand_mapping.py (the task stream; the variant batches also
+    on demand_mapping_var.py), which is not in occupancy/; the SHA-256 goes into the configuration (gen_sha256). Saturation
+    curves of the two placements of intra-area moves as the variant batches; 30-day batches add daily.py (more)."""
+    names = (("demand_mapping_var.py", "demand_mapping.py") if var else ("demand_mapping.py",)) + more
+    return hashlib.sha256(b"".join((ROOT / "experiments" / n).read_bytes() for n in names)).hexdigest()
+
+
+def conserved_sha(daily=False):
+    """Points under the conserved mapping also depend on experiments/conserved_mapping.py and demand_mapping.py (the task
+    stream), 30-day batches also on daily.py; written into the configuration (gen_sha256)."""
+    names = ("conserved_mapping.py", "demand_mapping.py") + (("daily.py",) if daily else ())
+    return hashlib.sha256(b"".join((ROOT / "experiments" / n).read_bytes() for n in names)).hexdigest()
+
+
+def stoch_sha():
+    """Points under random times also depend on experiments/stochastic.py (random handling and driving times, late
+    rebooking), which is not in occupancy/; the SHA-256 goes into the configuration."""
+    return hashlib.sha256((ROOT / "experiments" / "stochastic.py").read_bytes()).hexdigest()
 
 
 def load_config(path):
@@ -71,6 +193,10 @@ def point_keys(cfg):
     return keys
 
 
+def fname(key):
+    return key.replace("|", "_") + ".json"
+
+
 def write_json(path, obj):
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(json.dumps(obj, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -89,6 +215,26 @@ def net_for(cfg, p):
     return NETS[k]
 
 
+def map_stream(net, seed, p):
+    """Task stream of a demand mapping, for saturated levels and bound samples. The variants of where the intra-area moves
+    are placed (intra_var) take demand_mapping_var.Stream; the conserved mapping takes conserved_mapping."""
+    import demand_mapping
+    import demand_mapping_var
+    import conserved_mapping
+    if p.get("demand_map") == "conserved":
+        return conserved_mapping.stream(net, seed, p)
+    return demand_mapping_var.Stream(net, seed, p) if p.get("intra_var") else demand_mapping.stream(net, seed, p)
+
+
+def op3_sim(net, p, mode, K, seed, level_n, record=False, tasks=None):
+    """reserve_op3: booking on projected occupancy with execution in booked order (ordered_proj.OPE2, proj=True), bookings and
+    projection at mean durations (book="mean" of ordered: handling at its mean, speed at the speed of the mean driving time);
+    actual durations and common random numbers as reserve_op2. Only the booked durations change, not the execution rule."""
+    import ordered_proj
+    assert mode == "reserve_op3"
+    return ordered_proj.OPE2(net, dict(p, stoch=dict(p["stoch"], book="mean")), K, seed, level_n, tasks, proj=True)
+
+
 def compute(cfg, key):
     """The result of one point (bound sample or simulation), without its run time."""
     from occupancy.bound import bounds, bounds_fixed
@@ -96,6 +242,16 @@ def compute(cfg, key):
     from occupancy.tasks import TaskStream, crane_p6, crane_tasks
     parts = key.split("|")
     p = scen_params(cfg, parts[0])
+    if p.get("width_ban"):              # ban on blocks wider than the passable width (experiments/width_ban.py; else below)
+        import width_ban
+        return width_ban.compute(cfg, key)
+    if p.get("bay_spots"):              # unloading bay plus off-road waiting place at the dock (experiments/dock_spots.py; else below)
+        import dock_spots
+        return dock_spots.compute(cfg, key)
+    if p.get("occ_rep"):                # ablation of the occupancy representation (experiments/ablation.py; under the conserved
+        import ablation                 # mapping experiments/ablation_conserved.py; else below)
+        import ablation_conserved
+        return (ablation_conserved if p.get("demand_map") else ablation).compute(cfg, key)
     net, dock = net_for(cfg, p)
     if parts[1] == "bound":
         seed = int(parts[2])
@@ -107,15 +263,44 @@ def compute(cfg, key):
             fixed = crane_tasks(net, seed, dict(p, days=math.ceil(200 / n6)), n6)  # saturated: P6 fixed at n6 a day, other flows free
             res.update(bounds_fixed(net, p, [o.next(0.0) for _ in range(cfg["n_mix"])], (fixed, n6), local=local))
             return res
-        s = TaskStream(net, seed, p)
-        return dict(key=key, scen=parts[0], seed=seed, **bounds(net, p, [s.next(0.0) for _ in range(cfg["n_mix"])], local=dock))
+        s = map_stream(net, seed, p) if p.get("demand_map") else TaskStream(net, seed, p)     # task mix of a demand mapping
+        return dict(key=key, scen=parts[0], seed=seed,
+                    **bounds(net, bound_params(p), [s.next(0.0) for _ in range(cfg["n_mix"])], local=dock))
     scen, model, lvl, K, seed = parts[0], parts[1], parts[2], int(parts[3]), int(parts[4])
-    sim = Sim(net, p, model, K, seed, cfg["demand"][lvl]).run()
+    if model == "reserve_op":                        # full-path reservation with execution in booked order (experiments/ordered.py)
+        from ordered import yard_sim as Sim
+    elif model == "reserve_op2":                     # booking on projected occupancy, execution in booked order (ordered_proj.py)
+        from ordered_proj import yard_sim2 as Sim
+    elif model == "reserve_op3":                     # the same, booking and projection at mean durations
+        Sim = op3_sim
+    elif model in ("reserve_tlw", "reserve_tlw_timer"):   # booking the tail / release by timer counted alike (tail_booking.py)
+        from tail_booking import yard_sim as Sim
+    elif p.get("stoch") or model == "reserve_rb":    # random handling and driving times, late rebooking (stochastic.py)
+        from stochastic import Sim
+    tasks = None
+    if p.get("demand_map") and cfg["demand"][lvl] is not None:     # finite demand of a demand mapping
+        import demand_mapping
+        import demand_mapping_var       # variants of where the intra-area moves are placed (intra_var)
+        import conserved_mapping        # the conserved inter-area mapping (demand_map = conserved)
+        mod = conserved_mapping if p["demand_map"] == "conserved" else \
+            (demand_mapping_var if p.get("intra_var") else demand_mapping)
+        tasks = mod.demand_tasks(net, seed, cfg["demand"][lvl], p)
+    elif p.get("daily_stats"):          # the daily readings need the released tasks; these equal the ones Sim generates itself
+        from occupancy.tasks import demand_tasks
+        tasks = demand_tasks(net, seed, cfg["demand"][lvl], p)
+    sim = Sim(net, p, model, K, seed, cfg["demand"][lvl], tasks=tasks)
+    if p.get("demand_map") and cfg["demand"][lvl] is None:         # saturated level: idle vehicles draw from the mapping
+        sim.stream = map_stream(net, seed, p)
+    sim.run()
     res = dict(key=key, scen=scen, model=model, level=lvl, K=K, seed=seed, **sim.metrics())
+    if p.get("daily_stats"):            # released, completed, end-of-day backlog, flow times, waits per day (experiments/daily.py)
+        import daily
+        res["daily"] = daily.daily(sim, p, tasks)
     if model != "free":     # per-point check: throughput <= T1' of the tasks completed in the statistics window
-        res["T1_tight_mix"] = t1_window(net, p, sim, sim.H)
+        pb = bound_params(p)        # random times: at the nominal times (a lower limit; at the fastest speed under +-10 % speeds)
+        res["T1_tight_mix"] = t1_window(net, pb, sim, sim.H)
         if cfg["demand"][lvl] is None:
-            res["steady"] = steady(net, p, sim, res["T1_tight_mix"])
+            res["steady"] = steady(net, pb, sim, res["T1_tight_mix"])
     return res
 
 
@@ -159,9 +344,15 @@ def steady(net, p, sim, t1_done_H):
     return out
 
 
+def load_points(out):
+    """(derived simulated points, {(scenario, seed): bound sample}) of <out>/points."""
+    pts = [json.loads(f.read_text(encoding="utf-8")) for f in (out / "points").glob("*.json")]
+    return [derive(x) for x in pts if "network" not in x], {(x["scen"], x["seed"]): x for x in pts if "network" in x}
+
+
 def derive(r):
     """Scalars of a point for points.csv: P6 flow times, dock-mouth readings (ring 0 = the dock stop roads, all = both rings),
-    the most occupied resources, crane, lift, starvation, safe-release and cycle readings."""
+    the most occupied resources, crane, lift, starvation, safe-release, cycle and late-rebooking readings."""
     nan = float("nan")
     f6 = r.get("flows", {}).get("P6", {})
     d0, da = r["dock"]["ring0"], r["dock"]["all"]
@@ -170,7 +361,9 @@ def derive(r):
     cr = r.get("crane") or {}
     lf = r.get("lift") or {}
     sv, vd, sf, cy = (r.get(k) or {} for k in ("starve", "victims_diag", "safe", "cycle"))
-    return dict(r, starve=sv.get("starve_max"), starve_blk=sv.get("blocked_max"), starve_road=sv.get("blocked_road_max"),
+    rb = r.get("rebook") or {}         # late rebooking (reserve_rb)
+    return dict(r, rb_late=rb.get("late_per_day"), rb_rebook=rb.get("rebook_per_day"), rb_late_mean_s=rb.get("late_mean_s"),
+                starve=sv.get("starve_max"), starve_blk=sv.get("blocked_max"), starve_road=sv.get("blocked_road_max"),
                 victims_dock=vd.get("at_dock_per_day"), victims_p6=vd.get("p6_loaded_per_day"), frozen_end=vd.get("frozen_end"),
                 safe_wait_n=sf.get("wait_n_per_day"), safe_wait_min=sf.get("wait_min_per_day"), safe_banker=sf.get("banker"),
                 cyc_empty=cy.get("empty"), cyc_loaded=cy.get("loaded"), cyc_wait=cy.get("wait"), cyc_total=cy.get("total"),
@@ -204,16 +397,21 @@ FIELDS = ["scen", "model", "level", "K", "seed", "throughput", "completed", "flo
           "lift_rel", "lift_n", "lift_wait", "lift_flow_mean", "lift_flow_p95", "lift_queue_end",
           # crane starvation and the part blocked by the roads (the larger of the two docks); recovered vehicles of the
           # reference rule holding a dock stop / carrying P6 to a dock (per day), vehicles stuck at the end without recovery;
-          # refusals of safe release (per day, min/day) and full reductions; cycle parts (min/task)
+          # refusals of safe release (per day, min/day) and full reductions; cycle parts (min/task, split by the nominal
+          # handling durations and speeds: under random times the handling and driving beyond the nominal values count
+          # into cyc_wait, which is then no waiting reading)
           "starve", "starve_blk", "victims_dock", "victims_p6", "frozen_end", "safe_wait_n", "safe_wait_min", "safe_banker",
           "cyc_empty", "cyc_loaded", "cyc_wait", "cyc_total",
           # starvation while a vehicle waits for a road
-          "starve_road"]
+          "starve_road",
+          # full-path reservation with late rebooking (reserve_rb): late arrivals (per day), rebookings (per day), mean lateness (s)
+          "rb_late", "rb_rebook", "rb_late_mean_s"]
 
 
-def write_points(f, sims):
-    """points.csv layout (also used to compare reruns with stored rows). sims are results after derive()."""
-    w = csv.DictWriter(f, FIELDS, extrasaction="ignore")
+def write_points(f, sims, fields=FIELDS):
+    """points.csv layout (also used to compare reruns with stored rows). sims are results after derive(); fields default to
+    FIELDS (the header of an existing points.csv when points are added to it)."""
+    w = csv.DictWriter(f, fields, extrasaction="ignore")
     w.writeheader()
     w.writerows(dict(r, deadlock_times_h=" ".join(map(str, r["deadlock_times_h"])),
                      deadlock_stuck_hist=json.dumps(r["deadlock_stuck_hist"]),
@@ -259,23 +457,168 @@ def run_point(key):
         return key, None, traceback.format_exc(limit=4)
 
 
-def run_pool(cfg, out, procs, todo, log=print):
-    """Compute the points `todo` in `procs` processes pinned to the cores other than core 0; returns {key: result}."""
+class Progress:
+    """Progress of a run in a small JSON file (path): counts of points, processes, state, the last lines; log() also prints
+    the line."""
+
+    def __init__(self, path, total, done, procs, title, task="run"):
+        self.path, self.lock = Path(path), threading.Lock()
+        self.d = dict(task=task, title=title, total=total, done=done, reused=done, failed=0, processes=procs,
+                      started=time.time(), updated=time.time(), state="running", note="", recent=[])
+        self.write()
+
+    def write(self, **kw):
+        with self.lock:
+            self.d.update(kw, updated=time.time())
+            try:
+                write_json(self.path, self.d)
+            except PermissionError:      # the progress is for display only: if the file is busy, the next write follows
+                pass
+
+    def log(self, line, **kw):
+        print(line, flush=True)
+        with self.lock:
+            self.d["recent"] = (self.d["recent"] + [line])[-8:]
+        self.write(**kw)
+
+    def heartbeat(self, stop, every=30.0):
+        while not stop.wait(every):
+            self.write()
+
+
+def describe(key, res):
+    if "network" in res:
+        return f"{key}: T1 {res['network']:.1f}/day, T1' {res['network_tight']:.1f}/day ({res['secs']} s)"
+    return f"{key}: throughput {res['throughput']:.1f}/day, deadlocks {res['deadlocks']} ({res['secs']} s)"
+
+
+def pool_run(cfg, out, procs, todo, log=print, slots_dir=None, max_tasks=None, deadline=None):
+    """run_pool that returns ({key: result}, number of failed points, stopped at the deadline with points left); no new
+    points are started after `deadline` (a time stamp), the points under way are finished."""
+    from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
+    prog = log if isinstance(log, Progress) else None
+    say = prog.log if prog else (lambda line, **kw: log(line))
+    slots, sd = None, slots_dir or os.environ.get("CPU_SLOTS")
+    if sd:
+        sys.path.insert(0, sd)
+        from cpu_slots import Slots
+        slots = Slots(f"{cfg.get('task', 'run')}-{os.getpid()}")
+    stop = threading.Event()
+    if prog:
+        threading.Thread(target=prog.heartbeat, args=(stop,), daemon=True).start()
     cores = list(range(1, os.cpu_count())) or [0]
     pin(cores)
-    res, failed = {}, 0
-    with mp.Pool(procs, initializer=init, initargs=(cfg, str(out) if out else None, cores)) as pool:
-        for i, (key, r, err) in enumerate(pool.imap_unordered(run_point, todo), 1):
-            if err:
-                failed += 1
-                log(f"failed {key}: {err.strip().splitlines()[-1]}")
-            else:
-                res[key] = r
-                log(f"{i}/{len(todo)} {key}: " + (f"T1' {r['network_tight']:.1f}/day" if "network_tight" in r else
-                                                     f"throughput {r['throughput']:.1f}/day") + f" ({r['secs']} s)")
+    res, failed, stopped, n, todo, live, shown = {}, 0, False, len(todo), list(todo), {}, None
+    cap = procs if slots else 2 * procs
+    with ProcessPoolExecutor(procs, initializer=init, initargs=(cfg, str(out) if out else None, cores),
+                             **({"max_tasks_per_child": max_tasks} if max_tasks else {})) as ex:
+        while todo or live:
+            stopped = stopped or (deadline is not None and time.time() > deadline)
+            if slots:
+                slots.want(0 if stopped else len(todo) + len(live))
+            while todo and not stopped and len(live) < cap and (slots is None or slots.take()):
+                k = todo.pop(0)
+                live[ex.submit(run_point, k)] = k
+            if prog and (len(slots.held) if slots else procs) != shown:
+                shown = len(slots.held) if slots else procs
+                prog.write(processes=shown)
+            if not live:
+                if stopped:
+                    break
+                time.sleep(0.5)            # no slot free: try again shortly
+                continue
+            done, _ = wait(live, timeout=0.5, return_when=FIRST_COMPLETED)
+            for f in done:
+                k = live.pop(f)
+                if slots:
+                    slots.give()
+                try:
+                    key, r, err = f.result()
+                except Exception as e:     # a worker process died
+                    key, r, err = k, None, repr(e)
+                if err:
+                    failed += 1
+                    say(f"failed {key}: {err.strip().splitlines()[-1]}", failed=failed)
+                    if out:
+                        with (Path(out) / "failures.log").open("a", encoding="utf-8") as fl:
+                            fl.write(f"{key}\n{err}\n")
+                else:
+                    res[key] = r
+                    say(f"{len(res)}/{n} " + describe(key, r), **({"done": prog.d["done"] + 1} if prog else {}))
+    if slots:
+        slots.close()
+    stop.set()
+    return res, failed, stopped and bool(todo)
+
+
+def run_pool(cfg, out, procs, todo, log=print, slots_dir=None, max_tasks=None):
+    """Compute the points `todo` in at most `procs` processes (started as needed) pinned to the cores other than core 0;
+    returns {key: result} and writes each point to <out>/points/ (out None: nothing written). log: a print-like function for
+    one line per point, or a Progress (lines, counts, processes, heartbeat). slots_dir (default: the environment variable
+    CPU_SLOTS; off when neither is given): one machine-wide CPU slot is taken per point and given back when it is done, so
+    that several jobs share the cores; without it at most 2 x procs points are under way. max_tasks: a worker process exits
+    after this many points and a new one takes over (frees the network cache and the memory of the simulations). Failed
+    points are logged (and appended to <out>/failures.log); RuntimeError at the end if any failed."""
+    res, failed, _ = pool_run(cfg, out, procs, todo, log, slots_dir, max_tasks)
     if failed:
         raise RuntimeError(f"{failed} points failed")
     return res
+
+
+def slot_imap(func, items, procs, initializer=None, initargs=(), slots_dir=None, tag="run", ordered=False):
+    """Replacement of mp.Pool(procs, initializer, initargs).imap_unordered(func, items) for modules with their own process
+    pool: with machine-wide CPU slots (slots_dir or the environment variable CPU_SLOTS) one slot is taken per item and given
+    back when it is done; without them at most procs items are under way. Returns a generator of the results of func in the
+    order of completion (ordered: a list in the order of items, once all are done, in place of pool.map). To stop early the
+    caller closes the generator: no new items are started, the items under way are finished and the slots given back."""
+    from concurrent.futures import FIRST_COMPLETED, ProcessPoolExecutor, wait
+
+    def gen(index):
+        slots, sd = None, slots_dir or os.environ.get("CPU_SLOTS")
+        if sd:
+            sys.path.insert(0, sd)
+            from cpu_slots import Slots
+            slots = Slots(f"{tag}-{os.getpid()}")
+        todo, live = list(enumerate(items)), {}
+        try:
+            with ProcessPoolExecutor(procs, initializer=initializer, initargs=initargs) as ex:
+                while todo or live:
+                    if slots:
+                        slots.want(len(todo) + len(live))
+                    while todo and len(live) < procs and (slots is None or slots.take()):
+                        i, x = todo.pop(0)
+                        live[ex.submit(func, x)] = i
+                    if not live:
+                        time.sleep(0.5)            # no slot free: try again shortly
+                        continue
+                    done, _ = wait(live, timeout=0.5, return_when=FIRST_COMPLETED)
+                    for f in done:
+                        i = live.pop(f)
+                        if slots:
+                            slots.give()
+                        yield (i, f.result()) if index else f.result()
+        finally:
+            if slots:
+                slots.close()
+    if ordered:
+        return [r for _, r in sorted(gen(True), key=lambda x: x[0])]
+    return gen(False)
+
+
+def sweep(cfg, out, procs, deadline=None, slots_dir=None):
+    """Compute every point of the configuration that is not yet in <out>/points (a resumed run adds only the missing ones),
+    with the progress in <out>/progress.json; no new points after `deadline` (a time stamp), the points under way are
+    finished. Returns (failed points, stopped at the deadline with points left)."""
+    (out / "points").mkdir(parents=True, exist_ok=True)
+    keys = point_keys(cfg)
+    todo = [k for k in keys if not (out / "points" / fname(k)).exists()]
+    prog = Progress(out / "progress.json", len(keys), len(keys) - len(todo), procs, cfg.get("title", ""), cfg.get("task", "run"))
+    _, failed, stopped = pool_run(cfg, out, procs, todo, prog, slots_dir, deadline=deadline)
+    if stopped:
+        prog.write(state="paused", note="stopped at the deadline; the same command resumes")
+    else:
+        prog.write(state="failed" if failed else "done", note=f"{failed} failed" if failed else "")
+    return failed, stopped
 
 
 def stats(xs):
@@ -303,6 +646,8 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--procs", type=int, default=max(1, (os.cpu_count() or 2) - 1))
     ap.add_argument("--only", nargs="*", default=None, help="compute only the points whose key starts with one of these")
+    ap.add_argument("--slots", default=os.environ.get("CPU_SLOTS"), help="directory of machine-wide CPU slots (cpu_slots.Slots); "
+                                                                         "default: environment variable CPU_SLOTS, else off")
     a = ap.parse_args()
     cfg = load_config(a.config)
     out = Path(a.out)
@@ -311,7 +656,7 @@ def main():
     todo = [k for k in keys if not (out / "points" / (k.replace("|", "_") + ".json")).exists()]
     print(f"{len(todo)} of {len(keys)} points to compute in {out}", flush=True)
     if todo:
-        run_pool(cfg, out, min(a.procs, len(todo)), todo)
+        run_pool(cfg, out, min(a.procs, len(todo)), todo, slots_dir=a.slots)
     print("per-point check:", aggregate(cfg, out))
 
 

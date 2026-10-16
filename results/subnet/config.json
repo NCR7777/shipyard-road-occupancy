@@ -1,0 +1,71 @@
+{
+ "networks": {
+  "yantai": "yantai/rev396",
+  "yupu": "okpo/rev1833"
+ },
+ "instances": {
+  "yupu_dock1": {
+   "name": "Okpo, Dock 1 road",
+   "yard": "yupu",
+   "roads": [
+    "road161",
+    "road160",
+    "road162",
+    "road008",
+    "road291",
+    "road007-4"
+   ]
+  },
+  "yantai_paint": {
+   "name": "Yantai, doors of building014",
+   "yard": "yantai",
+   "ball": [
+    "building014",
+    200.0
+   ],
+   "ents": [
+    "building014"
+   ]
+  },
+  "yupu_corridor": {
+   "name": "Okpo, through corridor 010-6",
+   "yard": "yupu",
+   "ball": [
+    "road010-6",
+    400.0
+   ],
+   "via": [
+    "road010-6"
+   ]
+  },
+  "synth_dock": {
+   "name": "synthetic dock-mouth network (with cranes)",
+   "synthetic": true
+  }
+ },
+ "seeds": [
+  101,
+  102,
+  103
+ ],
+ "ns": [
+  20,
+  30,
+  60
+ ],
+ "ks": [
+  8
+ ],
+ "n_seeds": [
+  20,
+  30,
+  60
+ ],
+ "syn_p6": 30,
+ "unit": 0.1,
+ "fix_s": 60.0,
+ "secs_per_task": 15.0,
+ "workers": "auto (the free cores at run time; the CP-SAT threads of every point are recorded)",
+ "ortools": "9.15.6755",
+ "day_s": 57600.0
+}

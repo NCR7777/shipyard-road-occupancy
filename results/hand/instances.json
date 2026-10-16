@@ -1,0 +1,75 @@
+{
+ "about": "Three small instances (Appendix A.6, Supplementary S4): the network bound T1 and its tightened form T1' computed by hand (hand_values, in the order of the document: corridor T1, T1', crossroads T1, T1', consecutive tasks T1, T1', T1' rewritten), and the throughput (moves per 16-h day) simulated on the same instances by free flow, full-path reservation and the reference rule (stepwise requests, deadlocks resolved by teleporting after 900 s).",
+ "hand_values": [
+  54.98,
+  37.94,
+  272.46,
+  187.32,
+  5.5,
+  93.86,
+  94.35
+ ],
+ "corridor": {
+  "days": 2,
+  "counted": "day 2",
+  "K": [
+   2,
+   4,
+   6
+  ],
+  "free": [
+   38,
+   76,
+   114
+  ],
+  "reserve": [
+   19,
+   19,
+   19
+  ],
+  "reference": [
+   24,
+   31,
+   31
+  ],
+  "bound": 37.94
+ },
+ "crossroads": {
+  "days": 2,
+  "counted": "day 2",
+  "K": [
+   4,
+   8,
+   12
+  ],
+  "free": [
+   120,
+   240,
+   360
+  ],
+  "reserve": [
+   72,
+   70,
+   70
+  ],
+  "reference": [
+   81,
+   103,
+   105
+  ],
+  "bound": 187.32
+ },
+ "consecutive": {
+  "days": 41,
+  "counted_days": 40,
+  "K": {
+   "reserve": 4,
+   "reference": 3
+  },
+  "reserve": 93.88,
+  "reference": 94.35,
+  "reference_deadlocks": 0,
+  "bound": 94.35
+ },
+ "recovery_s": 900
+}

@@ -1,0 +1,9 @@
+day_h,demand,Kreq_free,mark_free,cur_free,Kreq_reserve,mark_reserve,cur_reserve,Kreq_segment_safe,mark_segment_safe,cur_segment_safe,Kreq_segment,mark_segment,cur_segment,Kstable_free,mark_stable_free,Kstable_reserve,mark_stable_reserve
+16,339,18,,17,28,,27,60ᵃ,bold,50ᵃ,23,,22,18,,29,
+16,350,18,,18,30,,29,64ᵃ,bold,66ᵃ,24,,23,18,,31,
+16,678,35,,34,121,bold,117,> 200,bold,> 200,56,bold,56,35,,129,bold
+16,700,36,,35,131,bold,123ᵃ,> 150,bold,> 150,60,bold,59,36,,138,bold
+24,339,12,,12,15,,15,16,,16,14,,14,12,,16,
+24,350,12,,12,16,,16,17,,16,15,,14,12,,16,
+24,678,23,,23,51,underline,46,> 200,bold,> 200,32,,32,23,,50,underline
+24,700,24,,24,54,underline,49ᵃ,> 150,bold,> 150,34,,33,24,,55,bold

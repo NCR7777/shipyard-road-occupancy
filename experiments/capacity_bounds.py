@@ -1,8 +1,9 @@
-"""Capacity bounds of a yard (paper, Section 3 and Table 6): the system bound (network bound of the exact task mix, without
+"""Capacity bounds of a yard (paper, Section 3 and Table 7): the system bound (network bound of the exact task mix, without
 sampling noise) and its convergence in the sample size, the route-free bound T1'' with its Lagrangian certificate and the
 route-fixed value R, the network bound of each task sample, the back-substitution (a feasible value of the route-free
 programme, the lower end of the route margin), the read-out of the binding resource, the dual-price table and the
-attribution of R - T1'.
+attribution of R - T1'. keep_rows (with solve_rows) solves the system bound with only some groups of occupancy rows (the
+width-packing rows dropped; packing_rows.py).
 
 The configuration is results/bounds/<yard>/config.json (network, parameters, scenarios main / erection / crane, seeds, sample
 size n_mix and the sizes of the convergence table; ref names the runs whose sampled bounds the system bound is compared with).
@@ -22,15 +23,16 @@ import time
 from pathlib import Path
 
 import numpy as np
-from scipy.sparse import csr_matrix
+from scipy.optimize import linprog
+from scipy.sparse import csr_matrix, hstack
 from scipy.sparse.csgraph import dijkstra
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from bounds.route_free import NK, RouteFree, t1_on_path     # noqa: E402
-from bounds.system import Loads, SystemT1, empty_block, sampled_mix, scenario_mix, solve_t1, width   # noqa: E402
-from occupancy.bound import bounds, bounds_fixed, share      # noqa: E402
+from bounds.system import Loads, SystemT1, capacity_vec, empty_block, sampled_mix, scenario_mix, solve_t1, width   # noqa: E402
+from occupancy.bound import bounds, bounds_fixed, res_name, share      # noqa: E402
 from occupancy.network import Net                            # noqa: E402
 from occupancy.tasks import TaskStream, crane_p6, crane_tasks   # noqa: E402
 
@@ -318,6 +320,39 @@ def price_rows(net, p, st, rf, pool, scen, ret=None):
                 row[f"{tag}_w1"] = solve(cap=cap) - base if tight else 0.0
         rows.append(row)
     return rows
+
+
+def solve_rows(net, p, cap, res_list, Aeq, Aub, abar, on, fix6, on6, n6, keep):
+    """The same linear programme as bounds.system.solve_t1 with only the occupancy rows of the groups `keep` of DFF_K. abar,
+    fix6 have the shape (len(DFF_K), nr) or hold only the group k = 0. Returns (lambda + fixed part, name of the resource with
+    the highest dual price, its price (tasks/day per extra h/day))."""
+    nr = len(res_list)
+    rows = np.array([k * nr + i for k in keep for i in range(nr)])
+    A = hstack([csr_matrix(abar.reshape(-1, 1)), Aub]).tocsr()[rows]
+    E = hstack([csr_matrix(-on.reshape(-1, 1)), Aeq]).tocsr()
+    fix = (n6 * fix6.reshape(-1))[rows] if n6 else np.zeros(len(rows))
+    beq = n6 * on6 if n6 else np.zeros(E.shape[0])
+    H = capacity_vec(p, res_list)[rows]
+    c = np.zeros(A.shape[1])
+    c[0] = -1.0
+    lp = linprog(c, A_ub=A, b_ub=H - fix, A_eq=E, b_eq=beq, bounds=[(0, None)] * A.shape[1], method="highs")
+    if lp.status != 0:
+        raise RuntimeError(f"linear programme failed: {lp.message}")
+    price = np.zeros(nr)
+    for j, r in enumerate(rows):
+        price[r % nr] += -lp.ineqlin.marginals[j] * 3600
+    top = int(np.argmax(price))
+    return float(lp.x[0]) + (n6 or 0.0), res_name(net, res_list[top]), float(price[top])
+
+
+def keep_rows(st, keep, ret):
+    """The system bound with only the occupancy rows of the groups `keep` (keep = (0,): the width-packing rows dropped);
+    windows, empty-run tail clearance and truncation as in the system bound (used by packing_rows.py and the bound
+    sensitivity)."""
+    cap = st.cap
+    Aeq, Aub, res_list = empty_block(st.net, st.p, cap, st.size, st.dummy, ret)
+    six = (st.L6.abar(cap), st.L6.on, st.n6) if st.L6 else (None, None, None)
+    return solve_rows(st.net, st.p, cap, res_list, Aeq, Aub, st.L.abar(cap), st.L.on, six[0], six[1], six[2], keep)
 
 
 ITEMS = {"system": item_system, "route_free": item_route_free, "backsub": item_backsub, "readout": item_readout,

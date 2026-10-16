@@ -89,7 +89,7 @@ yantai,16,reserve,450,66,"[67, 68]",bold,bold,False,bold,False,bold,False
 yantai,16,reserve,600,>150,[],bold,bold,False,bold,False,bold,False
 yantai,16,reserve,900,>150,[],bold,bold,False,bold,False,bold,False
 yantai,16,reserve,1200,>150,[],bold,bold,False,bold,False,bold,False
-yantai,16,segment_safe,300,39,[],bold,underline,True,bold,False,bold,False
+yantai,16,segment_safe,300,35,"[36, 37, 38]",bold,underline,True,bold,False,bold,False
 yantai,16,segment_safe,450,>200,[],bold,bold,False,bold,False,bold,False
 yantai,16,segment_safe,600,>150,[],bold,bold,False,bold,False,bold,False
 yantai,16,segment_safe,900,>150,[],bold,bold,False,bold,False,bold,False

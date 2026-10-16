@@ -1,0 +1,21 @@
+yard,q,day_h,rank,name,res,price_per_h,util,facility,type,W,L,fig3
+yupu,0.0,16,1,"road010-6 (W=12.0, 168 m)",r|road_trace_044,113.33056125970188,1.0,,road,12.0,167.6,True
+yupu,0.0,16,2,"road026 (W=18.0, 348 m)",r|road_3477f15b-70d4-450e-ba80-a35d6273db92,0.0,0.9843746826004968,,road,18.0,348.4,False
+yupu,0.0,16,3,"road099-4 (W=12.0, 463 m)",r|road_trace_145,0.0,0.9425863525142957,,road,12.0,463.3,False
+yupu,0.0,16,4,"road098-1 (W=18.0, 197 m)",r|road_trace_118,0.0,0.8650602976369289,,road,18.0,197.4,False
+yupu,0.0,16,5,"road005-3 (W=12.0, 128 m)",r|road_trace_661,0.0,0.8542659483843172,,road,12.0,128.4,False
+yupu,0.0,16,6,"road102 (W=12.0, 276 m)",r|road_trace_122,0.0,0.7459108058826887,,road,12.0,275.7,False
+yupu,0.0,16,7,"road013-7 (W=15.0, 227 m)",r|road_trace_454,0.0,0.6928618725600931,,road,15.0,226.6,False
+yupu,0.0,16,8,"road008 (W=15.0, 137 m)",r|road_trace_008,0.0,0.6829486004447678,,road,15.0,137.3,False
+yupu,0.0,16,9,"road161 (W=9.0, 1095 m)",r|road_trace_027,0.0,0.6602201296447442,,road,9.0,1095.2,False
+yupu,0.0,16,10,"road005-4 (W=12.0, 89 m)",r|road_trace_660,0.0,0.6498345908168777,,road,12.0,88.6,False
+yantai,0.0,16,1,"junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]",n|node_3ae8b0e5-3951-4995-9e8f-c6428b5a7d13,77.97503051024653,1.0,building014·paint shop (inferred),entrance,D = 31,,True
+yantai,0.0,16,2,"junction entrance001 node [building014·paint shop (inferred)·building014-entrance1, 42c2c0ab]",n|node_42c2c0ab-f07e-48ca-aa97-9b3ea59ebb28,0.0,0.9982025061729606,building014·paint shop (inferred),entrance,D = 31,,True
+yantai,0.0,16,3,"junction entrance002 node [building007·steel processing and flat-panel line shop·building007-entrance4, 651dd514]",n|node_651dd514-caf8-4fb2-9baa-476960a87250,0.0,0.8447158886086134,building007·steel processing and flat-panel line shop,entrance,D = 31,,False
+yantai,0.0,16,4,"junction entrance004 node [building007·steel processing and flat-panel line shop·building007-entrance1, 7a5ddb69]",n|node_7a5ddb69-91bb-4e37-99cd-5aaaa0263cc2,0.0,0.8447158886086134,building007·steel processing and flat-panel line shop,entrance,D = 31,,False
+yantai,0.0,16,5,"junction entrance001 node [building007·steel processing and flat-panel line shop·building007-entrance5, 810c51f2]",n|node_810c51f2-b7f3-424a-a68a-b6d009d61923,0.0,0.8447158886086134,building007·steel processing and flat-panel line shop,entrance,D = 31,,False
+yantai,0.0,16,6,"junction entrance003 node [building007·steel processing and flat-panel line shop·building007-entrance2, 9510d468]",n|node_9510d468-8dbe-4d56-9d36-c4829dc41cf7,0.0,0.8447158886086134,building007·steel processing and flat-panel line shop,entrance,D = 31,,False
+yantai,0.0,16,7,"junction entrance005 node [building007·steel processing and flat-panel line shop·building007-entrance3, a77d841a]",n|node_a77d841a-1886-44a3-8a64-b89f1cf25213,0.0,0.8447158886086134,building007·steel processing and flat-panel line shop,entrance,D = 31,,False
+yantai,0.0,16,8,"road007 (W=12.0, 212 m)",r|road_trace_008,0.0,0.7428673476519352,,road,12.0,211.6,False
+yantai,0.0,16,9,junction road end [trace_010],n|node_trace_010,0.0,0.7383958393415752,,junction,D = 25,,False
+yantai,0.0,16,10,junction road016 / split point [8fed6000],n|node_8fed6000-40b2-4147-a289-69110235e4ad,0.0,0.6988726752533183,,junction,D = 20,,False

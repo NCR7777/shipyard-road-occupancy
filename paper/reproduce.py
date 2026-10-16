@@ -2,10 +2,11 @@
 
     python paper/reproduce.py
 
-Writes paper/numbers.tex (one LaTeX macro per number of the text), paper/tables/*.tex, paper/highlights.txt and
-paper/figures/*.pdf (with paper/figures/palette.json); PNG previews of the figures go to paper/build/. Every script checks its
-readings with assertions as it goes. Figure 3 (the two yard maps) and the two schematics (Figs. 2 and 9a) are not drawn here:
-see README.md, "Reproducing the paper".
+Writes paper/numbers.tex (one LaTeX macro per number of the text, the supplementary material included, e.g. the
+hand-computed instances of Section S4), paper/tables/*.tex (the tables of results of the paper and of the supplementary
+material), paper/highlights.txt and paper/figures/*.pdf (with paper/figures/palette.json); PNG previews of the figures go
+to paper/build/. Every script checks its readings with assertions as it goes. Figure 3 (the two yards) and the diagrams and
+schematics (Figs. 1, 2, 8(a) and 10) are not drawn here: see README.md, "Reproducing the paper".
 """
 import subprocess
 import sys

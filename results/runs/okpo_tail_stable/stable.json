@@ -1,0 +1,14 @@
+{
+ "d16_c_30d|reserve_tlw|n339": {
+  "K_req": 30,
+  "k0": 28,
+  "stable": 30,
+  "stable_tol": 31
+ },
+ "d16_c_30d|reserve_tlw|n350": {
+  "K_req": 32,
+  "k0": 30,
+  "stable": 31,
+  "stable_tol": 32
+ }
+}

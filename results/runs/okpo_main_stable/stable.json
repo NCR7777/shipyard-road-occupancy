@@ -1,0 +1,146 @@
+{
+ "d16_c_30d|free|n339": {
+  "K_req": 18,
+  "k0": 16,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_c_30d|free|n350": {
+  "K_req": 18,
+  "k0": 16,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_c_30d|free|n678": {
+  "K_req": 35,
+  "k0": 33,
+  "stable": 35,
+  "stable_tol": 35
+ },
+ "d16_c_30d|free|n700": {
+  "K_req": 36,
+  "k0": 34,
+  "stable": 36,
+  "stable_tol": 36
+ },
+ "d16_c_30d|reserve|n339": {
+  "K_req": 28,
+  "k0": 26,
+  "stable": 28,
+  "stable_tol": 29
+ },
+ "d16_c_30d|reserve|n350": {
+  "K_req": 30,
+  "k0": 28,
+  "stable": 30,
+  "stable_tol": 31
+ },
+ "d16_c_30d|reserve|n678": {
+  "K_req": 121,
+  "k0": 119,
+  "stable": 125,
+  "stable_tol": 129
+ },
+ "d16_c_30d|reserve|n700": {
+  "K_req": 131,
+  "k0": 129,
+  "stable": 134,
+  "stable_tol": 138
+ },
+ "d24_c_30d|free|n339": {
+  "K_req": 12,
+  "k0": 10,
+  "stable": 12,
+  "stable_tol": 12
+ },
+ "d24_c_30d|free|n350": {
+  "K_req": 12,
+  "k0": 10,
+  "stable": 12,
+  "stable_tol": 12
+ },
+ "d24_c_30d|free|n678": {
+  "K_req": 23,
+  "k0": 21,
+  "stable": 23,
+  "stable_tol": 23
+ },
+ "d24_c_30d|free|n700": {
+  "K_req": 24,
+  "k0": 22,
+  "stable": 24,
+  "stable_tol": 24
+ },
+ "d24_c_30d|reserve|n339": {
+  "K_req": 15,
+  "k0": 13,
+  "stable": 19,
+  "stable_tol": 16
+ },
+ "d24_c_30d|reserve|n350": {
+  "K_req": 16,
+  "k0": 14,
+  "stable": 16,
+  "stable_tol": 16
+ },
+ "d24_c_30d|reserve|n678": {
+  "K_req": 51,
+  "k0": 49,
+  "stable": 50,
+  "stable_tol": 50
+ },
+ "d24_c_30d|reserve|n700": {
+  "K_req": 54,
+  "k0": 52,
+  "stable": 53,
+  "stable_tol": 55
+ },
+ "d16_c25_30d|free|n339": {
+  "K_req": 16,
+  "k0": 14,
+  "stable": 16,
+  "stable_tol": 16
+ },
+ "d16_c25_30d|free|n350": {
+  "K_req": 17,
+  "k0": 15,
+  "stable": 17,
+  "stable_tol": 17
+ },
+ "d16_c25_30d|reserve|n339": {
+  "K_req": 23,
+  "k0": 21,
+  "stable": 22,
+  "stable_tol": 23
+ },
+ "d16_c25_30d|reserve|n350": {
+  "K_req": 25,
+  "k0": 19,
+  "stable": 23,
+  "stable_tol": 23
+ },
+ "d16_c50_30d|free|n339": {
+  "K_req": 14,
+  "k0": 12,
+  "stable": 14,
+  "stable_tol": 14
+ },
+ "d16_c50_30d|free|n350": {
+  "K_req": 15,
+  "k0": 13,
+  "stable": 15,
+  "stable_tol": 15
+ },
+ "d16_c50_30d|reserve|n339": {
+  "K_req": 17,
+  "k0": 15,
+  "stable": 17,
+  "stable_tol": 18
+ },
+ "d16_c50_30d|reserve|n350": {
+  "K_req": 18,
+  "k0": 16,
+  "stable": 18,
+  "stable_tol": 18
+ }
+}

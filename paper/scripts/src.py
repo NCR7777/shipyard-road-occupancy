@@ -6,6 +6,9 @@ each file with its SHA-256 and where the paper uses it. Paths are relative to th
 Yard keys: "yupu" is Okpo (the Hanwha Ocean yard on Geoje; Yupu is its Chinese name), "yantai" the CIMC Raffles yard at Yantai.
 Okpo's readings are on network revision 1833 (with the floating docks); some runs are on revision 1825, which differs only by
 three spur roads at the floating docks and the end points of three roads (results/network/okpo_revisions.json).
+Mappings of demand to moves: the main case (erection flow conserved, every other move between areas; results/main_case/),
+every move scaled with the flows (the proportional mapping: the bound tables in results/bounds/okpo, results/bounds/yantai and
+most runs under results/runs/), and moves within areas (results/intra_area/).
 """
 import csv
 import io
@@ -15,9 +18,12 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 
 # functional names of map elements (no map identifiers in displayed text), shared by the bound table and the figures
-RES_NAME = {"road161": "Dock 1 road", "road010-6": "through corridor", "road013-7": "bypass corridor",
-            "road007": "Dock 2 road", "road099-4": "east corridor", "road026": "central road",
-            "entrance001 node": "paint-shop doors"}
+# (the specific keys first: Yantai's building 007, the hall that Yantai's intra-area moves pass, has a door named
+# entrance001 node too; Okpo's building 006 is one of its paint shops)
+RES_NAME = {"building007·steel processing": "panel-line hall doors", "zone012": "assembly-area bays",
+            "building006·paint": "paint-shop doors", "road098-1": "stockyard road", "road161": "Dock 1 road",
+            "road010-6": "through corridor", "road013-7": "bypass corridor", "road007": "Dock 2 road",
+            "road099-4": "east corridor", "road026": "central road", "entrance001 node": "paint-shop doors"}
 
 
 def res_name(s):
@@ -29,7 +35,7 @@ def res_name(s):
 
 # run directories (results/runs/<run>: config.json, points.csv where released, check.json = the per-point check of the run)
 BOUNDS_DIR = {"yupu": "results/bounds/okpo", "yantai": "results/bounds/yantai"}        # system, route-free bounds, prices
-MAIN_SAFE = {"yupu": "results/runs/okpo_rev1825_safe_sectioned",                      # main scenario: safe release, sectioned
+MAIN_SAFE = {"yupu": "results/runs/okpo_rev1825_safe_sectioned",                      # safe release, sectioned
              "yantai": "results/runs/yantai_safe_sectioned"}
 RHO_SAFE = {"yupu": "results/runs/okpo_rev1825_dock_safe",                            # crane-paced rho curves (dock mouth)
             "yantai": "results/runs/yantai_dock_safe"}
@@ -41,6 +47,13 @@ SEC_FLEET = "results/runs/okpo_fleet_sectioned"                                 
 OD_RUNS = {"yupu": "results/runs/okpo_od_sampling", "yantai": "results/runs/yantai_od_sampling"}  # bounds, sampling by stop
 SYN_DOCK = "results/synthetic_dock"                                                   # synthetic dock-mouth network
 SYN_WAIT = "results/runs/synthetic_dock_waiting"                                      # its waiting term (per seed)
+# the revision's tables kept per mapping: the main case ("conserved") and every move scaled ("proportional")
+ABL_BOUNDS = {"conserved": "results/ablation/bounds_main_case.csv",                   # ablation: system bounds
+              "proportional": "results/ablation/bounds_proportional.csv"}
+ABL_SUMMARY = {"conserved": "results/ablation/summary_main_case.json",                # ablation: fleets and checks
+               "proportional": "results/ablation/summary_proportional.json"}
+RETIME = {"conserved": "results/retiming/main_case.csv",                              # whole-network retiming
+          "proportional": "results/retiming/proportional.csv"}
 csv.field_size_limit(10 ** 9)                     # some point files carry long per-day fields
 
 
@@ -62,12 +75,13 @@ def interval():
 
 
 def demand(eight_day=True):
-    """Required-fleet rows (results/fleet/required_fleet.csv): Okpo on revision 1833, Yantai on revision 396, with the Yantai
-    full-path reservation cells taken from the integer-K-filled main-mix searches of the crane-pacing runs where they differ
-    (only 450 blocks/day on 16-h days: 69 -> 66, a fleet above which the target fails again), and Okpo's headline cells
-    (339 and 350 blocks/day, free flow and full-path reservation, whole roads, both working days) replaced by their
-    eight-day values with the eight-day seed-bootstrap ranges (fleet/fleet_8day.csv; only 350 blocks/day, 24 h, full-path
-    reservation changes: 16 -> 15); eight_day=False keeps the four-day values, for comparisons with other four-day runs."""
+    """Required-fleet rows of every move scaled with the flows (results/fleet/required_fleet.csv): Okpo on revision 1833,
+    Yantai on revision 396, with the Yantai full-path reservation cells taken from the integer-K-filled main-mix searches of
+    the crane-pacing runs where they differ (only 450 moves/day on 16-h days: 69 -> 66, a fleet above which the target fails
+    again), and Okpo's headline cells (339 and 350 moves/day, free flow and full-path reservation, whole roads, both working
+    days) replaced by their eight-day values with the eight-day seed-bootstrap ranges (fleet/fleet_8day.csv; only 350
+    moves/day, 24 h, full-path reservation changes: 16 -> 15); eight_day=False keeps the four-day values, for comparisons
+    with other four-day runs. The safe-release searches have every integer below the first success simulated."""
     dem = rows("results/fleet/required_fleet.csv")
     assert {r["map"] for r in dem if r["yard"] == "yupu" and r["section"] == "whole"} == {"rev 1833"}
     key = lambda r: (r["yard"], float(r["day_h"]), r["section"], r["model"], int(float(r["demand"])))

@@ -1,0 +1,372 @@
+[
+ {
+  "key": "main_c|bound|101",
+  "scen": "main_c",
+  "seed": 101,
+  "n_tasks": 2000,
+  "network": 2188.5619650652866,
+  "binding": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 136.78512281658044,
+    "util": 1.0,
+    "loaded_share": 0.9995867949414916,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight": 1879.6827430250962,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 117.48017143906851,
+    "util": 1.0,
+    "loaded_share": 0.9996451119821113,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight_local": 2493.4219420335994,
+  "cycle_s": 2444.3854990196032,
+  "empty_min_s": 79.68598708616351,
+  "handling_travel_s": 2364.6995119334397,
+  "secs": 3.21
+ },
+ {
+  "key": "main_c|bound|102",
+  "scen": "main_c",
+  "seed": 102,
+  "n_tasks": 2000,
+  "network": 2315.5775530058254,
+  "binding": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 144.72359706286406,
+    "util": 1.0,
+    "loaded_share": 0.9999125628267745,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight": 1977.9470064915308,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 123.62168790572068,
+    "util": 1.0,
+    "loaded_share": 0.9999253118968903,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight_local": 2698.443141231798,
+  "cycle_s": 2454.4213120311256,
+  "empty_min_s": 83.63310407221,
+  "handling_travel_s": 2370.788207958916,
+  "secs": 3.01
+ },
+ {
+  "key": "main_c|bound|103",
+  "scen": "main_c",
+  "seed": 103,
+  "n_tasks": 2000,
+  "network": 2189.5956711905174,
+  "binding": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 136.84972944940733,
+    "util": 1.0,
+    "loaded_share": 0.9999173199551242,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight": 1839.3841967877663,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 114.9615122992354,
+    "util": 1.0,
+    "loaded_share": 0.9998796496668118,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight_local": 2609.1591170709194,
+  "cycle_s": 2433.268981697739,
+  "empty_min_s": 74.96765247042416,
+  "handling_travel_s": 2358.301329227315,
+  "secs": 1.36
+ },
+ {
+  "key": "main_c|bound|104",
+  "scen": "main_c",
+  "seed": 104,
+  "n_tasks": 2000,
+  "network": 2108.915535266951,
+  "binding": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 131.80722095418443,
+    "util": 1.0,
+    "loaded_share": 0.9996018323533677,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight": 1772.9044051477629,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 110.80652532173518,
+    "util": 1.0,
+    "loaded_share": 0.9996652719547573,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight_local": 2632.749219678768,
+  "cycle_s": 2452.6580954358415,
+  "empty_min_s": 79.29253363831579,
+  "handling_travel_s": 2373.3655617975255,
+  "secs": 1.34
+ },
+ {
+  "key": "main_c|bound|105",
+  "scen": "main_c",
+  "seed": 105,
+  "n_tasks": 2000,
+  "network": 2195.571186775177,
+  "binding": [
+   {
+    "res": [
+     "r",
+     "road_trace_145"
+    ],
+    "price_per_h": 137.2231991734486,
+    "util": 1.0,
+    "loaded_share": 0.9999999999999999,
+    "name": "road099-4 (W=12.0, 463 m)"
+   }
+  ],
+  "network_tight": 1851.6470331617982,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_145"
+    ],
+    "price_per_h": 115.7279395726124,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "road099-4 (W=12.0, 463 m)"
+   }
+  ],
+  "network_tight_local": 2638.457835725887,
+  "cycle_s": 2454.1232667599793,
+  "empty_min_s": 82.50267171555082,
+  "handling_travel_s": 2371.6205950444287,
+  "secs": 1.29
+ },
+ {
+  "key": "main_c|bound|106",
+  "scen": "main_c",
+  "seed": 106,
+  "n_tasks": 2000,
+  "network": 1949.2896932838457,
+  "binding": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 121.83060583024034,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight": 1661.2664360575134,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 103.8291522535946,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight_local": 2584.5862030651815,
+  "cycle_s": 2449.4739402804266,
+  "empty_min_s": 72.22077861296192,
+  "handling_travel_s": 2377.2531616674646,
+  "secs": 3.07
+ },
+ {
+  "key": "main_c|bound|107",
+  "scen": "main_c",
+  "seed": 107,
+  "n_tasks": 2000,
+  "network": 2193.464849547215,
+  "binding": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 137.09155309670095,
+    "util": 1.0,
+    "loaded_share": 1.0000000000000002,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight": 1835.8437387160432,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 114.74023366975268,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight_local": 2602.8743140984757,
+  "cycle_s": 2453.678315108225,
+  "empty_min_s": 81.7006123983007,
+  "handling_travel_s": 2371.9777027099244,
+  "secs": 1.36
+ },
+ {
+  "key": "main_c|bound|108",
+  "scen": "main_c",
+  "seed": 108,
+  "n_tasks": 2000,
+  "network": 2153.1972733371117,
+  "binding": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 134.57482958356948,
+    "util": 1.0,
+    "loaded_share": 0.9999999999999999,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight": 1871.4952329608689,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 116.9684520600543,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight_local": 2734.194629123393,
+  "cycle_s": 2420.050405467331,
+  "empty_min_s": 76.87308890920565,
+  "handling_travel_s": 2343.1773165581253,
+  "secs": 1.12
+ },
+ {
+  "key": "main_c|bound|109",
+  "scen": "main_c",
+  "seed": 109,
+  "n_tasks": 2000,
+  "network": 2000.230036646951,
+  "binding": [
+   {
+    "res": [
+     "r",
+     "road_trace_145"
+    ],
+    "price_per_h": 125.01437729043444,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "road099-4 (W=12.0, 463 m)"
+   }
+  ],
+  "network_tight": 1684.6146371669295,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_145"
+    ],
+    "price_per_h": 105.28841482293309,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "road099-4 (W=12.0, 463 m)"
+   }
+  ],
+  "network_tight_local": 2698.5576025511887,
+  "cycle_s": 2447.5857493112167,
+  "empty_min_s": 72.71683190898483,
+  "handling_travel_s": 2374.868917402232,
+  "secs": 1.36
+ },
+ {
+  "key": "main_c|bound|110",
+  "scen": "main_c",
+  "seed": 110,
+  "n_tasks": 2000,
+  "network": 2155.323511738539,
+  "binding": [
+   {
+    "res": [
+     "n",
+     "node_cdfa3ca3-ae63-4206-951f-2db848906c65"
+    ],
+    "price_per_h": 134.70771948365868,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "junction entrance node [building007·paint shop·building007-entrance1, cdfa3ca3]"
+   }
+  ],
+  "network_tight": 1943.1157320245768,
+  "binding_tight": [
+   {
+    "res": [
+     "r",
+     "road_trace_044"
+    ],
+    "price_per_h": 121.44473325153605,
+    "util": 1.0,
+    "loaded_share": 1.0,
+    "name": "road010-6 (W=12.0, 168 m)"
+   }
+  ],
+  "network_tight_local": 2780.499366816155,
+  "cycle_s": 2414.6291078196996,
+  "empty_min_s": 69.35244754666454,
+  "handling_travel_s": 2345.276660273035,
+  "secs": 1.26
+ }
+]

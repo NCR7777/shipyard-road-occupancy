@@ -1,0 +1,74 @@
+{
+ "d16_c_count_30d|free|n339": {
+  "K_req": 18,
+  "k0": 16,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_c_count_30d|free|n350": {
+  "K_req": 18,
+  "k0": 16,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_c_count_30d|reserve|n339": {
+  "K_req": 39,
+  "k0": 37,
+  "stable": 40,
+  "stable_tol": 40
+ },
+ "d16_c_count_30d|reserve|n350": {
+  "K_req": 41,
+  "k0": 39,
+  "stable": 42,
+  "stable_tol": 45
+ },
+ "d16_c_same_30d|free|n339": {
+  "K_req": 18,
+  "k0": 16,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_c_same_30d|free|n350": {
+  "K_req": 18,
+  "k0": 16,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_c_same_30d|reserve|n339": {
+  "K_req": 35,
+  "k0": 33,
+  "stable": 42,
+  "stable_tol": 37
+ },
+ "d16_c_same_30d|reserve|n350": {
+  "K_req": 37,
+  "k0": 35,
+  "stable": 38,
+  "stable_tol": 39
+ },
+ "d16_c_efree_30d|free|n339": {
+  "K_req": 18,
+  "k0": 16,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_c_efree_30d|free|n350": {
+  "K_req": 18,
+  "k0": 16,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_c_efree_30d|reserve|n339": {
+  "K_req": 21,
+  "k0": 19,
+  "stable": 21,
+  "stable_tol": 22
+ },
+ "d16_c_efree_30d|reserve|n350": {
+  "K_req": 22,
+  "k0": 20,
+  "stable": 23,
+  "stable_tol": 23
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "sat_dirs": {
+  "yupu": "runs/okpo_main_saturation"
+ },
+ "bound_checks": {
+  "yupu": {
+   "rel_flow_share": -2.220446049250313e-16
+  },
+  "yantai": {
+   "rel_flow_share": 0.0
+  }
+ }
+}

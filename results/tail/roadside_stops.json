@@ -1,0 +1,14 @@
+{
+ "about": "Roadside stops of the whole-road networks: all of them (roadside_stops), and those less than a clearing length beyond the node behind them, where a vehicle's body can still stand on the resource behind it when its timer runs out: with the platform length (within_platform_clearing) and with a 30-m block (within_block_clearing).",
+ "block_length_m": 30,
+ "yupu": {
+  "within_platform_clearing": 54,
+  "within_block_clearing": 62,
+  "roadside_stops": 69
+ },
+ "yantai": {
+  "within_platform_clearing": 24,
+  "within_block_clearing": 27,
+  "roadside_stops": 34
+ }
+}

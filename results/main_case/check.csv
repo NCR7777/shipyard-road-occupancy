@@ -1,0 +1,5 @@
+batch,yard,dir,points,checked,over,max_ratio
+main_saturation,yupu,runs/okpo_main_saturation,2320,1740,0,0.6069245695778059
+main_saturation,yantai,runs/yantai_main_saturation,2480,1860,0,0.5987261284799466
+main_fleet,yupu,runs/okpo_main_fleet,2550,1290,0,0.4350487849259649
+main_stable,yupu,runs/okpo_main_stable,1280,800,0,0.39449659416759836

@@ -1,0 +1,64 @@
+{
+ "fleet": {
+  "base|free|n339": {
+   "K_stable": 18
+  },
+  "base|reserve|n339": {
+   "K_stable": 28
+  },
+  "base|free|n350": {
+   "K_stable": 18
+  },
+  "base|reserve|n350": {
+   "K_stable": 30
+  },
+  "count|free|n339": {
+   "K_stable": 18
+  },
+  "count|reserve|n339": {
+   "K_stable": 40
+  },
+  "count|free|n350": {
+   "K_stable": 18
+  },
+  "count|reserve|n350": {
+   "K_stable": 42
+  },
+  "same|free|n339": {
+   "K_stable": 18
+  },
+  "same|reserve|n339": {
+   "K_stable": 34
+  },
+  "same|free|n350": {
+   "K_stable": 18
+  },
+  "same|reserve|n350": {
+   "K_stable": 38
+  },
+  "efree|free|n339": {
+   "K_stable": 18
+  },
+  "efree|reserve|n339": {
+   "K_stable": 21
+  },
+  "efree|free|n350": {
+   "K_stable": 18
+  },
+  "efree|reserve|n350": {
+   "K_stable": 22
+  }
+ },
+ "check": {
+  "demand": {
+   "reserve": 620,
+   "over": 0,
+   "over_tol": 0
+  },
+  "stable": {
+   "reserve": 400,
+   "over": 0,
+   "over_tol": 0
+  }
+ }
+}

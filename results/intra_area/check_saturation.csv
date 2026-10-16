@@ -1,0 +1,4 @@
+batch,yard,dir,points,checked,over,max_ratio
+intra_saturation,yupu,runs/okpo_intra_saturation,2320,1160,0,0.47112673611111183
+intra_saturation,yantai,runs/yantai_intra_saturation,2480,1240,0,0.755733143220475
+stable_30day,yupu,runs/okpo_stable_30day,1838,1080,0,0.41256022879375776

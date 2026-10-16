@@ -1,0 +1,104 @@
+{
+ "network": "yantai/rev396",
+ "yard": "yantai",
+ "roles": {},
+ "params": {
+  "v_empty": 3.333333333333333,
+  "v_loaded": 1.6666666666666665,
+  "plat_len": 16.25,
+  "plat_w": 5.5,
+  "lat_clear": 1.0,
+  "long_clear": 5.0,
+  "turn_sweep_s": 30.0,
+  "turn_deg": 60.0,
+  "load_s": 600.0,
+  "unload_s": 600.0,
+  "block_w": [
+   5,
+   15
+  ],
+  "block_l": [
+   10,
+   30
+  ],
+  "width_delta": 0.0,
+  "unrestricted_w": 31.0,
+  "empty_rule": "width",
+  "day_s": 57600.0,
+  "days": 4,
+  "warmup_days": 1,
+  "batches": 8,
+  "deadlock_recovery_s": 900.0,
+  "near_deadlock_s": 1800.0,
+  "frontage_gap": 8.0,
+  "frontage_min_len": 10.0,
+  "frontage_merge": 3.0,
+  "dock_stops": null,
+  "reserve_jit": true,
+  "flow_share": null,
+  "erect_batches": null,
+  "od_sampling": "entity",
+  "section": null,
+  "section_min_m": 200.0,
+  "section_gap_m": 25.0,
+  "block_m": null
+ },
+ "scenarios": {
+  "v2_8d": {
+   "stoch": {
+    "mean": 1.5,
+    "cv": 0.0,
+    "speed": [
+     1.0,
+     1.0
+    ],
+    "book_q": null
+   },
+   "days": 8
+  },
+  "cv3_8d": {
+   "stoch": {
+    "mean": 1.5,
+    "cv": 0.3,
+    "speed": [
+     0.9,
+     1.0
+    ],
+    "book_q": null
+   },
+   "days": 8
+  }
+ },
+ "demand": {
+  "saturated": null
+ },
+ "levels": {},
+ "ks": [
+  100,
+  150
+ ],
+ "seeds": [
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110
+ ],
+ "models": {
+  "v2_8d": [
+   "reserve_op",
+   "reserve_op2"
+  ],
+  "cv3_8d": [
+   "reserve_op",
+   "reserve_op2"
+  ]
+ },
+ "n_mix": 2000,
+ "bounds": false
+}

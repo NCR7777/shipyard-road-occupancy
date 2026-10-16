@@ -1,0 +1,3 @@
+yard,q_before,q_after,lam_before,lam_after,top_before,top_after,dev_before,dev_after,q_star,lam_star
+yupu,0.5,0.525,3257.62715573761,3310.9245046120686,"road010-6 (W=12.0, 168 m)",stop zone012·assembly area#1,8.659739592076221e-14,2.4424906541753444e-15,0.5127374204645138,3325.098262304319
+yantai,0.225,0.25,1321.6990653316218,1306.5533234954612,"junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]","junction entrance005 node [building007·steel processing and flat-panel line shop·building007-entrance3, a77d841a]",6.217248937900877e-15,1.0436096431476471e-14,0.22510738988751267,1321.7365332958009

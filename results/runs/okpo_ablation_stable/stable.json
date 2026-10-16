@@ -1,0 +1,62 @@
+{
+ "d16_count_30d|free|n339": {
+  "K_req": 17,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_count_30d|free|n350": {
+  "K_req": 18,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_count_30d|reserve|n339": {
+  "K_req": 36,
+  "stable": 38,
+  "stable_tol": 40
+ },
+ "d16_count_30d|reserve|n350": {
+  "K_req": 39,
+  "stable": 40,
+  "stable_tol": 42
+ },
+ "d16_same_30d|free|n339": {
+  "K_req": 17,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_same_30d|free|n350": {
+  "K_req": 18,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_same_30d|reserve|n339": {
+  "K_req": 33,
+  "stable": 34,
+  "stable_tol": 34
+ },
+ "d16_same_30d|reserve|n350": {
+  "K_req": 35,
+  "stable": 36,
+  "stable_tol": 38
+ },
+ "d16_efree_30d|free|n339": {
+  "K_req": 17,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_efree_30d|free|n350": {
+  "K_req": 18,
+  "stable": 18,
+  "stable_tol": 18
+ },
+ "d16_efree_30d|reserve|n339": {
+  "K_req": 21,
+  "stable": 21,
+  "stable_tol": 21
+ },
+ "d16_efree_30d|reserve|n350": {
+  "K_req": 22,
+  "stable": 22,
+  "stable_tol": 22
+ }
+}

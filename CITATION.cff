@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this code or data, please cite the paper."
-title: "shipyard-road-occupancy: code and data of 'When transporters own the road: capacity bounds and operating regimes in shipyard block logistics'"
+title: "shipyard-road-occupancy: code and data of 'Capacity bounds for shipyard block transport with load-dependent road occupancy'"
 authors:
   - family-names: Na
     given-names: Chunrui
@@ -20,18 +20,19 @@ authors:
 license:
   - MIT          # code (LICENSE)
   - CC-BY-4.0    # derived road networks and result data (LICENSE-data)
-# To be filled in when the repository is public:
-# repository-code: "https://github.com/<owner>/shipyard-road-occupancy"
-# doi: "<DOI of the archived release>"
+repository-code: "https://github.com/NCR7777/shipyard-road-occupancy"
+# doi: the DOI of the Zenodo archive of the accompanying version, on acceptance of the paper
 keywords:
   - shipyard logistics
   - block transport
   - road occupancy
   - capacity bounds
+  - blocking time
+  - fleet sizing
   - discrete-event simulation
 preferred-citation:
   type: article
-  title: "When transporters own the road: capacity bounds and operating regimes in shipyard block logistics"
+  title: "Capacity bounds for shipyard block transport with load-dependent road occupancy"
   authors:
     - family-names: Na
       given-names: Chunrui

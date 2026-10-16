@@ -1,0 +1,5 @@
+day_h,demand,Kreq_free,Kstable_free,cur_free,Kreq_reserve,Kstable_reserve,cur_reserve
+16,339,31,32,31,58,60,56
+16,350,33,33,32,63,63,61
+24,339,21,21,21,29,29,28
+24,350,22,22,22,30,30,29

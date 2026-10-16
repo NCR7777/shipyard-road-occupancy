@@ -1,0 +1,40 @@
+{
+ "check": {
+  "stoch": {
+   "points": 3870,
+   "over": 0,
+   "max_ratio": 0.288594995896537
+  },
+  "pm": {
+   "points": 400,
+   "over": 0,
+   "max_ratio": 0.2577127170097985
+  },
+  "m15": {
+   "points": 930,
+   "over": 0,
+   "max_ratio": 0.5850529844613045
+  },
+  "all": {
+   "points": 5200,
+   "over": 0,
+   "max_ratio": 0.5850529844613045
+  }
+ },
+ "handling_quantiles": {
+  "cv3": {
+   "q90_min": 19.973427855643237,
+   "q99_min": 32.30268413207755
+  },
+  "cv6": {
+   "q90_min": 21.32998694480022,
+   "q99_min": 49.773205536515434
+  }
+ },
+ "runs": {
+  "yupu": {
+   "stoch_curves": "runs/okpo_stoch_curves",
+   "stoch_variants": "runs/okpo_stoch_variants"
+  }
+ }
+}

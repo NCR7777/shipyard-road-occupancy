@@ -1,0 +1,5 @@
+yard,gran,system,route_free,route_free_share,draw,binding,binding_rf
+yupu,whole,1813.2889801552303,2670.701970646636,147.2849611879296,True,"road010-6 (W=12.0, 168 m)","road013-7 (W=15.0, 227 m)"
+yupu,stops,1813.2889801552303,2670.7019706466363,147.28496118792964,True,"road010-6 (W=12.0, 168 m)","road013-7 (W=15.0, 227 m)"
+yantai,whole,1247.6004881639446,1247.6004881639444,99.99999999999999,False,"junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]","junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"
+yantai,stops,1247.6004881639446,1247.6004881639444,99.99999999999999,False,"junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]","junction entrance001 node [building014·paint shop (inferred)·entrance001, 3ae8b0e5]"

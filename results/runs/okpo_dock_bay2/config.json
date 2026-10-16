@@ -1,0 +1,566 @@
+{
+ "network": "okpo/rev1833",
+ "yard": "yupu",
+ "roles": {},
+ "params": {
+  "v_empty": 3.333333333333333,
+  "v_loaded": 1.6666666666666665,
+  "plat_len": 16.25,
+  "plat_w": 5.5,
+  "lat_clear": 1.0,
+  "long_clear": 5.0,
+  "turn_sweep_s": 30.0,
+  "turn_deg": 60.0,
+  "load_s": 600.0,
+  "unload_s": 600.0,
+  "block_w": [
+   5,
+   15
+  ],
+  "block_l": [
+   10,
+   30
+  ],
+  "width_delta": 0.0,
+  "unrestricted_w": 31.0,
+  "empty_rule": "width",
+  "day_s": 57600.0,
+  "days": 4,
+  "warmup_days": 1,
+  "batches": 8,
+  "deadlock_recovery_s": 900.0,
+  "near_deadlock_s": 1800.0,
+  "frontage_gap": 8.0,
+  "frontage_min_len": 10.0,
+  "frontage_merge": 3.0,
+  "dock_stops": null,
+  "reserve_jit": true,
+  "flow_share": null,
+  "erect_batches": null,
+  "od_sampling": "entity",
+  "section": null,
+  "section_min_m": 200.0,
+  "section_gap_m": 25.0,
+  "block_m": null
+ },
+ "scenarios": {
+  "crane_8d_bay2": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 13.333333333333334,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ]
+  },
+  "crane_8d_spot": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 13.333333333333334,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ],
+   "bay_spots": 1
+  },
+  "rho8_8d_bay2": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 8,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ]
+  },
+  "rho8_8d_spot": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 8,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ],
+   "bay_spots": 1
+  },
+  "rho9_8d_bay2": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 9,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ]
+  },
+  "rho9_8d_spot": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 9,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ],
+   "bay_spots": 1
+  },
+  "rho11_8d_bay2": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 11,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ]
+  },
+  "rho11_8d_spot": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 11,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ],
+   "bay_spots": 1
+  },
+  "rho12_8d_bay2": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 12,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ]
+  },
+  "rho12_8d_spot": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 12,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ],
+   "bay_spots": 1
+  },
+  "rho14_8d_bay2": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 14,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ]
+  },
+  "rho14_8d_spot": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 14,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ],
+   "bay_spots": 1
+  },
+  "rho15_8d_bay2": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 15,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ]
+  },
+  "rho15_8d_spot": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 15,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ],
+   "bay_spots": 1
+  },
+  "rho13_8d_bay2": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 13,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ]
+  },
+  "rho13_8d_spot": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 13,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ],
+   "bay_spots": 1
+  },
+  "p6lo_8d_bay2": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 11.866666666666667,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ]
+  },
+  "p6lo_8d_spot": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 11.866666666666667,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ],
+   "bay_spots": 1
+  },
+  "p6hi_8d_bay2": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 14.666666666666666,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ]
+  },
+  "p6hi_8d_spot": {
+   "crane_cycle_s": 11400.0,
+   "crane_hook_s": 600.0,
+   "flow_share": {
+    "P6": 0.0
+   },
+   "crane_n": "map",
+   "span_min": 0.5,
+   "p6_per_day": 14.666666666666666,
+   "erect_peak": 194,
+   "days": 8,
+   "retrofit": [
+    {
+     "kind": "dock_bay",
+     "cap": 2
+    }
+   ],
+   "bay_spots": 1
+  }
+ },
+ "demand": {
+  "saturated": null
+ },
+ "levels": {
+  "crane_8d_bay2": [
+   "saturated"
+  ],
+  "crane_8d_spot": [
+   "saturated"
+  ],
+  "rho8_8d_bay2": [
+   "saturated"
+  ],
+  "rho8_8d_spot": [
+   "saturated"
+  ],
+  "rho9_8d_bay2": [
+   "saturated"
+  ],
+  "rho9_8d_spot": [
+   "saturated"
+  ],
+  "rho11_8d_bay2": [
+   "saturated"
+  ],
+  "rho11_8d_spot": [
+   "saturated"
+  ],
+  "rho12_8d_bay2": [
+   "saturated"
+  ],
+  "rho12_8d_spot": [
+   "saturated"
+  ],
+  "rho14_8d_bay2": [
+   "saturated"
+  ],
+  "rho14_8d_spot": [
+   "saturated"
+  ],
+  "rho15_8d_bay2": [
+   "saturated"
+  ],
+  "rho15_8d_spot": [
+   "saturated"
+  ],
+  "rho13_8d_bay2": [
+   "saturated"
+  ],
+  "rho13_8d_spot": [
+   "saturated"
+  ],
+  "p6lo_8d_bay2": [
+   "saturated"
+  ],
+  "p6lo_8d_spot": [
+   "saturated"
+  ],
+  "p6hi_8d_bay2": [
+   "saturated"
+  ],
+  "p6hi_8d_spot": [
+   "saturated"
+  ]
+ },
+ "ks": [
+  20,
+  40,
+  60,
+  100,
+  150
+ ],
+ "seeds": [
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110
+ ],
+ "models": {
+  "crane_8d_bay2": [
+   "segment_safe"
+  ],
+  "crane_8d_spot": [
+   "segment_safe"
+  ],
+  "rho8_8d_bay2": [
+   "segment_safe"
+  ],
+  "rho8_8d_spot": [
+   "segment_safe"
+  ],
+  "rho9_8d_bay2": [
+   "segment_safe"
+  ],
+  "rho9_8d_spot": [
+   "segment_safe"
+  ],
+  "rho11_8d_bay2": [
+   "segment_safe"
+  ],
+  "rho11_8d_spot": [
+   "segment_safe"
+  ],
+  "rho12_8d_bay2": [
+   "segment_safe"
+  ],
+  "rho12_8d_spot": [
+   "segment_safe"
+  ],
+  "rho14_8d_bay2": [
+   "segment_safe"
+  ],
+  "rho14_8d_spot": [
+   "segment_safe"
+  ],
+  "rho15_8d_bay2": [
+   "segment_safe"
+  ],
+  "rho15_8d_spot": [
+   "segment_safe"
+  ],
+  "rho13_8d_bay2": [
+   "segment_safe"
+  ],
+  "rho13_8d_spot": [
+   "segment_safe"
+  ],
+  "p6lo_8d_bay2": [
+   "segment_safe"
+  ],
+  "p6lo_8d_spot": [
+   "segment_safe"
+  ],
+  "p6hi_8d_bay2": [
+   "segment_safe"
+  ],
+  "p6hi_8d_spot": [
+   "segment_safe"
+  ]
+ },
+ "n_mix": 2000,
+ "bounds": false
+}

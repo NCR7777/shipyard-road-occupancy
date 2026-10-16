@@ -1,4 +1,4 @@
-"""Synthetic dock mouth (paper, Section 4.4 and Appendix D.2, Fig. 9): a crane, a single-lane dock road and one adjacent stop.
+"""Synthetic dock mouth (paper, Section 4.5, Supplementary S2.2 and Fig. 8): a crane, a single-lane dock road and one adjacent stop.
 The passable margin beside a standing loaded vehicle is a parameter; the crane utilisation rho is swept, and the threshold
 rho_10 at which throughput collapses is read under two kinds of rule: waiting on the road (stepwise requests with safe
 release, whole or sectioned dock road) and waiting off the road (full-path reservation; safe release with a dock-side off-road
