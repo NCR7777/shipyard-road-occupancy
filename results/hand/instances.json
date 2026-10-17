@@ -1,5 +1,5 @@
 {
- "about": "Three small instances (Appendix A.6, Supplementary S4): the network bound T1 and its tightened form T1' computed by hand (hand_values, in the order of the document: corridor T1, T1', crossroads T1, T1', consecutive tasks T1, T1', T1' rewritten), and the throughput (moves per 16-h day) simulated on the same instances by free flow, full-path reservation and the reference rule (stepwise requests, deadlocks resolved by teleporting after 900 s).",
+ "about": "Three small instances (Section 4.6, Supplementary Section S4): the network bound T1 and its tightened form T1' computed by hand (hand_values, in the order of the document: corridor T1, T1', crossroads T1, T1', consecutive tasks T1, T1', T1' rewritten), and the throughput (moves per 16-h day) simulated on the same instances by free flow, full-path reservation and the reference rule (stepwise requests, deadlocks resolved by teleporting after 900 s).",
  "hand_values": [
   54.98,
   37.94,

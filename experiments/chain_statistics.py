@@ -383,8 +383,8 @@ def series(chain_dir, cons_dir, tables, pts=None):
         a = arr[r["chain"]]
         for ax in AXES[1:]:
             r[ax] = a.stat(ax, r["ratio"])
-            if ax in OLD:
-                assert r[ax] == r[OLD[ax]], (r["series"], r["n"], ax)
+            if ax in OLD:      # bit for bit with numpy on MKL (the conda build); OpenBLAS (the pip wheel) differs in the last bits
+                assert math.isclose(r[ax], r[OLD[ax]], rel_tol=1e-12), (r["series"], r["n"], ax)
     return rows
 
 

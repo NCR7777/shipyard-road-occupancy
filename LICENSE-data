@@ -4,7 +4,7 @@ The data of this repository, the derived road networks in data/networks/ and the
 under the Creative Commons Attribution 4.0 International Public License (CC BY 4.0), whose full legal text follows (from
 https://creativecommons.org/licenses/by/4.0/legalcode.txt). When you use the data, please cite the paper (CITATION.cff).
 
-The code (occupancy/, bounds/, experiments/, paper/, tests/) is licensed under the MIT License (LICENSE). The satellite
+The code (occupancy/, bounds/, exact/, experiments/, tests/) is licensed under the MIT License (LICENSE). The satellite
 imagery from which the road networks were digitised is not part of this repository and is not covered by either license.
 
 Attribution 4.0 International

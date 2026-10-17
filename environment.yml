@@ -1,7 +1,4 @@
-# Reference environment (conda, Anaconda "defaults" channel): the builds with which the paper's figures were drawn.
-# The PDFs are byte-identical only with this matplotlib build, which links FreeType 2.13.3; the PyPI wheel of the same
-# matplotlib version (requirements.txt) bundles FreeType 2.6.1, which changes glyph metrics and so the bytes of the figures
-# (not the numbers they draw). Numbers and tables are identical in both environments.
+# The same versions as conda builds (Anaconda "defaults" channel), the environment in which the experiments ran:
 #   conda env create -f environment.yml && conda activate shipyard-road-occupancy
 name: shipyard-road-occupancy
 channels:
@@ -10,23 +7,13 @@ dependencies:
   - python=3.13.5
   - numpy=2.1.3
   - scipy=1.15.3
-  - matplotlib-base=3.10.0
-  - freetype=2.13.3
-  - fonttools=4.55.3
-  - pillow=11.1.0
-  - kiwisolver=1.4.8
-  - contourpy=1.3.1
-  - cycler=0.11.0
-  - pyparsing=3.2.0
-  - packaging=24.2
-  - python-dateutil=2.9.0post0
-  - six=1.17.0
   - scikit-learn=1.6.1
   - joblib=1.4.2
   - threadpoolctl=3.5.0
   - pytest=8.3.4
   - pluggy=1.5.0
   - iniconfig=1.1.1
+  - packaging=24.2
   - colorama=0.4.6
   - pip
   - pip:

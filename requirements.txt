@@ -1,18 +1,7 @@
-# Python 3.13.5 (64-bit). Versions pinned as used for the paper. With these pip packages the numbers and tables are
-# reproduced byte for byte; the figures draw the same numbers, but the matplotlib wheel bundles FreeType 2.6.1 while the
-# figures of the paper were drawn with the conda build linked to FreeType 2.13.3 (environment.yml), so their PDF bytes differ.
+# Python 3.13.5 (64-bit). Versions pinned as used for the experiments: with them a stored point reruns to the last bit
+# (experiments/rerun.py).
 numpy==2.1.3
 scipy==1.15.3
-matplotlib==3.10.0
-fonttools==4.55.3
-pillow==11.1.0
-kiwisolver==1.4.8
-contourpy==1.3.1
-cycler==0.11.0
-pyparsing==3.2.0
-packaging==24.2
-python-dateutil==2.9.0.post0
-six==1.17.0
 psutil==7.2.2
 # CP-SAT (constraint programming) of the sub-network instances and the whole-network retiming (exact/, experiments/)
 ortools==9.15.6755
@@ -23,4 +12,5 @@ threadpoolctl==3.5.0
 pytest==8.3.4
 pluggy==1.5.0
 iniconfig==1.1.1
+packaging==24.2
 colorama==0.4.6

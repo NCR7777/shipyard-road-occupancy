@@ -1,0 +1,21 @@
+item,yard,n,min_s,max_s,mean_s,source,note
+system_lp,yupu,2,71.9,72.2,72.05000000000001,interventions/bound_points.csv,"system bound: building and solving the linear programme (map reading excluded), once per scenario"
+system_lp,yantai,2,5.7,5.8,5.75,interventions/bound_points.csv,"system bound: building and solving the linear programme (map reading excluded), once per scenario"
+whole_fpr,yupu,6,13.818409442901611,16.34778332710266,15.203278382619223,interventions/hold_ratio_matched_whole.csv,"full-path reservation over two days, K = 100 (map reading and network building included); it gives the tasks of offline dispatch"
+whole_fpr,yantai,6,18.563726902008057,22.531566619873047,21.028743068377178,interventions/hold_ratio_matched_whole.csv,"full-path reservation over two days, K = 100 (map reading and network building included); it gives the tasks of offline dispatch"
+whole_ect_clr,yupu,6,73.84059548377991,112.34190535545349,87.78385325272878,interventions/hold_ratio_matched_whole.csv,"offline dispatch once, 6.4-s drive-off"
+whole_ect_clr,yantai,6,136.49136638641357,158.7879936695099,150.15774329503378,interventions/hold_ratio_matched_whole.csv,"offline dispatch once, 6.4-s drive-off"
+whole_ect_def1c,yupu,6,73.25484251976013,110.68204760551453,86.76284873485565,interventions/hold_ratio_matched_whole.csv,"offline dispatch once, Definition 1(c)"
+whole_ect_def1c,yantai,6,131.53743410110474,160.77319931983948,149.6255832115809,interventions/hold_ratio_matched_whole.csv,"offline dispatch once, Definition 1(c)"
+whole_dispatch_point,yupu,6,270.0117473602295,415.9165813922882,324.2985114653905,interventions/dispatch_points.csv,"one point of intervention_dispatch.py in all: full-path reservation, upper bound, both offline dispatches, checker and held shares"
+whole_dispatch_point,yantai,6,415.13497829437256,524.9516208171844,482.6185559431712,interventions/dispatch_points.csv,"one point of intervention_dispatch.py in all: full-path reservation, upper bound, both offline dispatches, checker and held shares"
+sub_best,yupu,18,2161.9956011772156,2807.42746925354,2423.324320409033,interventions/subnet_points.csv,"one sub-network point: the exact search (CP-SAT, 15 s per task), annealing in two rounds of 15 min and the CP-SAT polish; CP-SAT 1-4 threads, annealing single-threaded"
+sub_best,yantai,18,2140.8632593154907,2768.1314373016357,2410.897609737184,interventions/subnet_points.csv,"one sub-network point: the exact search (CP-SAT, 15 s per task), annealing in two rounds of 15 min and the CP-SAT polish; CP-SAT 1-4 threads, annealing single-threaded"
+sub_fpr,yupu,18,0.005138397216796875,0.015243291854858398,0.009237898720635308,interventions/hold_ratio_matched_points.csv,one sub-network point: full-path reservation (schedule only)
+sub_fpr,yantai,18,0.002527952194213867,0.009946346282958984,0.00532429748111301,interventions/hold_ratio_matched_points.csv,one sub-network point: full-path reservation (schedule only)
+sub_clr,yupu,18,0.01761937141418457,0.12164425849914551,0.04976028866238064,interventions/hold_ratio_matched_points.csv,"one sub-network point: offline dispatch, 6.4 s (schedule only)"
+sub_clr,yantai,18,0.014876842498779297,0.14488577842712402,0.04681632253858778,interventions/hold_ratio_matched_points.csv,"one sub-network point: offline dispatch, 6.4 s (schedule only)"
+sub_def1c,yupu,18,0.017327070236206055,0.11901688575744629,0.049331969685024686,interventions/hold_ratio_matched_points.csv,"one sub-network point: offline dispatch, Definition 1(c) (schedule only)"
+sub_def1c,yantai,18,0.015798330307006836,0.16255855560302734,0.05096937550438775,interventions/hold_ratio_matched_points.csv,"one sub-network point: offline dispatch, Definition 1(c) (schedule only)"
+sub_matched_point,yupu,18,0.23624277114868164,1.0233356952667236,0.8313656383090549,interventions/hold_ratio_matched_points.csv,"one sub-network point in all: instance, three schedules, checker and held shares"
+sub_matched_point,yantai,18,0.06155753135681152,0.40089893341064453,0.18988745742373997,interventions/hold_ratio_matched_points.csv,"one sub-network point in all: instance, three schedules, checker and held shares"

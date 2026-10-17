@@ -1,33 +1,39 @@
 # Result data
 
-Every number, table of results and data figure of the paper and of its supplementary material is generated from the files
-of this directory by `paper/reproduce.py`. `MANIFEST.csv` lists every file with its SHA-256, its size, the commit of the
-source data it was exported from (`source_commit`) and where the paper uses it. `RECOMPUTE.md` (repository root) names the
-script and configuration that recompute each class of files.
+The result data of the experiments: configurations, per-point tables and per-cell tables. `MANIFEST.csv` lists every file
+with its SHA-256, its size, the commit of the source data it was exported from (`source_commit`) and where the manuscript
+uses it (`used_for`). `RECOMPUTE.md` (repository root) names the script and configuration that recompute each class of
+files.
+
+`used_for` gives the sections, tables and figures of the manuscript that read the file, that is, where a number from it
+or a statement on it first appears; restatements in the introduction, the discussion and the conclusions are not listed.
+A run directory (`runs/<run>/`) and a per-point table read only through another file carry the places of the files
+computed from them. The other files carry a note: `configuration of <directory>`, `check of <files>` (read only to check
+the readings of those files), `input of <file>`, or that the manuscript does not read them.
 
 ## Layout
 
-| Directory | Contents | Paper |
+| Directory | Contents | Manuscript |
 |---|---|---|
-| `main_case/` | the main case (erection flow conserved, every other move between areas): system bounds of the three mappings with demand ratios and binding elements (`bounds.csv`, `binding.csv`), with sectioned dock roads and 30-min handling (`bounds_sections.csv`), saturation curves and plateaus (`saturation_curves.csv`, `saturation.csv`), capacity interval (`interval.csv`), fleets K_req and K_stable of the four rules (`fleet.csv`, `fleet_rules.csv`, `fleet_30min.csv`), the scan of moves within areas (`scan.csv`, `scan_switch.csv`), crane load by dock, loaded occupancy and peak waits, per-point checks (`check*.csv`) | Table 7, Figs. 4-5, Table 9, Fig. S1, Sections 4.1-4.4 |
-| `intra_area/` | moves within areas: bounds, demand ratios, sampled bounds, placement variants, fleets, screen, saturation, and the 30-day fleets without growing backlog of both inter-area mappings and this one (`stable.csv`) | Tables 7, 9, S2, Appendix B, Supplementary S1.4 |
-| `ablation/` | ablation of the occupancy representation, main case and every move scaled: system bounds, fleets, checks | Tables 8, S3 |
-| `retiming/` | whole-network retiming of full-path reservation's schedules and offline dispatch (main case, every move scaled) | Table S5, Section 4.3 |
-| `subnet/` | sub-network instances: rule, fixed-order and best schedules, bounds (`points.csv`), the through corridor (`corridor*.csv`) | Table S4, Section 4.3 |
-| `screen/` | the screen in two levels: extra fleet against the demand ratio and the chain load (`series*.csv`, `cross*.csv`), 30-seed reruns of the low levels, waits and the widened roads, across yards and road widths (`widths*.csv`, `leave_one_out.csv`), densified low levels (`low_*.csv`), the lower end over 30 days (`stable_low.csv`, `intra_own.csv`) and the chain statistics of the upper end (`chain_stats.json`, computed from the per-resource chain loads `chain_load.json`, every move scaled and moves within areas, and `chain_conserved.json`, main case: numbers indexed by case only) | Fig. 6, Section 4.4, Supplementary S1.4 |
-| `stochastic/` | random handling and driving times, late rebooking, full-path reservation executed in booked order (`ordered_*.csv`), with every move scaled; random times in the main case (`main_case_*.csv`) | Tables S8-S10, Table 9, Fig. 5, Section 4.3 |
-| `interventions/` | interventions on the binding element of the main case (the corridor widened, the paint-shop doors relaxed, loading moved behind the doors): system bounds, plateaus, offline dispatch, fleets, the holding ratio, the corridor sub-network of the main case, why two scenarios have no comparable sub-network (`diag.json`), the two-tier lower end of Fig. 5 (`lower_tier.csv`), per-point tables (`*_points.csv`) | Tables S6-S7, Fig. 5, Section 4.3 |
-| `width_ban/` | ban on blocks wider than the passable width: bounds and fleets (`summary.json`), passable widths read on the imagery (`clear_width.json`) | Section 4.1, Supplementary S1.1 |
-| `tail/` | release at tail clearance: roadside stops within a clearing length, plateaus and fleets when the tail is booked | Appendix A.1, Supplementary S1.1 |
-| `hand/` | the three hand-computed instances: hand values and simulated throughput | Appendix A.6, Supplementary S4 |
-| `network/` | counts of the two networks, cranes and crane spans, Okpo revisions, sectioned dock roads, roads shorter than a vehicle | Section 4.1, Appendices A.1, B.1 |
-| `saturation/` | every move scaled: saturation curves and plateaus of the traffic rules, onset of saturation K*, refusals of safe release, teleports of the reference rule, width sensitivity | Section 4.2, Supplementary S1.3 |
-| `bounds/` | every move scaled: system bound, route-free bound and route margin, network-bound samples, convergence, read-out of the binding resource, dual prices (`okpo/`, `yantai/`); system bounds by granularity; section and block length; bound sensitivity; sampling of origins and destinations. Main case: route-free bounds and certificates (`route_free_*.csv`, `interval_route_free.csv`), the bound with the utilisation rows only (`packing_rows.csv`), platform size (`platform_size.csv`) | Table 7, Fig. 5, Section 4.2, Supplementary S1.1-S1.2 |
-| `interval/` | every move scaled: capacity interval, crane-paced erection, 30-min loading and unloading | Fig. 5, Supplementary S1.3 |
-| `fleet/` | every move scaled: required fleets (all levels, both working days, four rules), eight-day checks, 30-min handling, crane pacing, the 10 % screen, the bootstrap size | Table S2, Fig. S2, Supplementary S1.4, Appendix B.4 |
-| `dock/` | dock-mouth thresholds rho_10 at both yards (`thresholds.csv`, one row per yard, granularity, rule and fleet), crane hours, utilisation levels, one crane at Dock 1, off-road unloading bays (`bays.csv`) | Fig. 7, Table S11, Section 4.5, Supplementary S2.1 |
-| `synthetic_dock/` | synthetic dock mouth: configuration, every simulated point, thresholds, waiting term | Fig. 8, Supplementary S2.2 |
-| `anchors/` | external anchor against handling time, moves per vehicle-day, with every move scaled and in the main case (`main_case_*.csv`: the figure, the handling-time frame, the anchors' fleets) | Fig. 9, Sections 4.1, 4.6 |
+| `main_case/` | the main case (erection flow conserved, every other move between areas): system bounds of the three mappings with demand ratios and binding elements (`bounds.csv`, `binding.csv`), with sectioned dock roads and 30-min handling (`bounds_sections.csv`), saturation curves and plateaus (`saturation_curves.csv`, `saturation.csv`), capacity interval (`interval.csv`), fleets K_req and K_stable of the four rules (`fleet.csv`, `fleet_rules.csv`, `fleet_30min.csv`), the scan of moves within areas (`scan.csv`, `scan_switch.csv`), crane load by dock, loaded occupancy and peak waits, per-point checks (`check*.csv`) | Tables 7, 9; Figs. 4-5; Sections 4.1-4.4; Supplementary Fig. S1 |
+| `intra_area/` | moves within areas: bounds, demand ratios, sampled bounds, placement variants, fleets, screen, saturation, and the 30-day fleets without growing backlog of both inter-area mappings and this one (`stable.csv`) | Tables 7, 9; Appendix B; Supplementary Table S2; Supplementary Section S1.4 |
+| `ablation/` | ablation of the occupancy representation, main case and every move scaled: system bounds, fleets, checks | Table 8; Supplementary Table S3 |
+| `retiming/` | whole-network retiming of full-path reservation's schedules and offline dispatch (main case, every move scaled) | Section 4.3; Supplementary Table S5 |
+| `subnet/` | sub-network instances: rule, fixed-order and best schedules, bounds (`points.csv`), the through corridor (`corridor*.csv`) | Section 4.3; Supplementary Table S4 |
+| `screen/` | the screen in two levels: extra fleet against the demand ratio and the chain load (`series*.csv`, `cross*.csv`), 30-seed reruns of the low levels, waits and the widened roads, across yards and road widths (`widths*.csv`, `leave_one_out.csv`), densified low levels (`low_*.csv`), the lower end over 30 days (`stable_low.csv`, `intra_own.csv`) and the chain statistics of the upper end (`chain_stats.json`, computed from the per-resource chain loads `chain_load.json`, every move scaled and moves within areas, and `chain_conserved.json`, main case: numbers indexed by case only) | Fig. 6; Section 4.4; Supplementary Section S1.4 |
+| `stochastic/` | random handling and driving times, late rebooking, full-path reservation executed in booked order (`ordered_*.csv`), with every move scaled; random times in the main case (`main_case_*.csv`) | Table 9; Fig. 5; Sections 4.3-4.4; Supplementary Tables S9-S11 |
+| `interventions/` | interventions on the binding element of the main case (the corridor widened, the paint-shop doors relaxed, loading moved behind the doors): system bounds, plateaus, offline dispatch, fleets, the holding ratio, the corridor sub-network of the main case, why two scenarios have no comparable sub-network (`diag.json`), the two-tier lower end of Fig. 5 (`lower_tier.csv`), per-point tables (`*_points.csv`); the holding ratio with the same scheduling method on both sides (`hold_ratio_matched.csv`, with its per-point tables `hold_ratio_matched_points.csv`, sub-network, and `hold_ratio_matched_whole.csv`, whole network) and the computing times of the bounds and schedules (`computing_times.csv`) | Fig. 5; Section 4.3; Supplementary Tables S6-S8 |
+| `width_ban/` | ban on blocks wider than the passable width: bounds and fleets (`summary.json`), passable widths read on the imagery (`clear_width.json`) | Section 4.1; Supplementary Section S1.1 |
+| `tail/` | release at tail clearance: roadside stops within a clearing length, plateaus and fleets when the tail is booked | Appendix A.1; Supplementary Section S1.1 |
+| `hand/` | the three hand-computed instances: hand values and simulated throughput | Section 4.6; Supplementary Section S4; Supplementary Table S15 |
+| `network/` | counts of the two networks, cranes and crane spans, Okpo revisions, sectioned dock roads, roads shorter than a vehicle | Section 4.1; Appendices A.1, B.1 |
+| `saturation/` | every move scaled: saturation curves and plateaus of the traffic rules, onset of saturation K*, refusals of safe release, teleports of the reference rule, width sensitivity | Section 4.2; Supplementary Section S1.3 |
+| `bounds/` | every move scaled: system bound, route-free bound and route margin, network-bound samples, convergence, read-out of the binding resource, dual prices (`okpo/`, `yantai/`); system bounds by granularity; section and block length; bound sensitivity; sampling of origins and destinations. Main case: route-free bounds and certificates (`route_free_*.csv`, `interval_route_free.csv`), the bound with the utilisation rows only (`packing_rows.csv`), platform size (`platform_size.csv`) | Table 7; Fig. 5; Section 4.2; Supplementary Sections S1.1-S1.2 |
+| `interval/` | every move scaled: capacity interval, crane-paced erection, 30-min loading and unloading | Fig. 5; Supplementary Section S1.3 |
+| `fleet/` | every move scaled: required fleets (all levels, both working days, four rules), eight-day checks, 30-min handling, crane pacing, the 10 % screen, the bootstrap size | Appendix B.4; Supplementary Table S2; Supplementary Fig. S2; Supplementary Section S1.4 |
+| `dock/` | dock-mouth thresholds rho_10 at both yards (`thresholds.csv`, one row per yard, granularity, rule and fleet), crane hours, utilisation levels, one crane at Dock 1, off-road unloading bays (`bays.csv`) | Fig. 7; Section 4.5; Supplementary Table S12; Supplementary Section S2.1 |
+| `synthetic_dock/` | synthetic dock mouth: configuration, every simulated point, thresholds, waiting term | Fig. 8; Supplementary Section S2.2 |
+| `anchors/` | external anchors in the main case (`main_case_*.csv`: moves per vehicle-day against handling time, the handling-time frame, the anchors' fleets, the summary), and moves per vehicle-day with every move scaled (`per_vehicle_rates.csv`) | Fig. 9; Sections 4.1, 4.6 |
 | `runs/<run>/` | one simulation or bound batch each: `config.json`, and where kept `points*.csv` (one row per simulated point), `demand.csv` (the required-fleet search), `daily.csv` and `stable.json` (30-day runs: day-by-day readings and the K_stable search), `bound_points.json` (sampled bounds per seed) and `check.json` (the per-point check against the network bound) | the sections of the run |
 
 The runs of the main case are `runs/{okpo,yantai}_main_*` (saturation, interval rows, fleets, fleets of safe release and
@@ -94,7 +100,7 @@ concatenating the parts with the header line once gives the whole table, and `ex
   columns are empty there.
 - CSV files are UTF-8 with a header row; empty cells are missing values; floats are written in full precision.
 - JSON summaries (`*summary*.json`, `check.json`, `network/*.json`, `screen/wide_config.json`) are excerpts of larger
-  summaries of the runs: the parts the paper's scripts read. The per-point checks (`check.json`, `check*.csv`) count every
+  summaries of the runs: the fields used for the manuscript. The per-point checks (`check.json`, `check*.csv`) count every
   point of their batch.
 
 ## `points.csv` of a run
@@ -102,7 +108,7 @@ concatenating the parts with the header line once gives the whole table, and `ex
 One row per simulated point: `scen`, `model`, `level`, `K` (fleet size), `seed`; `throughput` (tasks/day), `completed`,
 `flow_mean`, `flow_p95` (task flow time, s), `wait_mean`, `wait_p95`, deadlocks and near-deadlocks (stepwise rules; the
 reference rule's `deadlock_times_h` lists the time of every deadlock), `backlog`, `T1_tight_mix` (network bound T1′ of the
-tasks completed in the point's own statistics window; the throughput of every occupancy-rule point is at most this value),
+tasks completed in the point's own statistics window, against which the per-point check compares the throughput),
 P6 (erection) flow, dock-mouth readings (`dock0_*`: the dock stop roads; `dock_*`: the dock-mouth zone), the most occupied
 resources (`util_top1*`, `busy_top1*`), steady-state readings of saturated points (`mix_shift`, `drift`, `longrun_est`,
 `thr_by_day`), crane and lift readings, crane starvation, refusals of safe release, cycle parts (`cyc_*`, min per task) and
@@ -110,3 +116,20 @@ the rebooking readings of `reserve_rb` (`rb_late`, `rb_rebook`, `rb_late_mean_s`
 `experiments/runner.py` (`FIELDS`); earlier runs have a prefix of them.
 
 Rerun stored points with `experiments/rerun.py` (see the main README).
+
+## Tables of the holding ratio with the same method on both sides (`interventions/`)
+
+- `hold_ratio_matched.csv`: one row per scenario (`yard`, `scen`, `subnet`, binding `element`, `n_sub` sub-network points,
+  `n_whole` whole-network seeds). The share of time the binding element is held, as minimum, maximum and mean over the
+  points: `sub_<method>_*` on the sub-network, `whole_<method>_*` on the whole network; methods `fpr` (full-path
+  reservation), `clr` (offline dispatch, destination held while the empty vehicle drives off, 6.4 s), `def1c` (offline
+  dispatch, Definition 1(c)) and `best` (the best sub-network schedules of `subnet_points.csv`). `ratio_<method>`: whole
+  over sub-network, ratio of the means, with `_lo` / `_hi` from dividing the two ranges crosswise; `ratio_clr_best`,
+  `ratio_def1c_best`: the whole network's offline dispatch over the best sub-network schedules. `sub_<method>_N_*`:
+  sub-network throughput over the instance's bound lambda_W^N.
+- `hold_ratio_matched_points.csv`: one row per sub-network point (`inst`, `seed`, `N` tasks, `K` vehicles), per method the
+  completion time `W`, throughput, checker result, vehicles used, run time and the held shares of the three binding
+  elements of the scenario (`watch1-3`); `hold_ratio_matched_whole.csv`: per whole-network point the run time and
+  throughput of each method.
+- `computing_times.csv`: wall-clock seconds of each computation (`item`, `yard`, `n`, `min_s`, `max_s`, `mean_s`), the
+  per-point table they are read from (`source`) and what the time covers (`note`).

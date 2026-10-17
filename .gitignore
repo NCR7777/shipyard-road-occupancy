@@ -3,11 +3,5 @@ __pycache__/
 .pytest_cache/
 .venv/
 venv/
-# outputs of paper/reproduce.py
-paper/numbers.tex
-paper/highlights.txt
-paper/tables/
-paper/figures/
-paper/build/
 # working directories of the experiment scripts
 out/

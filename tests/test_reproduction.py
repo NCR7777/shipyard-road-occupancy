@@ -8,11 +8,14 @@ util_top1_name and busy_top1_name follow experiments/rerun.same: runs stored bef
   per-point check against T1' of the statistics window and the steady-state readings;
   Yantai (run on revision 395, whose road network is that of the released revision 396), main scenario, stepwise requests
   with teleport recovery, saturated, K = 3, seed 101: deadlock detection and recovery, deadlock histograms and times.
-Also the tables of the screen's lower end and the chain statistics, rebuilt from the released files by
-experiments/chain_statistics.py."""
+Also per-cell tables rebuilt from the released files: the screen's lower end and the chain statistics
+(experiments/chain_statistics.py), the holding ratio with the same method on both sides and the computing times
+(experiments/hold_ratio_matched_report.py), and the main case's plateaus under random times
+(experiments/stochastic_main_stable.py --plateau)."""
 import csv
 import io
 import json
+import math
 import subprocess
 import sys
 import tempfile
@@ -53,6 +56,15 @@ def test_rerun_stored_point(run, key):
     assert sum(bool(got[c]) for c in columns) > 40
 
 
+def same_value(k, v, w):
+    """Equal, floats to 1e-12 relative: with numpy on OpenBLAS (the pip wheel) the dot products of the chain statistics
+    differ from those on MKL (the conda build, which wrote the file) in the last bits; the isotonic fit (r2) moves with the
+    order of near-ties, to 1e-6."""
+    if isinstance(v, float) and not isinstance(v, bool):
+        return math.isclose(w, v, rel_tol=1e-6 if k == "r2" else 1e-12)
+    return v == w
+
+
 def test_screen_tables_from_release():
     """stable_low.csv and intra_own.csv byte for byte; best and align of chain_stats.json in every released field."""
     rel = ROOT / "results" / "screen"
@@ -62,6 +74,18 @@ def test_screen_tables_from_release():
         for f in ("stable_low.csv", "intra_own.csv"):
             assert (out / f).read_bytes() == (rel / f).read_bytes(), f
         a, b = (json.loads(p.read_text(encoding="utf-8")) for p in (rel / "chain_stats.json", out / "chain_stats.json"))
-    assert all(b["best"][k] == v for k, v in a["best"].items())
+    assert all(same_value(k, v, b["best"][k]) for k, v in a["best"].items())
     assert len(a["align"]) == len(b["align"]) == 25
-    assert all(y[k] == v for x, y in zip(a["align"], b["align"]) for k, v in x.items())
+    assert all(same_value(k, v, y[k]) for x, y in zip(a["align"], b["align"]) for k, v in x.items())
+
+
+@pytest.mark.parametrize("args,files", [
+    (["experiments/hold_ratio_matched_report.py"], [("hold_ratio_matched.csv", "interventions/hold_ratio_matched.csv"),
+                                                     ("computing_times.csv", "interventions/computing_times.csv")]),
+    (["experiments/stochastic_main_stable.py", "--plateau"], [("main_case_plateau.csv", "stochastic/main_case_plateau.csv")])])
+def test_tables_from_release(args, files):
+    """The per-cell tables, rebuilt from the released per-point tables, equal the released ones byte for byte."""
+    with tempfile.TemporaryDirectory() as d:
+        subprocess.run([sys.executable, "-B"] + args + ["--out", d], cwd=ROOT, check=True)
+        for got, rel in files:
+            assert (Path(d) / got).read_bytes() == (ROOT / "results" / rel).read_bytes(), rel
