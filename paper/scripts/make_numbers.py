@@ -1467,7 +1467,7 @@ assert RF69[("yantai", "conserved", "whole")]["binding_type"] == "entrance" and 
     abs(float(RF69[("yantai", "conserved", "whole")]["margin_hi"])) < 1e-9          # Yantai: a door, no route margin
 lines = []
 for y in YARDS:
-    rows6 = [("Main case: erection conserved", "conserved"), ("Every move scaled", "main"),
+    rows6 = [("Main case", "conserved"), ("Every move scaled", "main"),
              (MAC["IntraMoves"] + " of " + MAC["MovesPerBlock"] + " moves within areas", "intra"),
              ("Erection-heavy mix", "erection"), ("Crane-paced erection", "crane")]
     for i, (label, m) in enumerate(rows6):
@@ -1640,7 +1640,7 @@ for n in (339, 350):
 write("tab_fleethead_prop.tex", T7P)
 # Table 9: the main case (erection conserved), with crane-paced erection and 30-min handling below it, then the
 # intra-area mapping
-T7 = [head(r"\emph{Main case: erection conserved} (onset of saturation $K^{*}$ = " + kst(KSTAR_C) + ")")]
+T7 = [head(r"\emph{Main case} (onset of saturation $K^{*}$ = " + kst(KSTAR_C) + ")")]
 for n in (339, 350, 678, 700):
     c = []
     for h in (16, 24):
